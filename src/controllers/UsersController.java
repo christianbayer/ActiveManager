@@ -29,17 +29,21 @@ public class UsersController {
         }
     }
 
-    public ArrayList<User> popularTabela() {
-        ArrayList<Object> objUsers = userDAO.getAll();
-
-        ArrayList<User> users = new ArrayList();
-        for (int i = 0; i < objUsers.size(); i++) {
-            users.add((User) objUsers.get(i));
-        }
+//    public ArrayList<User> popularTabela() {
+//        ArrayList<Object> users = userDAO.getAll();
+//
+//        for(Object o : users) {
+//            ((User) o).getFirstName();
+//        }
+        
+//        ArrayList<User> users = new ArrayList();
+//        for (int i = 0; i < objUsers.size(); i++) {
+//            users.add((User) objUsers.get(i));
+//        }
 
 //        System.out.println(users.get(1).getFirstName());
-        return users;
+//        return users;
 
-    }
+//    }
 
 }

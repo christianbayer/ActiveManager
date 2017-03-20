@@ -7,6 +7,7 @@ package telas;
 
 import classes.User;
 import controllers.UsersController;
+import java.awt.Color;
 import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import tablemodel.UsersTableModel;
 
 /**
@@ -31,20 +33,39 @@ public class Usuarios extends javax.swing.JPanel {
         initComponents();
         this.setSize(800, 500);
         controller = new UsersController();
-        ArrayList<User> users = controller.popularTabela();
+//        ArrayList<User> users = controller.popularTabela();
+
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel("Usuário");
+        JButton button = new JButton("Ver mais");
+        panel.setSize(400, 200);
+        panel.setBackground(Color.white);
+        label.setBounds(60, 40, 220, 30);
+        button.setBounds(60, 70, 220, 30);
+        this.add(panel);
+        panel.add(label);
+        panel.add(button);
+
+
 
         JButton buttons[] = new JButton[5];
-
-        String names[] = {"Foo", "Bar", "Baz", "Fob", "Bao"};
-        for (int i = 0; i < buttons.length; ++i) {
-            JButton btn = new JButton(names[i]);
-            panel2.add(btn);
-            buttons[i] = btn;
+//
+//        String names[] = {"Foo", "Bar", "Baz", "Fob", "Bao"};
+//        for (int i = 0; i < buttons.length; ++i) {
+//            JButton btn = new JButton(names[i]);
+//            panel2.add(btn);
+//            buttons[i] = btn;
+//        }
+        
+        for(int i = 0; i < 5; i++){
+            System.out.println("a");
+            buttons[i] = new JButton("btn" + i); //create button & add to array
+            this.add(buttons[i]); //add that same button to the panel
         }
         
-        panel2.add(new Panel());
+//        panel2.add(new Panel());
 
-        tableUsuarios.setModel(new UsersTableModel(users));
+//        tableUsuarios.setModel(new UsersTableModel(users));
 //        controller.popularTabela();
     }
 
@@ -71,9 +92,8 @@ public class Usuarios extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableUsuarios = new javax.swing.JTable();
-        panel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(212, 66, 80));
 
@@ -81,64 +101,54 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("USUARIOS");
 
-        tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        jLabel1.setText("Usuario");
 
-            }
-        ));
-        jScrollPane1.setViewportView(tableUsuarios);
-
-        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
-        panel2.setLayout(panel2Layout);
-        panel2Layout.setHorizontalGroup(
-            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        panel2Layout.setVerticalGroup(
-            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 121, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addContainerGap(663, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(367, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel panel2;
-    private javax.swing.JTable tableUsuarios;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
     private static class Panel extends PopupMenu {
