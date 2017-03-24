@@ -5,8 +5,7 @@
  */
 package telas;
 
-import controllers.UsersController;
-import java.awt.GridBagLayout;
+import java.awt.CardLayout;
 
 /**
  *
@@ -14,7 +13,7 @@ import java.awt.GridBagLayout;
  */
 public class Main extends javax.swing.JFrame {
 
-    GridBagLayout grid = new GridBagLayout();
+    CardLayout layoutController;
     Dashboard dashboard;
     Projetos projetos;
     Usuarios usuarios;
@@ -25,21 +24,19 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        
+
         dashboard = new Dashboard();
         projetos = new Projetos();
         usuarios = new Usuarios();
         ajuda = new Ajuda();
-        
+
         this.setSize(1000, 500);
-        panel.setLayout(grid);
-        panel.add(dashboard);
-        panel.add(projetos);
-        panel.add(usuarios);
-        panel.add(ajuda);
+        panel.add(dashboard, "dashboard");
+        panel.add(projetos, "projetos");
+        panel.add(usuarios, "usuarios");
+        panel.add(ajuda, "ajuda");
         panel.setSize(800, 500);
-        
-        
+
         dashboard.setVisible(true);
     }
 
@@ -52,20 +49,58 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnDashboard = new javax.swing.JButton();
-        btnAjuda = new javax.swing.JButton();
-        btnProjetos = new javax.swing.JButton();
-        btnUsuarios = new javax.swing.JButton();
+        bar = new javax.swing.JPanel();
+        exit = new javax.swing.JLabel();
         panel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        btnAjuda = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
+        btnProjetos1 = new javax.swing.JButton();
+        btnProjetos = new javax.swing.JButton();
+        btnDashboard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(52, 100, 127));
+        setForeground(new java.awt.Color(255, 255, 255));
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnDashboard.setText("DASHBOARD");
-        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDashboardActionPerformed(evt);
+        bar.setBackground(new java.awt.Color(26, 50, 64));
+
+        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        exit.setForeground(new java.awt.Color(254, 254, 254));
+        exit.setText("x");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
             }
         });
+
+        javax.swing.GroupLayout barLayout = new javax.swing.GroupLayout(bar);
+        bar.setLayout(barLayout);
+        barLayout.setHorizontalGroup(
+            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barLayout.createSequentialGroup()
+                .addGap(0, 981, Short.MAX_VALUE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        barLayout.setVerticalGroup(
+            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barLayout.createSequentialGroup()
+                .addComponent(exit)
+                .addGap(0, 4, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 30));
+
+        panel.setBackground(new java.awt.Color(147, 147, 147));
+        panel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 800, 600));
+
+        jPanel1.setBackground(new java.awt.Color(26, 50, 64));
+        jPanel1.setForeground(new java.awt.Color(52, 100, 127));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAjuda.setText("AJUDA");
         btnAjuda.addActionListener(new java.awt.event.ActionListener() {
@@ -73,13 +108,7 @@ public class Main extends javax.swing.JFrame {
                 btnAjudaActionPerformed(evt);
             }
         });
-
-        btnProjetos.setText("PROJETOS");
-        btnProjetos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProjetosActionPerformed(evt);
-            }
-        });
+        jPanel1.add(btnAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 381, 123, -1));
 
         btnUsuarios.setText("USUÁRIOS");
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -87,119 +116,97 @@ public class Main extends javax.swing.JFrame {
                 btnUsuariosActionPerformed(evt);
             }
         });
+        jPanel1.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 310, 123, -1));
 
-        panel.setBackground(new java.awt.Color(216, 127, 38));
+        btnProjetos1.setText("ATIVIDADES");
+        btnProjetos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProjetos1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProjetos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 227, 123, -1));
 
-        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(panelLayout);
-        panelLayout.setHorizontalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        panelLayout.setVerticalGroup(
-            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        btnProjetos.setText("PROJETOS");
+        btnProjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProjetosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 166, 123, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(btnDashboard)
-                .addGap(80, 80, 80)
-                .addComponent(btnProjetos)
-                .addGap(84, 84, 84)
-                .addComponent(btnUsuarios)
-                .addGap(38, 38, 38)
-                .addComponent(btnAjuda))
-        );
+        btnDashboard.setBackground(new java.awt.Color(153, 153, 153));
+        btnDashboard.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        btnDashboard.setText("DASHBOARD");
+        btnDashboard.setBorderPainted(false);
+        btnDashboard.setFocusPainted(false);
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 85, 123, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 600));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
-        dashboard.setVisible(true);
-        projetos.setVisible(false);
-        usuarios.setVisible(false);
-        ajuda.setVisible(false);
+        layoutController = ((CardLayout) panel.getLayout());
+        layoutController.show(panel, "dashboard");
+
+//        dashboard.setVisible(true);
+//        projetos.setVisible(false);
+//        usuarios.setVisible(false);
+//        ajuda.setVisible(false);
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjudaActionPerformed
-        dashboard.setVisible(false);
-        projetos.setVisible(false);
-        usuarios.setVisible(false);
-        ajuda.setVisible(true);
+        layoutController = ((CardLayout) panel.getLayout());
+        layoutController.show(panel, "ajuda");
+//        dashboard.setVisible(false);
+//        projetos.setVisible(false);
+//        usuarios.setVisible(false);
+//        ajuda.setVisible(true);
     }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetosActionPerformed
-        dashboard.setVisible(false);
-        projetos.setVisible(true);
-        usuarios.setVisible(false);
-        ajuda.setVisible(false);
+        layoutController = ((CardLayout) panel.getLayout());
+        layoutController.show(panel, "projetos");
+
+//        dashboard.setVisible(false);
+//        projetos.setVisible(true);
+//        usuarios.setVisible(false);
+//        ajuda.setVisible(false);
     }//GEN-LAST:event_btnProjetosActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        dashboard.setVisible(false);
-        projetos.setVisible(false);
-        usuarios.setVisible(true);
-        ajuda.setVisible(false);
+        layoutController = ((CardLayout) panel.getLayout());
+        layoutController.show(panel, "usuarios");
+//        dashboard.setVisible(false);
+//        projetos.setVisible(false);
+//        usuarios.setVisible(true);
+//        ajuda.setVisible(false);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnProjetos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProjetos1ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-            }
-        });
-    }
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_exitMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bar;
     private javax.swing.JButton btnAjuda;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnProjetos;
+    private javax.swing.JButton btnProjetos1;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.JLabel exit;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

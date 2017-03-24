@@ -5,6 +5,9 @@
  */
 package activemanager;
 
+import telas.Login;
+import telas.Main;
+
 /**
  *
  * @author christian
@@ -15,7 +18,11 @@ public class ActiveManager {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+        Login login = new Login();
+        Main main = new Main();
+
+//        login.setVisible(true);
+        main.setVisible(true);
     }
     
 }

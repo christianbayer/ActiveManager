@@ -5,17 +5,10 @@
  */
 package telas;
 
-import classes.User;
 import controllers.UsersController;
+import dao.UserDAO;
 import java.awt.Color;
-import java.awt.PopupMenu;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import tablemodel.UsersTableModel;
 
 /**
@@ -25,63 +18,33 @@ import tablemodel.UsersTableModel;
 public class Usuarios extends javax.swing.JPanel {
 
     UsersController controller;
-
+    UserDAO userDAO;
     /**
      * Creates new form Usuario
      */
     public Usuarios() {
         initComponents();
+        
+        // Seta o tamanho do frame
         this.setSize(800, 500);
+        
+//        ArrayList<Object> users = userDAO.getAll();
+//        
+//        System.out.println(users);
+//        
+//        this.tableUsuarios.setModel(new UsersTableModel(users));
+        
+        // Seta o tamano do panel
+//        tabPanUsuarios.setSize(200, 200);
+//        tabPanUsuarios.setBounds(10, 200, 100, 100);
+        
+        
+//        System.out.println(this.getSize());
+//        System.out.println(tabPanUsuarios.getSize());
         controller = new UsersController();
 //        ArrayList<User> users = controller.popularTabela();
-
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("Usuário");
-        JButton button = new JButton("Ver mais");
-        panel.setSize(400, 200);
-        panel.setBackground(Color.white);
-        label.setBounds(60, 40, 220, 30);
-        button.setBounds(60, 70, 220, 30);
-        this.add(panel);
-        panel.add(label);
-        panel.add(button);
-
-
-
-        JButton buttons[] = new JButton[5];
-//
-//        String names[] = {"Foo", "Bar", "Baz", "Fob", "Bao"};
-//        for (int i = 0; i < buttons.length; ++i) {
-//            JButton btn = new JButton(names[i]);
-//            panel2.add(btn);
-//            buttons[i] = btn;
-//        }
-        
-        for(int i = 0; i < 5; i++){
-            System.out.println("a");
-            buttons[i] = new JButton("btn" + i); //create button & add to array
-            this.add(buttons[i]); //add that same button to the panel
-        }
-        
-//        panel2.add(new Panel());
-
-//        tableUsuarios.setModel(new UsersTableModel(users));
-//        controller.popularTabela();
     }
 
-    public void Panel() {
-        setLayout(new java.awt.GridLayout(4, 4));
-        for (int i = 0; i < 16; ++i) {
-            JButton b = new JButton(String.valueOf(i));
-            b.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    //...
-                }
-            });
-            add(b);
-        }
-    }
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,68 +55,185 @@ public class Usuarios extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        tabPanUsuarios = new javax.swing.JTabbedPane();
+        panListagemUsuarios = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableUsuarios = new javax.swing.JTable();
+        panCadastroUsuarios = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel7 = new javax.swing.JLabel();
+        jPasswordField2 = new javax.swing.JPasswordField();
+        btnExcluirUsuario = new javax.swing.JButton();
+        btnEditarUsuario = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(212, 66, 80));
+        setBackground(new java.awt.Color(254, 254, 254));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("USUARIOS");
 
-        jLabel1.setText("Usuario");
+        tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tableUsuarios);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panListagemUsuariosLayout = new javax.swing.GroupLayout(panListagemUsuarios);
+        panListagemUsuarios.setLayout(panListagemUsuariosLayout);
+        panListagemUsuariosLayout.setHorizontalGroup(
+            panListagemUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+        );
+        panListagemUsuariosLayout.setVerticalGroup(
+            panListagemUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+        );
+
+        tabPanUsuarios.addTab("Listagem", panListagemUsuarios);
+
+        jLabel1.setText("Nome");
+
+        jLabel2.setText("Sobrenome");
+
+        jLabel4.setText("Email");
+
+        jLabel5.setText("Usuário");
+
+        jLabel6.setText("Senha");
+
+        jLabel7.setText("Confirmação de Senha");
+
+        javax.swing.GroupLayout panCadastroUsuariosLayout = new javax.swing.GroupLayout(panCadastroUsuarios);
+        panCadastroUsuarios.setLayout(panCadastroUsuariosLayout);
+        panCadastroUsuariosLayout.setHorizontalGroup(
+            panCadastroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panCadastroUsuariosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panCadastroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jPasswordField1)
+                    .addComponent(jLabel7)
+                    .addComponent(jPasswordField2))
+                .addContainerGap(514, Short.MAX_VALUE))
+        );
+        panCadastroUsuariosLayout.setVerticalGroup(
+            panCadastroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panCadastroUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
+
+        tabPanUsuarios.addTab("Cadastro", panCadastroUsuarios);
+
+        btnExcluirUsuario.setText("Excluir");
+
+        btnEditarUsuario.setText("Editar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
-                .addContainerGap(663, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditarUsuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluirUsuario))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabPanUsuarios)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnExcluirUsuario)
+                            .addComponent(btnEditarUsuario))
+                        .addGap(5, 5, 5)))
+                .addComponent(tabPanUsuarios)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditarUsuario;
+    private javax.swing.JButton btnExcluirUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JPanel panCadastroUsuarios;
+    private javax.swing.JPanel panListagemUsuarios;
+    private javax.swing.JTabbedPane tabPanUsuarios;
+    private javax.swing.JTable tableUsuarios;
     // End of variables declaration//GEN-END:variables
-
-    private static class Panel extends PopupMenu {
-
-        public Panel() {
-        }
-    }
 }

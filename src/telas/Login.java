@@ -6,6 +6,7 @@
 package telas;
 
 import controllers.UsersController;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setSize(500,600);
         lblLoginError.setVisible(false);
     }
 
@@ -31,90 +33,134 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnLogin = new javax.swing.JButton();
-        inpPassword = new javax.swing.JTextField();
-        inpUsername = new javax.swing.JTextField();
-        lblUsuario = new javax.swing.JLabel();
-        lblSenha = new javax.swing.JLabel();
+        panel = new javax.swing.JPanel();
+        bar = new javax.swing.JPanel();
+        exit = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         lblLoginError = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
+        inpUsername = new javax.swing.JTextField();
+        sepUsername = new javax.swing.JSeparator();
+        inpPassword = new javax.swing.JPasswordField();
+        sepPassword = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(254, 254, 254));
+        setName("login"); // NOI18N
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(600, 500));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panel.setBackground(new java.awt.Color(254, 254, 254));
+        panel.setPreferredSize(new java.awt.Dimension(500, 600));
+        panel.setRequestFocusEnabled(false);
+        panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bar.setBackground(new java.awt.Color(26, 50, 64));
+
+        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        exit.setForeground(new java.awt.Color(254, 254, 254));
+        exit.setText("x");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout barLayout = new javax.swing.GroupLayout(bar);
+        bar.setLayout(barLayout);
+        barLayout.setHorizontalGroup(
+            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barLayout.createSequentialGroup()
+                .addGap(0, 481, Short.MAX_VALUE)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        barLayout.setVerticalGroup(
+            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(barLayout.createSequentialGroup()
+                .addComponent(exit)
+                .addGap(0, 4, Short.MAX_VALUE))
+        );
+
+        panel.add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 30));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo_v1.jpg"))); // NOI18N
+        panel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+
+        lblLoginError.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        lblLoginError.setText("Usuário e/ou Senha inválidos!");
+        panel.add(lblLoginError, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, -1, -1));
+
+        btnLogin.setBackground(new java.awt.Color(52, 100, 127));
+        btnLogin.setForeground(new java.awt.Color(254, 254, 254));
         btnLogin.setText("Entrar");
+        btnLogin.setToolTipText("");
+        btnLogin.setBorderPainted(false);
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogin.setDefaultCapable(false);
+        btnLogin.setName(""); // NOI18N
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
+        panel.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 110, 40));
 
-        inpPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inpPasswordActionPerformed(evt);
+        inpUsername.setBackground(new java.awt.Color(254, 254, 254));
+        inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inpUsername.setText("Usuário");
+        inpUsername.setBorder(null);
+        inpUsername.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inpUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inpUsernameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inpUsernameFocusLost(evt);
             }
         });
+        panel.add(inpUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 340, 20));
 
-        inpUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inpUsernameActionPerformed(evt);
+        sepUsername.setBackground(new java.awt.Color(103, 103, 103));
+        sepUsername.setForeground(new java.awt.Color(29, 29, 29));
+        panel.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 340, 10));
+
+        inpPassword.setBackground(new java.awt.Color(254, 254, 254));
+        inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        inpPassword.setText("password");
+        inpPassword.setToolTipText("");
+        inpPassword.setBorder(null);
+        inpPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inpPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inpPasswordFocusLost(evt);
             }
         });
+        panel.add(inpPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 340, 20));
 
-        lblUsuario.setText("Usuário");
+        sepPassword.setBackground(new java.awt.Color(103, 103, 103));
+        sepPassword.setForeground(new java.awt.Color(29, 29, 29));
+        panel.add(sepPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 340, 10));
 
-        lblSenha.setText("Senha");
-
-        lblLoginError.setText("Usuário e/ou Senha inválidos!");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(btnLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblLoginError)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblSenha)
-                                    .addComponent(lblUsuario))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inpUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsuario)
-                    .addComponent(inpUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSenha)
-                    .addComponent(inpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lblLoginError)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin)
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = inpUsername.getText();
-        String password = inpPassword.getText();
+        String password = new String(inpPassword.getPassword());
 
         if (new UsersController().login(username, password)) {
-            JOptionPane.showMessageDialog(null, "Logado");
+            Main main = new Main();
+            main.setVisible(true);
+            this.dispose();
             lblLoginError.setVisible(false);
         } else {
             lblLoginError.setVisible(true);
@@ -122,56 +168,43 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void inpPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inpPasswordActionPerformed
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_exitMouseClicked
 
-    private void inpUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inpUsernameActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void inpUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpUsernameFocusGained
+        if (inpUsername.getText().trim().equals("Usuário")) {
+            inpUsername.setText("");
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_inpUsernameFocusGained
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+    private void inpUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpUsernameFocusLost
+        if (inpUsername.getText().trim().isEmpty()) {
+            inpUsername.setText("Usuário");
+        }
+    }//GEN-LAST:event_inpUsernameFocusLost
 
+    private void inpPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordFocusGained
+        if (new String(inpPassword.getPassword()).equals("password")) {
+            inpPassword.setText("");
+        }
+    }//GEN-LAST:event_inpPasswordFocusGained
+
+    private void inpPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordFocusLost
+        if (new String(inpPassword.getPassword()).equals("")) {
+            inpPassword.setText("password");
+        }
+    }//GEN-LAST:event_inpPasswordFocusLost
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bar;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JTextField inpPassword;
+    private javax.swing.JLabel exit;
+    private javax.swing.JPasswordField inpPassword;
     private javax.swing.JTextField inpUsername;
     private javax.swing.JLabel lblLoginError;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel logo;
+    private javax.swing.JPanel panel;
+    private javax.swing.JSeparator sepPassword;
+    private javax.swing.JSeparator sepUsername;
     // End of variables declaration//GEN-END:variables
 }
