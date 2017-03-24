@@ -6,6 +6,7 @@
 package telas;
 
 import java.awt.CardLayout;
+import java.io.InputStream;
 
 /**
  *
@@ -31,6 +32,17 @@ public class Main extends javax.swing.JFrame {
         usuarios = new Usuarios();
         ajuda = new Ajuda();
         atividades = new Atividades();
+
+        try {
+            InputStream is = GUI.class.getResourceAsStream("TestFont.ttf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+            return font;
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            return super.getFont();
+        }
+
+        btnDashboard.setFont("JosefinSans-Thin");
 
         this.setSize(1000, 500);
         cardPanel.add(dashboard, "dashboard");
@@ -60,6 +72,7 @@ public class Main extends javax.swing.JFrame {
         btnProjetos = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
         exit = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(52, 100, 127));
@@ -108,7 +121,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 166, 123, -1));
 
         btnDashboard.setBackground(new java.awt.Color(153, 153, 153));
-        btnDashboard.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        btnDashboard.setFont(new java.awt.Font("NanumBarunGothic", 1, 14)); // NOI18N
         btnDashboard.setText("DASHBOARD");
         btnDashboard.setBorderPainted(false);
         btnDashboard.setFocusPainted(false);
@@ -129,6 +142,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
         menuPanel.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jToggleButton1.setText("jToggleButton1");
+        menuPanel.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         getContentPane().add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 600));
 
@@ -191,6 +207,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuarios;
     private javax.swing.JPanel cardPanel;
     private javax.swing.JLabel exit;
+    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel menuPanel;
     // End of variables declaration//GEN-END:variables
 }

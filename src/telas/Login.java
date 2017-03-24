@@ -6,8 +6,6 @@
 package telas;
 
 import controllers.UsersController;
-import java.util.Arrays;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +17,9 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Logi
      */
     public Login() {
+        
+        
+        
         initComponents();
         this.setSize(500,600);
         lblLoginError.setVisible(false);
