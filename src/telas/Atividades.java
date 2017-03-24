@@ -9,12 +9,12 @@ package telas;
  *
  * @author christian
  */
-public class Projetos extends javax.swing.JPanel {
+public class Atividades extends javax.swing.JPanel {
 
     /**
      * Creates new form Usuario
      */
-    public Projetos() {
+    public Atividades() {
         initComponents();
         this.setSize(800, 500);
     }
@@ -33,8 +33,8 @@ public class Projetos extends javax.swing.JPanel {
         setBackground(new java.awt.Color(254, 254, 254));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(32, 2, 2));
-        jLabel3.setText("PROJETOS");
+        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel3.setText("ATIVIDADES");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -43,7 +43,7 @@ public class Projetos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(314, 314, 314)
                 .addComponent(jLabel3)
-                .addContainerGap(369, Short.MAX_VALUE))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

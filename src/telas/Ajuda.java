@@ -33,7 +33,7 @@ public class Ajuda extends javax.swing.JPanel {
         setBackground(new java.awt.Color(254, 254, 254));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel3.setForeground(new java.awt.Color(26, 0, 0));
         jLabel3.setText("AJUDA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

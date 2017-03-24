@@ -18,6 +18,7 @@ public class Main extends javax.swing.JFrame {
     Projetos projetos;
     Usuarios usuarios;
     Ajuda ajuda;
+    Atividades atividades;
 
     /**
      * Creates new form Main
@@ -29,13 +30,15 @@ public class Main extends javax.swing.JFrame {
         projetos = new Projetos();
         usuarios = new Usuarios();
         ajuda = new Ajuda();
+        atividades = new Atividades();
 
         this.setSize(1000, 500);
-        panel.add(dashboard, "dashboard");
-        panel.add(projetos, "projetos");
-        panel.add(usuarios, "usuarios");
-        panel.add(ajuda, "ajuda");
-        panel.setSize(800, 500);
+        cardPanel.add(dashboard, "dashboard");
+        cardPanel.add(projetos, "projetos");
+        cardPanel.add(usuarios, "usuarios");
+        cardPanel.add(atividades, "atividades");
+        cardPanel.add(ajuda, "ajuda");
+        cardPanel.setSize(800, 500);
 
         dashboard.setVisible(true);
     }
@@ -49,15 +52,14 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bar = new javax.swing.JPanel();
-        exit = new javax.swing.JLabel();
-        panel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        cardPanel = new javax.swing.JPanel();
+        menuPanel = new javax.swing.JPanel();
         btnAjuda = new javax.swing.JButton();
         btnUsuarios = new javax.swing.JButton();
-        btnProjetos1 = new javax.swing.JButton();
+        btnAtividades = new javax.swing.JButton();
         btnProjetos = new javax.swing.JButton();
         btnDashboard = new javax.swing.JButton();
+        exit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(52, 100, 127));
@@ -65,42 +67,13 @@ public class Main extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bar.setBackground(new java.awt.Color(26, 50, 64));
+        cardPanel.setBackground(new java.awt.Color(147, 147, 147));
+        cardPanel.setLayout(new java.awt.CardLayout());
+        getContentPane().add(cardPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 800, 600));
 
-        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        exit.setForeground(new java.awt.Color(254, 254, 254));
-        exit.setText("x");
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout barLayout = new javax.swing.GroupLayout(bar);
-        bar.setLayout(barLayout);
-        barLayout.setHorizontalGroup(
-            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barLayout.createSequentialGroup()
-                .addGap(0, 981, Short.MAX_VALUE)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        barLayout.setVerticalGroup(
-            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(barLayout.createSequentialGroup()
-                .addComponent(exit)
-                .addGap(0, 4, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 30));
-
-        panel.setBackground(new java.awt.Color(147, 147, 147));
-        panel.setLayout(new java.awt.CardLayout());
-        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 800, 600));
-
-        jPanel1.setBackground(new java.awt.Color(26, 50, 64));
-        jPanel1.setForeground(new java.awt.Color(52, 100, 127));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        menuPanel.setBackground(new java.awt.Color(26, 50, 64));
+        menuPanel.setForeground(new java.awt.Color(52, 100, 127));
+        menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAjuda.setText("AJUDA");
         btnAjuda.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +81,7 @@ public class Main extends javax.swing.JFrame {
                 btnAjudaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 381, 123, -1));
+        menuPanel.add(btnAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 381, 123, -1));
 
         btnUsuarios.setText("USUÁRIOS");
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -116,15 +89,15 @@ public class Main extends javax.swing.JFrame {
                 btnUsuariosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 310, 123, -1));
+        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 310, 123, -1));
 
-        btnProjetos1.setText("ATIVIDADES");
-        btnProjetos1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtividades.setText("ATIVIDADES");
+        btnAtividades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProjetos1ActionPerformed(evt);
+                btnAtividadesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProjetos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 227, 123, -1));
+        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 227, 123, -1));
 
         btnProjetos.setText("PROJETOS");
         btnProjetos.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +105,7 @@ public class Main extends javax.swing.JFrame {
                 btnProjetosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 166, 123, -1));
+        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 166, 123, -1));
 
         btnDashboard.setBackground(new java.awt.Color(153, 153, 153));
         btnDashboard.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
@@ -144,17 +117,28 @@ public class Main extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 85, 123, -1));
+        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 85, 123, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 600));
+        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        exit.setForeground(new java.awt.Color(254, 254, 254));
+        exit.setText("x");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        menuPanel.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        getContentPane().add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
-        layoutController = ((CardLayout) panel.getLayout());
-        layoutController.show(panel, "dashboard");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "dashboard");
 
 //        dashboard.setVisible(true);
 //        projetos.setVisible(false);
@@ -163,8 +147,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjudaActionPerformed
-        layoutController = ((CardLayout) panel.getLayout());
-        layoutController.show(panel, "ajuda");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "ajuda");
 //        dashboard.setVisible(false);
 //        projetos.setVisible(false);
 //        usuarios.setVisible(false);
@@ -172,8 +156,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetosActionPerformed
-        layoutController = ((CardLayout) panel.getLayout());
-        layoutController.show(panel, "projetos");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "projetos");
 
 //        dashboard.setVisible(false);
 //        projetos.setVisible(true);
@@ -182,31 +166,31 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProjetosActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        layoutController = ((CardLayout) panel.getLayout());
-        layoutController.show(panel, "usuarios");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "usuarios");
 //        dashboard.setVisible(false);
 //        projetos.setVisible(false);
 //        usuarios.setVisible(true);
 //        ajuda.setVisible(false);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
-    private void btnProjetos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetos1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnProjetos1ActionPerformed
+    private void btnAtividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtividadesActionPerformed
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "atividades");
+    }//GEN-LAST:event_btnAtividadesActionPerformed
 
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         this.dispose();
     }//GEN-LAST:event_exitMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel bar;
     private javax.swing.JButton btnAjuda;
+    private javax.swing.JButton btnAtividades;
     private javax.swing.JButton btnDashboard;
     private javax.swing.JButton btnProjetos;
-    private javax.swing.JButton btnProjetos1;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.JPanel cardPanel;
     private javax.swing.JLabel exit;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel panel;
+    private javax.swing.JPanel menuPanel;
     // End of variables declaration//GEN-END:variables
 }
