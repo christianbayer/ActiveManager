@@ -18,10 +18,12 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         
-        
+        FrameDragListener frameDragListener = new FrameDragListener(this);
+        this.addMouseListener(frameDragListener);
+        this.addMouseMotionListener(frameDragListener);
         
         initComponents();
-        this.setSize(500,600);
+        this.setSize(420,500);
         lblLoginError.setVisible(false);
     }
 
@@ -35,8 +37,6 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
-        bar = new javax.swing.JPanel();
-        exit = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         lblLoginError = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
@@ -44,12 +44,14 @@ public class Login extends javax.swing.JFrame {
         sepUsername = new javax.swing.JSeparator();
         inpPassword = new javax.swing.JPasswordField();
         sepPassword = new javax.swing.JSeparator();
+        exit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
         setName("login"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(420, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panel.setBackground(new java.awt.Color(254, 254, 254));
@@ -57,56 +59,30 @@ public class Login extends javax.swing.JFrame {
         panel.setRequestFocusEnabled(false);
         panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bar.setBackground(new java.awt.Color(26, 50, 64));
-
-        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        exit.setForeground(new java.awt.Color(254, 254, 254));
-        exit.setText("x");
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout barLayout = new javax.swing.GroupLayout(bar);
-        bar.setLayout(barLayout);
-        barLayout.setHorizontalGroup(
-            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barLayout.createSequentialGroup()
-                .addGap(0, 481, Short.MAX_VALUE)
-                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        barLayout.setVerticalGroup(
-            barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(barLayout.createSequentialGroup()
-                .addComponent(exit)
-                .addGap(0, 4, Short.MAX_VALUE))
-        );
-
-        panel.add(bar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 30));
-
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo_v1.jpg"))); // NOI18N
-        panel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, -1));
+        panel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
 
         lblLoginError.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         lblLoginError.setText("Usuário e/ou Senha inválidos!");
-        panel.add(lblLoginError, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, -1, -1));
+        panel.add(lblLoginError, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
 
         btnLogin.setBackground(new java.awt.Color(52, 100, 127));
+        btnLogin.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(254, 254, 254));
-        btnLogin.setText("Entrar");
+        btnLogin.setText("ENTRAR");
         btnLogin.setToolTipText("");
+        btnLogin.setBorder(null);
         btnLogin.setBorderPainted(false);
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogin.setDefaultCapable(false);
         btnLogin.setName(""); // NOI18N
+        btnLogin.setOpaque(true);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        panel.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 110, 40));
+        panel.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 340, 40));
 
         inpUsername.setBackground(new java.awt.Color(254, 254, 254));
         inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -122,11 +98,12 @@ public class Login extends javax.swing.JFrame {
                 inpUsernameFocusLost(evt);
             }
         });
-        panel.add(inpUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 340, 20));
+        panel.add(inpUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 340, 20));
 
         sepUsername.setBackground(new java.awt.Color(103, 103, 103));
         sepUsername.setForeground(new java.awt.Color(29, 29, 29));
-        panel.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 340, 10));
+        sepUsername.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
+        panel.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 340, 1));
 
         inpPassword.setBackground(new java.awt.Color(254, 254, 254));
         inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -142,13 +119,23 @@ public class Login extends javax.swing.JFrame {
                 inpPasswordFocusLost(evt);
             }
         });
-        panel.add(inpPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 340, 20));
+        panel.add(inpPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 340, 20));
 
         sepPassword.setBackground(new java.awt.Color(103, 103, 103));
         sepPassword.setForeground(new java.awt.Color(29, 29, 29));
-        panel.add(sepPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 340, 10));
+        panel.add(sepPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 340, 1));
 
-        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        exit.setText("x");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        panel.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, -1, -1));
+
+        getContentPane().add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 500));
 
         pack();
         setLocationRelativeTo(null);
@@ -168,10 +155,6 @@ public class Login extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_exitMouseClicked
 
     private void inpUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpUsernameFocusGained
         if (inpUsername.getText().trim().equals("Usuário")) {
@@ -196,8 +179,13 @@ public class Login extends javax.swing.JFrame {
             inpPassword.setText("password");
         }
     }//GEN-LAST:event_inpPasswordFocusLost
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel bar;
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel exit;
     private javax.swing.JPasswordField inpPassword;

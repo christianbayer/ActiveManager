@@ -6,6 +6,11 @@
 package telas;
 
 import java.awt.CardLayout;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -34,15 +39,15 @@ public class Main extends javax.swing.JFrame {
         atividades = new Atividades();
 
         try {
-            InputStream is = GUI.class.getResourceAsStream("TestFont.ttf");
-            Font font = Font.createFont(Font.TRUETYPE_FONT, is);
-            return font;
-        } catch (FontFormatException | IOException ex) {
-            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            return super.getFont();
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("JosefinSans-Thin.ttf")));
+        } catch (IOException | FontFormatException e) {
+            //
         }
 
-        btnDashboard.setFont("JosefinSans-Thin");
+        Font dvs = new Font("Josefin Sans", Font.PLAIN, 12);
+
+        btnDashboard.setFont(dvs);
 
         this.setSize(1000, 500);
         cardPanel.add(dashboard, "dashboard");
