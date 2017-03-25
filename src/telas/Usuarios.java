@@ -59,6 +59,7 @@ public class Usuarios extends javax.swing.JPanel {
         panListagemUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableUsuarios = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
         panCadastroUsuarios = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -81,6 +82,12 @@ public class Usuarios extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setText("USUARIOS");
 
+        tabPanUsuarios.setBackground(new java.awt.Color(139, 83, 83));
+        tabPanUsuarios.setBorder(null);
+        tabPanUsuarios.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+
+        panListagemUsuarios.setBackground(new java.awt.Color(202, 150, 99));
+
         tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -98,20 +105,37 @@ public class Usuarios extends javax.swing.JPanel {
         panListagemUsuarios.setLayout(panListagemUsuariosLayout);
         panListagemUsuariosLayout.setHorizontalGroup(
             panListagemUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+            .addGroup(panListagemUsuariosLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
         );
         panListagemUsuariosLayout.setVerticalGroup(
             panListagemUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+            .addGroup(panListagemUsuariosLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabPanUsuarios.addTab("Listagem", panListagemUsuarios);
+
+        panCadastroUsuarios.setBackground(new java.awt.Color(138, 113, 87));
+        panCadastroUsuarios.setBorder(null);
+        panCadastroUsuarios.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
 
         jLabel1.setText("Nome");
 
         jLabel2.setText("Sobrenome");
 
         jLabel4.setText("Email");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Usuário");
 
@@ -138,7 +162,7 @@ public class Usuarios extends javax.swing.JPanel {
                     .addComponent(jPasswordField1)
                     .addComponent(jLabel7)
                     .addComponent(jPasswordField2))
-                .addContainerGap(514, Short.MAX_VALUE))
+                .addContainerGap(518, Short.MAX_VALUE))
         );
         panCadastroUsuariosLayout.setVerticalGroup(
             panCadastroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +215,7 @@ public class Usuarios extends javax.swing.JPanel {
                         .addComponent(btnExcluirUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(tabPanUsuarios)))
+                        .addComponent(tabPanUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -208,10 +232,14 @@ public class Usuarios extends javax.swing.JPanel {
                             .addComponent(btnExcluirUsuario)
                             .addComponent(btnEditarUsuario))
                         .addGap(5, 5, 5)))
-                .addComponent(tabPanUsuarios)
+                .addComponent(tabPanUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -227,6 +255,7 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

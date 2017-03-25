@@ -18,12 +18,17 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         
+        initComponents();
+        
+        // Faz a tela poder ser arrastada
         FrameDragListener frameDragListener = new FrameDragListener(this);
         this.addMouseListener(frameDragListener);
         this.addMouseMotionListener(frameDragListener);
         
-        initComponents();
+        // Seta o tamanho do frame
         this.setSize(420,500);
+        
+        // Esconde o label de login inválido
         lblLoginError.setVisible(false);
     }
 

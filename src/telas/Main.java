@@ -12,6 +12,7 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import javax.swing.ButtonGroup;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Main extends javax.swing.JFrame {
     Dashboard dashboard;
     Projetos projetos;
     Usuarios usuarios;
-    Ajuda ajuda;
+    Sobre sobre;
     Atividades atividades;
 
     /**
@@ -31,30 +32,36 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-
+        
+        // Faz a tela poder ser arrastada
+        FrameDragListener frameDragListener = new FrameDragListener(this);
+        this.addMouseListener(frameDragListener);
+        this.addMouseMotionListener(frameDragListener);
+        
+        // Inicializa os painéis
         dashboard = new Dashboard();
         projetos = new Projetos();
         usuarios = new Usuarios();
-        ajuda = new Ajuda();
+        sobre = new Sobre();
         atividades = new Atividades();
-
-        try {
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("JosefinSans-Thin.ttf")));
-        } catch (IOException | FontFormatException e) {
-            //
-        }
-
-        Font dvs = new Font("Josefin Sans", Font.PLAIN, 12);
-
-        btnDashboard.setFont(dvs);
-
-        this.setSize(1000, 500);
+        
+        // Cria o grupo de botões do menu
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(btnDashboard);
+        buttonGroup.add(btnProjetos);
+        buttonGroup.add(btnAtividades);
+        buttonGroup.add(btnUsuarios);
+        buttonGroup.add(btnSobre);
+        
+        // Seta o tamanho do frame
+        this.setSize(1000, 600);
+        
+        // Seta adiciona os painéis para troca
         cardPanel.add(dashboard, "dashboard");
         cardPanel.add(projetos, "projetos");
         cardPanel.add(usuarios, "usuarios");
         cardPanel.add(atividades, "atividades");
-        cardPanel.add(ajuda, "ajuda");
+        cardPanel.add(sobre, "sobre");
         cardPanel.setSize(800, 500);
 
         dashboard.setVisible(true);
@@ -71,13 +78,11 @@ public class Main extends javax.swing.JFrame {
 
         cardPanel = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
-        btnAjuda = new javax.swing.JButton();
-        btnUsuarios = new javax.swing.JButton();
-        btnAtividades = new javax.swing.JButton();
-        btnProjetos = new javax.swing.JButton();
-        btnDashboard = new javax.swing.JButton();
-        exit = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        btnDashboard = new javax.swing.JToggleButton();
+        btnProjetos = new javax.swing.JToggleButton();
+        btnSobre = new javax.swing.JToggleButton();
+        btnAtividades = new javax.swing.JToggleButton();
+        btnUsuarios = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(52, 100, 127));
@@ -85,71 +90,86 @@ public class Main extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cardPanel.setBackground(new java.awt.Color(147, 147, 147));
+        cardPanel.setBackground(new java.awt.Color(254, 254, 254));
         cardPanel.setLayout(new java.awt.CardLayout());
         getContentPane().add(cardPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 800, 600));
 
         menuPanel.setBackground(new java.awt.Color(26, 50, 64));
         menuPanel.setForeground(new java.awt.Color(52, 100, 127));
+        menuPanel.setMinimumSize(new java.awt.Dimension(200, 600));
+        menuPanel.setPreferredSize(new java.awt.Dimension(200, 600));
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAjuda.setText("AJUDA");
-        btnAjuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAjudaActionPerformed(evt);
-            }
-        });
-        menuPanel.add(btnAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 381, 123, -1));
-
-        btnUsuarios.setText("USUÁRIOS");
-        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuariosActionPerformed(evt);
-            }
-        });
-        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 310, 123, -1));
-
-        btnAtividades.setText("ATIVIDADES");
-        btnAtividades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtividadesActionPerformed(evt);
-            }
-        });
-        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 227, 123, -1));
-
-        btnProjetos.setText("PROJETOS");
-        btnProjetos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProjetosActionPerformed(evt);
-            }
-        });
-        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 166, 123, -1));
-
-        btnDashboard.setBackground(new java.awt.Color(153, 153, 153));
-        btnDashboard.setFont(new java.awt.Font("NanumBarunGothic", 1, 14)); // NOI18N
-        btnDashboard.setText("DASHBOARD");
+        btnDashboard.setBackground(new java.awt.Color(26, 50, 64));
+        btnDashboard.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnDashboard.setForeground(new java.awt.Color(254, 254, 254));
+        btnDashboard.setSelected(true);
+        btnDashboard.setBorder(null);
         btnDashboard.setBorderPainted(false);
-        btnDashboard.setFocusPainted(false);
+        btnDashboard.setFocusable(false);
+        btnDashboard.setLabel("DASHBOARD");
         btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDashboardActionPerformed(evt);
             }
         });
-        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 85, 123, -1));
+        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
-        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        exit.setForeground(new java.awt.Color(254, 254, 254));
-        exit.setText("x");
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
+        btnProjetos.setBackground(new java.awt.Color(26, 50, 64));
+        btnProjetos.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnProjetos.setForeground(new java.awt.Color(254, 254, 254));
+        btnProjetos.setText("PROJETOS");
+        btnProjetos.setBorder(null);
+        btnProjetos.setBorderPainted(false);
+        btnProjetos.setFocusable(false);
+        btnProjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProjetosActionPerformed(evt);
             }
         });
-        menuPanel.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, 60));
 
-        jToggleButton1.setText("jToggleButton1");
-        menuPanel.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+        btnSobre.setBackground(new java.awt.Color(26, 50, 64));
+        btnSobre.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnSobre.setForeground(new java.awt.Color(254, 254, 254));
+        btnSobre.setText("SOBRE");
+        btnSobre.setBorder(null);
+        btnSobre.setBorderPainted(false);
+        btnSobre.setFocusable(false);
+        btnSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSobreActionPerformed(evt);
+            }
+        });
+        menuPanel.add(btnSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 200, 60));
+
+        btnAtividades.setBackground(new java.awt.Color(26, 50, 64));
+        btnAtividades.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnAtividades.setForeground(new java.awt.Color(254, 254, 254));
+        btnAtividades.setText("ATIVIDADES");
+        btnAtividades.setBorder(null);
+        btnAtividades.setBorderPainted(false);
+        btnAtividades.setFocusable(false);
+        btnAtividades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtividadesActionPerformed(evt);
+            }
+        });
+        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 200, 60));
+
+        btnUsuarios.setBackground(new java.awt.Color(26, 50, 64));
+        btnUsuarios.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(254, 254, 254));
+        btnUsuarios.setText("USUÁRIOS");
+        btnUsuarios.setBorder(null);
+        btnUsuarios.setBorderPainted(false);
+        btnUsuarios.setFocusable(false);
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
+        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 200, 60));
 
         getContentPane().add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 600));
 
@@ -160,59 +180,35 @@ public class Main extends javax.swing.JFrame {
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "dashboard");
-
-//        dashboard.setVisible(true);
-//        projetos.setVisible(false);
-//        usuarios.setVisible(false);
-//        ajuda.setVisible(false);
     }//GEN-LAST:event_btnDashboardActionPerformed
-
-    private void btnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjudaActionPerformed
-        layoutController = ((CardLayout) cardPanel.getLayout());
-        layoutController.show(cardPanel, "ajuda");
-//        dashboard.setVisible(false);
-//        projetos.setVisible(false);
-//        usuarios.setVisible(false);
-//        ajuda.setVisible(true);
-    }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetosActionPerformed
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "projetos");
-
-//        dashboard.setVisible(false);
-//        projetos.setVisible(true);
-//        usuarios.setVisible(false);
-//        ajuda.setVisible(false);
     }//GEN-LAST:event_btnProjetosActionPerformed
 
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+    private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
         layoutController = ((CardLayout) cardPanel.getLayout());
-        layoutController.show(cardPanel, "usuarios");
-//        dashboard.setVisible(false);
-//        projetos.setVisible(false);
-//        usuarios.setVisible(true);
-//        ajuda.setVisible(false);
-    }//GEN-LAST:event_btnUsuariosActionPerformed
+        layoutController.show(cardPanel, "sobre");
+    }//GEN-LAST:event_btnSobreActionPerformed
 
     private void btnAtividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtividadesActionPerformed
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividades");
     }//GEN-LAST:event_btnAtividadesActionPerformed
 
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_exitMouseClicked
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "usuarios");
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAjuda;
-    private javax.swing.JButton btnAtividades;
-    private javax.swing.JButton btnDashboard;
-    private javax.swing.JButton btnProjetos;
-    private javax.swing.JButton btnUsuarios;
+    private javax.swing.JToggleButton btnAtividades;
+    private javax.swing.JToggleButton btnDashboard;
+    private javax.swing.JToggleButton btnProjetos;
+    private javax.swing.JToggleButton btnSobre;
+    private javax.swing.JToggleButton btnUsuarios;
     private javax.swing.JPanel cardPanel;
-    private javax.swing.JLabel exit;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel menuPanel;
     // End of variables declaration//GEN-END:variables
 }

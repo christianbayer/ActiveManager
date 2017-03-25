@@ -16,7 +16,7 @@ public class Projetos extends javax.swing.JPanel {
      */
     public Projetos() {
         initComponents();
-        this.setSize(800, 500);
+        this.setSize(800, 600);
     }
 
     /**
@@ -28,34 +28,110 @@ public class Projetos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        panelMiolo = new javax.swing.JPanel();
+        panelToolbar = new javax.swing.JPanel();
+        btnNovoProjeto = new javax.swing.JButton();
+        exit = new javax.swing.JLabel();
+        btnNovoProjeto1 = new javax.swing.JButton();
+        btnNovoProjeto2 = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(254, 254, 254));
+        setBackground(new java.awt.Color(191, 191, 191));
+        setPreferredSize(new java.awt.Dimension(900, 500));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(32, 2, 2));
-        jLabel3.setText("PROJETOS");
+        panelMiolo.setBackground(new java.awt.Color(254, 254, 254));
+        panelMiolo.setLayout(new java.awt.CardLayout());
+        add(panelMiolo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 540));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(314, 314, 314)
-                .addComponent(jLabel3)
-                .addContainerGap(369, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(jLabel3)
-                .addContainerGap(255, Short.MAX_VALUE))
-        );
+        panelToolbar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnNovoProjeto.setBackground(new java.awt.Color(52, 100, 127));
+        btnNovoProjeto.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnNovoProjeto.setForeground(new java.awt.Color(254, 254, 254));
+        btnNovoProjeto.setText("NOVO");
+        btnNovoProjeto.setToolTipText("");
+        btnNovoProjeto.setBorderPainted(false);
+        btnNovoProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNovoProjeto.setDefaultCapable(false);
+        btnNovoProjeto.setName(""); // NOI18N
+        btnNovoProjeto.setOpaque(true);
+        btnNovoProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProjetoActionPerformed(evt);
+            }
+        });
+        panelToolbar.add(btnNovoProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 80, 40));
+
+        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        exit.setText("x");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+        });
+        panelToolbar.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
+
+        btnNovoProjeto1.setBackground(new java.awt.Color(52, 100, 127));
+        btnNovoProjeto1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnNovoProjeto1.setForeground(new java.awt.Color(254, 254, 254));
+        btnNovoProjeto1.setText("EXCLUIR");
+        btnNovoProjeto1.setToolTipText("");
+        btnNovoProjeto1.setBorderPainted(false);
+        btnNovoProjeto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNovoProjeto1.setDefaultCapable(false);
+        btnNovoProjeto1.setName(""); // NOI18N
+        btnNovoProjeto1.setOpaque(true);
+        btnNovoProjeto1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProjeto1ActionPerformed(evt);
+            }
+        });
+        panelToolbar.add(btnNovoProjeto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 80, 40));
+
+        btnNovoProjeto2.setBackground(new java.awt.Color(52, 100, 127));
+        btnNovoProjeto2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnNovoProjeto2.setForeground(new java.awt.Color(254, 254, 254));
+        btnNovoProjeto2.setText("EDITAR");
+        btnNovoProjeto2.setToolTipText("");
+        btnNovoProjeto2.setBorderPainted(false);
+        btnNovoProjeto2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNovoProjeto2.setDefaultCapable(false);
+        btnNovoProjeto2.setName(""); // NOI18N
+        btnNovoProjeto2.setOpaque(true);
+        btnNovoProjeto2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoProjeto2ActionPerformed(evt);
+            }
+        });
+        panelToolbar.add(btnNovoProjeto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 40));
+
+        add(panelToolbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoProjetoActionPerformed
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void btnNovoProjeto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjeto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoProjeto1ActionPerformed
+
+    private void btnNovoProjeto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjeto2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoProjeto2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnNovoProjeto;
+    private javax.swing.JButton btnNovoProjeto1;
+    private javax.swing.JButton btnNovoProjeto2;
+    private javax.swing.JLabel exit;
+    private javax.swing.JPanel panelMiolo;
+    private javax.swing.JPanel panelToolbar;
     // End of variables declaration//GEN-END:variables
 }

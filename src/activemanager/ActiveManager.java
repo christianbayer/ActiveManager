@@ -22,8 +22,8 @@ public class ActiveManager {
         Login login = new Login();
         Main main = new Main();
 
-        login.setVisible(true);
-//        main.setVisible(true);
+//        login.setVisible(true);
+        main.setVisible(true);
     }
 
 }

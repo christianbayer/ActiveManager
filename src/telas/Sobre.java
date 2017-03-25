@@ -9,12 +9,12 @@ package telas;
  *
  * @author christian
  */
-public class Ajuda extends javax.swing.JPanel {
+public class Sobre extends javax.swing.JPanel {
 
     /**
      * Creates new form Usuario
      */
-    public Ajuda() {
+    public Sobre() {
         initComponents();
         this.setSize(800, 500);
     }
