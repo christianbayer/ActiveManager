@@ -28,110 +28,325 @@ public class Projetos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelMiolo = new javax.swing.JPanel();
-        panelToolbar = new javax.swing.JPanel();
-        btnNovoProjeto = new javax.swing.JButton();
-        exit = new javax.swing.JLabel();
-        btnNovoProjeto1 = new javax.swing.JButton();
-        btnNovoProjeto2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        lblTitulo1 = new javax.swing.JLabel();
+        txtDescricao1 = new javax.swing.JTextArea();
+        jLabel13 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        txtDescricao = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnExit = new javax.swing.JLabel();
+        lblImagemUsuario = new javax.swing.JLabel();
+        lblProjetos = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JLabel();
+        lblNomeUsuario = new javax.swing.JLabel();
+        lblEncontrados = new javax.swing.JLabel();
+        btnPesquisar = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
+        inpPesquisar = new javax.swing.JTextField();
+        sepPesquisar = new javax.swing.JSeparator();
 
-        setBackground(new java.awt.Color(191, 191, 191));
+        setBackground(new java.awt.Color(254, 254, 254));
+        setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
         setPreferredSize(new java.awt.Dimension(900, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelMiolo.setBackground(new java.awt.Color(254, 254, 254));
-        panelMiolo.setLayout(new java.awt.CardLayout());
-        add(panelMiolo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 800, 540));
+        jPanel2.setBackground(new java.awt.Color(238, 238, 238));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelToolbar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblTitulo1.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblTitulo1.setText("ActiveManager");
+        jPanel2.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        btnNovoProjeto.setBackground(new java.awt.Color(52, 100, 127));
-        btnNovoProjeto.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        btnNovoProjeto.setForeground(new java.awt.Color(254, 254, 254));
-        btnNovoProjeto.setText("NOVO");
-        btnNovoProjeto.setToolTipText("");
-        btnNovoProjeto.setBorderPainted(false);
-        btnNovoProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNovoProjeto.setDefaultCapable(false);
-        btnNovoProjeto.setName(""); // NOI18N
-        btnNovoProjeto.setOpaque(true);
-        btnNovoProjeto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoProjetoActionPerformed(evt);
-            }
-        });
-        panelToolbar.add(btnNovoProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 80, 40));
+        txtDescricao1.setEditable(false);
+        txtDescricao1.setBackground(new java.awt.Color(238, 238, 238));
+        txtDescricao1.setColumns(40);
+        txtDescricao1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDescricao1.setLineWrap(true);
+        txtDescricao1.setRows(5);
+        txtDescricao1.setText("Projeto do ActiveManager, sendo desenvolvido na cadeira de Programação de Aplicações");
+        txtDescricao1.setWrapStyleWord(true);
+        jPanel2.add(txtDescricao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 330, 60));
 
-        exit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        exit.setText("x");
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 10, 90));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel15.setText("Christian Bayer");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel16.setText("Andamento: 4");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel17.setText("Total: 17");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel18.setText("Teste: 7");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel19.setText("Aberta: 6");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel20.setText("24/03/2017");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel21.setText("Gerente:");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel22.setText("Criado em:");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 740, 110));
+
+        jPanel1.setBackground(new java.awt.Color(194, 228, 253));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTitulo.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblTitulo.setText("ActiveManager");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        txtDescricao.setEditable(false);
+        txtDescricao.setBackground(new java.awt.Color(194, 228, 253));
+        txtDescricao.setColumns(40);
+        txtDescricao.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDescricao.setLineWrap(true);
+        txtDescricao.setRows(5);
+        txtDescricao.setText("Projeto do ActiveManager, sendo desenvolvido na cadeira de Programação de Aplicações");
+        txtDescricao.setWrapStyleWord(true);
+        jPanel1.add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 330, 60));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, -1, -1));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 10, 90));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel3.setText("Christian Bayer");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel7.setText("Andamento: 4");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel8.setText("Total: 17");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel9.setText("Teste: 7");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel4.setText("Aberta: 6");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel10.setText("24/03/2017");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel11.setText("Gerente:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel12.setText("Criado em:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 740, 110));
+
+        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        btnExit.setText("x");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
+                btnExitMouseClicked(evt);
             }
         });
-        panelToolbar.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
+        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
 
-        btnNovoProjeto1.setBackground(new java.awt.Color(52, 100, 127));
-        btnNovoProjeto1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        btnNovoProjeto1.setForeground(new java.awt.Color(254, 254, 254));
-        btnNovoProjeto1.setText("EXCLUIR");
-        btnNovoProjeto1.setToolTipText("");
-        btnNovoProjeto1.setBorderPainted(false);
-        btnNovoProjeto1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNovoProjeto1.setDefaultCapable(false);
-        btnNovoProjeto1.setName(""); // NOI18N
-        btnNovoProjeto1.setOpaque(true);
-        btnNovoProjeto1.addActionListener(new java.awt.event.ActionListener() {
+        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
+        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
+        lblProjetos.setText("PROJETOS");
+        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblNomeUsuario.setText("Christian Bayer");
+        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
+
+        lblEncontrados.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblEncontrados.setText("2 projetos encontrados:");
+        add(lblEncontrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        btnPesquisar.setBackground(new java.awt.Color(52, 100, 127));
+        btnPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnPesquisar.setForeground(new java.awt.Color(254, 254, 254));
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
+        btnPesquisar.setToolTipText("");
+        btnPesquisar.setBorderPainted(false);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPesquisar.setDefaultCapable(false);
+        btnPesquisar.setName(""); // NOI18N
+        btnPesquisar.setOpaque(true);
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoProjeto1ActionPerformed(evt);
+                btnPesquisarActionPerformed(evt);
             }
         });
-        panelToolbar.add(btnNovoProjeto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 80, 40));
+        add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 40, 40));
 
-        btnNovoProjeto2.setBackground(new java.awt.Color(52, 100, 127));
-        btnNovoProjeto2.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        btnNovoProjeto2.setForeground(new java.awt.Color(254, 254, 254));
-        btnNovoProjeto2.setText("EDITAR");
-        btnNovoProjeto2.setToolTipText("");
-        btnNovoProjeto2.setBorderPainted(false);
-        btnNovoProjeto2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNovoProjeto2.setDefaultCapable(false);
-        btnNovoProjeto2.setName(""); // NOI18N
-        btnNovoProjeto2.setOpaque(true);
-        btnNovoProjeto2.addActionListener(new java.awt.event.ActionListener() {
+        btnNovo.setBackground(new java.awt.Color(52, 100, 127));
+        btnNovo.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnNovo.setForeground(new java.awt.Color(254, 254, 254));
+        btnNovo.setText("NOVO");
+        btnNovo.setToolTipText("");
+        btnNovo.setBorderPainted(false);
+        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNovo.setDefaultCapable(false);
+        btnNovo.setName(""); // NOI18N
+        btnNovo.setOpaque(true);
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoProjeto2ActionPerformed(evt);
+                btnNovoActionPerformed(evt);
             }
         });
-        panelToolbar.add(btnNovoProjeto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 40));
+        add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
-        add(panelToolbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 60));
+        inpPesquisar.setBackground(new java.awt.Color(254, 254, 254));
+        inpPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        inpPesquisar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        inpPesquisar.setText("Pesquisar");
+        inpPesquisar.setBorder(null);
+        inpPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inpPesquisar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inpPesquisarFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inpPesquisarFocusLost(evt);
+            }
+        });
+        add(inpPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 230, 20));
+
+        sepPesquisar.setBackground(new java.awt.Color(103, 103, 103));
+        sepPesquisar.setForeground(new java.awt.Color(29, 29, 29));
+        sepPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
+        add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 230, 1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNovoProjetoActionPerformed
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_exitMouseClicked
+    }//GEN-LAST:event_btnExitMouseClicked
 
-    private void btnNovoProjeto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjeto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNovoProjeto1ActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+    }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void btnNovoProjeto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjeto2ActionPerformed
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNovoProjeto2ActionPerformed
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void inpPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPesquisarFocusGained
+        if (inpPesquisar.getText().trim().equals("Usuário")) {
+            inpPesquisar.setText("");
+        }
+    }//GEN-LAST:event_inpPesquisarFocusGained
+
+    private void inpPesquisarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPesquisarFocusLost
+        if (inpPesquisar.getText().trim().isEmpty()) {
+            inpPesquisar.setText("Usuário");
+        }
+    }//GEN-LAST:event_inpPesquisarFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNovoProjeto;
-    private javax.swing.JButton btnNovoProjeto1;
-    private javax.swing.JButton btnNovoProjeto2;
-    private javax.swing.JLabel exit;
-    private javax.swing.JPanel panelMiolo;
-    private javax.swing.JPanel panelToolbar;
+    private javax.swing.JLabel btnExit;
+    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JLabel btnVoltar;
+    private javax.swing.JTextField inpPesquisar;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblEncontrados;
+    private javax.swing.JLabel lblImagemUsuario;
+    private javax.swing.JLabel lblNomeUsuario;
+    private javax.swing.JLabel lblProjetos;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
+    private javax.swing.JSeparator sepPesquisar;
+    private javax.swing.JTextArea txtDescricao;
+    private javax.swing.JTextArea txtDescricao1;
     // End of variables declaration//GEN-END:variables
 }

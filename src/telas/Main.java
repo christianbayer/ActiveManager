@@ -101,7 +101,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDashboard.setBackground(new java.awt.Color(26, 50, 64));
-        btnDashboard.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnDashboard.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
         btnDashboard.setForeground(new java.awt.Color(254, 254, 254));
         btnDashboard.setSelected(true);
         btnDashboard.setBorder(null);
@@ -116,7 +116,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
 
         btnProjetos.setBackground(new java.awt.Color(26, 50, 64));
-        btnProjetos.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnProjetos.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
         btnProjetos.setForeground(new java.awt.Color(254, 254, 254));
         btnProjetos.setText("PROJETOS");
         btnProjetos.setBorder(null);
@@ -130,7 +130,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, 60));
 
         btnSobre.setBackground(new java.awt.Color(26, 50, 64));
-        btnSobre.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnSobre.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
         btnSobre.setForeground(new java.awt.Color(254, 254, 254));
         btnSobre.setText("SOBRE");
         btnSobre.setBorder(null);
@@ -144,7 +144,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.add(btnSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 200, 60));
 
         btnAtividades.setBackground(new java.awt.Color(26, 50, 64));
-        btnAtividades.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnAtividades.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
         btnAtividades.setForeground(new java.awt.Color(254, 254, 254));
         btnAtividades.setText("ATIVIDADES");
         btnAtividades.setBorder(null);
@@ -158,7 +158,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 200, 60));
 
         btnUsuarios.setBackground(new java.awt.Color(26, 50, 64));
-        btnUsuarios.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnUsuarios.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(254, 254, 254));
         btnUsuarios.setText("USUÁRIOS");
         btnUsuarios.setBorder(null);

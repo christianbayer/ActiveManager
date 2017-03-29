@@ -28,34 +28,59 @@ public class Dashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnVoltar = new javax.swing.JLabel();
+        btnExit = new javax.swing.JLabel();
+        lblImagemUsuario = new javax.swing.JLabel();
+        lblNomeUsuario = new javax.swing.JLabel();
+        lblProjetos = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
-        jLabel3.setText("DASHBOARD");
+        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(314, 314, 314)
-                .addComponent(jLabel3)
-                .addContainerGap(344, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(jLabel3)
-                .addContainerGap(255, Short.MAX_VALUE))
-        );
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        btnExit.setText("x");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
+
+        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
+        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblNomeUsuario.setText("Christian Bayer");
+        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
+
+        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
+        lblProjetos.setText("DASHBOARD");
+        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnExitMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel btnExit;
+    private javax.swing.JLabel btnVoltar;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblImagemUsuario;
+    private javax.swing.JLabel lblNomeUsuario;
+    private javax.swing.JLabel lblProjetos;
     // End of variables declaration//GEN-END:variables
 }
