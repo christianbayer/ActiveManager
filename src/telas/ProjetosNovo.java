@@ -27,123 +27,179 @@ public class ProjetosNovo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inpNome = new javax.swing.JTextField();
-        sepNome = new javax.swing.JSeparator();
-        inpSobrenome = new javax.swing.JTextField();
-        sepSobrenome = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        inpTitle = new javax.swing.JTextField();
+        sepTitle = new javax.swing.JSeparator();
+        selProjectType = new javax.swing.JComboBox<>();
+        selManager = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        btnExit = new javax.swing.JLabel();
+        lblImagemUsuario = new javax.swing.JLabel();
+        lblProjetos = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JLabel();
+        lblNomeUsuario = new javax.swing.JLabel();
+        btnSalvarProjeto = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setPreferredSize(new java.awt.Dimension(800, 540));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        inpNome.setBackground(new java.awt.Color(254, 254, 254));
-        inpNome.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        inpNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inpNome.setText("Usuário");
-        inpNome.setBorder(null);
-        inpNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        inpNome.addFocusListener(new java.awt.event.FocusAdapter() {
+        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        inpTitle.setBackground(new java.awt.Color(254, 254, 254));
+        inpTitle.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpTitle.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        inpTitle.setText("Título");
+        inpTitle.setBorder(null);
+        inpTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inpTitle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                inpNomeFocusGained(evt);
+                inpTitleFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                inpNomeFocusLost(evt);
+                inpTitleFocusLost(evt);
             }
         });
-        inpNome.addActionListener(new java.awt.event.ActionListener() {
+        inpTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inpNomeActionPerformed(evt);
+                inpTitleActionPerformed(evt);
             }
         });
+        jPanel1.add(inpTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 730, 20));
 
-        sepNome.setBackground(new java.awt.Color(103, 103, 103));
-        sepNome.setForeground(new java.awt.Color(29, 29, 29));
-        sepNome.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
+        sepTitle.setBackground(new java.awt.Color(103, 103, 103));
+        sepTitle.setForeground(new java.awt.Color(29, 29, 29));
+        sepTitle.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
+        jPanel1.add(sepTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 730, 1));
 
-        inpSobrenome.setBackground(new java.awt.Color(254, 254, 254));
-        inpSobrenome.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        inpSobrenome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        inpSobrenome.setText("Usuário");
-        inpSobrenome.setBorder(null);
-        inpSobrenome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        inpSobrenome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                inpSobrenomeFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                inpSobrenomeFocusLost(evt);
-            }
-        });
-        inpSobrenome.addActionListener(new java.awt.event.ActionListener() {
+        selProjectType.setBackground(new java.awt.Color(254, 254, 254));
+        selProjectType.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        selProjectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Projeto" }));
+        selProjectType.setToolTipText("");
+        selProjectType.setBorder(null);
+        selProjectType.setOpaque(false);
+        selProjectType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inpSobrenomeActionPerformed(evt);
+                selProjectTypeActionPerformed(evt);
             }
         });
+        jPanel1.add(selProjectType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 730, -1));
 
-        sepSobrenome.setBackground(new java.awt.Color(103, 103, 103));
-        sepSobrenome.setForeground(new java.awt.Color(29, 29, 29));
-        sepSobrenome.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
+        selManager.setBackground(new java.awt.Color(254, 254, 254));
+        selManager.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        selManager.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente" }));
+        selManager.setToolTipText("");
+        selManager.setBorder(null);
+        selManager.setOpaque(false);
+        jPanel1.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 730, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inpSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sepSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(inpNome, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sepNome, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(418, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(inpNome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(sepNome, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(inpSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(sepSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(443, Short.MAX_VALUE))
-        );
+        txtDescription.setBackground(new java.awt.Color(254, 254, 254));
+        txtDescription.setColumns(20);
+        txtDescription.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDescription.setRows(5);
+        txtDescription.setText("Descrição");
+        txtDescription.setBorder(null);
+        jScrollPane1.setViewportView(txtDescription);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 730, 136));
+
+        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
+        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        btnExit.setText("x");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
+
+        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
+        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
+        lblProjetos.setText("NOVO PROJETO");
+        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblNomeUsuario.setText("Christian Bayer");
+        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
+
+        btnSalvarProjeto.setBackground(new java.awt.Color(52, 100, 127));
+        btnSalvarProjeto.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnSalvarProjeto.setForeground(new java.awt.Color(254, 254, 254));
+        btnSalvarProjeto.setText("SALVAR");
+        btnSalvarProjeto.setToolTipText("");
+        btnSalvarProjeto.setBorderPainted(false);
+        btnSalvarProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalvarProjeto.setDefaultCapable(false);
+        btnSalvarProjeto.setName(""); // NOI18N
+        btnSalvarProjeto.setOpaque(true);
+        btnSalvarProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarProjetoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSalvarProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inpNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpNomeFocusGained
-        if (inpNome.getText().trim().equals("Usuário")) {
-            inpNome.setText("");
+    private void inpTitleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpTitleFocusGained
+        if (inpTitle.getText().trim().equals("Usuário")) {
+            inpTitle.setText("");
         }
-    }//GEN-LAST:event_inpNomeFocusGained
+    }//GEN-LAST:event_inpTitleFocusGained
 
-    private void inpNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpNomeFocusLost
-        if (inpNome.getText().trim().isEmpty()) {
-            inpNome.setText("Usuário");
+    private void inpTitleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpTitleFocusLost
+        if (inpTitle.getText().trim().isEmpty()) {
+            inpTitle.setText("Usuário");
         }
-    }//GEN-LAST:event_inpNomeFocusLost
+    }//GEN-LAST:event_inpTitleFocusLost
 
-    private void inpNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpNomeActionPerformed
+    private void inpTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpTitleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inpNomeActionPerformed
+    }//GEN-LAST:event_inpTitleActionPerformed
 
-    private void inpSobrenomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpSobrenomeFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inpSobrenomeFocusGained
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnExitMouseClicked
 
-    private void inpSobrenomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpSobrenomeFocusLost
+    private void selProjectTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selProjectTypeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inpSobrenomeFocusLost
+    }//GEN-LAST:event_selProjectTypeActionPerformed
 
-    private void inpSobrenomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpSobrenomeActionPerformed
+    private void btnSalvarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProjetoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_inpSobrenomeActionPerformed
+    }//GEN-LAST:event_btnSalvarProjetoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField inpNome;
-    private javax.swing.JTextField inpSobrenome;
-    private javax.swing.JSeparator sepNome;
-    private javax.swing.JSeparator sepSobrenome;
+    private javax.swing.JLabel btnExit;
+    private javax.swing.JButton btnSalvarProjeto;
+    private javax.swing.JLabel btnVoltar;
+    private javax.swing.JTextField inpTitle;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblImagemUsuario;
+    private javax.swing.JLabel lblNomeUsuario;
+    private javax.swing.JLabel lblProjetos;
+    private javax.swing.JComboBox<String> selManager;
+    private javax.swing.JComboBox<String> selProjectType;
+    private javax.swing.JSeparator sepTitle;
+    private javax.swing.JTextArea txtDescription;
     // End of variables declaration//GEN-END:variables
 }

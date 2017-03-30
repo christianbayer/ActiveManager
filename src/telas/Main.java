@@ -23,7 +23,9 @@ public class Main extends javax.swing.JFrame {
     CardLayout layoutController;
     Dashboard dashboard;
     Projetos projetos;
+    ProjetosNovo projetosNovo;
     Usuarios usuarios;
+    UsuariosNovo usuariosNovo;
     Sobre sobre;
     Atividades atividades;
 
@@ -41,7 +43,9 @@ public class Main extends javax.swing.JFrame {
         // Inicializa os painéis
         dashboard = new Dashboard();
         projetos = new Projetos();
+        projetosNovo = new ProjetosNovo();
         usuarios = new Usuarios();
+        usuariosNovo = new UsuariosNovo();
         sobre = new Sobre();
         atividades = new Atividades();
         
@@ -59,7 +63,9 @@ public class Main extends javax.swing.JFrame {
         // Seta adiciona os painéis para troca
         cardPanel.add(dashboard, "dashboard");
         cardPanel.add(projetos, "projetos");
+        cardPanel.add(projetosNovo, "projetosNovo");
         cardPanel.add(usuarios, "usuarios");
+        cardPanel.add(usuariosNovo, "usuariosNovo");
         cardPanel.add(atividades, "atividades");
         cardPanel.add(sobre, "sobre");
         cardPanel.setSize(800, 500);
@@ -183,8 +189,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetosActionPerformed
+//        layoutController = ((CardLayout) cardPanel.getLayout());
+//        layoutController.show(cardPanel, "projetos");
         layoutController = ((CardLayout) cardPanel.getLayout());
-        layoutController.show(cardPanel, "projetos");
+        layoutController.show(cardPanel, "projetosNovo");
     }//GEN-LAST:event_btnProjetosActionPerformed
 
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
@@ -198,8 +206,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtividadesActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+//        layoutController = ((CardLayout) cardPanel.getLayout());
+//        layoutController.show(cardPanel, "usuarios");
         layoutController = ((CardLayout) cardPanel.getLayout());
-        layoutController.show(cardPanel, "usuarios");
+        layoutController.show(cardPanel, "usuariosNovo");
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

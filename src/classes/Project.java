@@ -16,7 +16,6 @@ public class Project {
     private int id;
     private String title;
     private String description;
-    private boolean isPublic;
     private int projectTypeId;
     private int managerId;
     private Date createdAt;
@@ -25,10 +24,9 @@ public class Project {
     private int updatedBy;
     private boolean active;
 
-    public Project(String title, String description, boolean isPublic, int projectTypeId, int managerId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public Project(String title, String description, int projectTypeId, int managerId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
         this.title = title;
         this.description = description;
-        this.isPublic = isPublic;
         this.projectTypeId = projectTypeId;
         this.managerId = managerId;
         this.createdAt = createdAt;
@@ -56,14 +54,6 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public boolean isIsPublic() {
-        return isPublic;
-    }
-
-    public void setIsPublic(boolean isPublic) {
-        this.isPublic = isPublic;
     }
 
     public int getProjectTypeId() {

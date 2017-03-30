@@ -64,7 +64,7 @@ public class Projetos extends javax.swing.JPanel {
         lblNomeUsuario = new javax.swing.JLabel();
         lblEncontrados = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
-        btnNovo = new javax.swing.JButton();
+        btnNovoProjeto = new javax.swing.JButton();
         inpPesquisar = new javax.swing.JTextField();
         sepPesquisar = new javax.swing.JSeparator();
 
@@ -245,22 +245,22 @@ public class Projetos extends javax.swing.JPanel {
         });
         add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 40, 40));
 
-        btnNovo.setBackground(new java.awt.Color(52, 100, 127));
-        btnNovo.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
-        btnNovo.setForeground(new java.awt.Color(254, 254, 254));
-        btnNovo.setText("NOVO");
-        btnNovo.setToolTipText("");
-        btnNovo.setBorderPainted(false);
-        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNovo.setDefaultCapable(false);
-        btnNovo.setName(""); // NOI18N
-        btnNovo.setOpaque(true);
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+        btnNovoProjeto.setBackground(new java.awt.Color(52, 100, 127));
+        btnNovoProjeto.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnNovoProjeto.setForeground(new java.awt.Color(254, 254, 254));
+        btnNovoProjeto.setText("NOVO");
+        btnNovoProjeto.setToolTipText("");
+        btnNovoProjeto.setBorderPainted(false);
+        btnNovoProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNovoProjeto.setDefaultCapable(false);
+        btnNovoProjeto.setName(""); // NOI18N
+        btnNovoProjeto.setOpaque(true);
+        btnNovoProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
+                btnNovoProjetoActionPerformed(evt);
             }
         });
-        add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+        add(btnNovoProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
         inpPesquisar.setBackground(new java.awt.Color(254, 254, 254));
         inpPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
@@ -291,9 +291,9 @@ public class Projetos extends javax.swing.JPanel {
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+    private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnNovoActionPerformed
+    }//GEN-LAST:event_btnNovoProjetoActionPerformed
 
     private void inpPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPesquisarFocusGained
         if (inpPesquisar.getText().trim().equals("Usuário")) {
@@ -310,7 +310,7 @@ public class Projetos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnExit;
-    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel btnVoltar;
     private javax.swing.JTextField inpPesquisar;
