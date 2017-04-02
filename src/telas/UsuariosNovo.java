@@ -6,16 +6,13 @@
 package telas;
 
 import classes.User;
-import controllers.UsersController;
+import dao.RoleDAO;
 import dao.UserDAO;
 import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
-import javax.swing.JPasswordField;
+import javax.swing.DefaultListModel;
 import javax.swing.JSeparator;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import tablemodel.UsersTableModel;
 
 /**
  *
@@ -23,10 +20,11 @@ import tablemodel.UsersTableModel;
  */
 public class UsuariosNovo extends javax.swing.JPanel {
 
-    UsersController controller;
     UserDAO userDAO;
+    RoleDAO roleDAO;
     Color errorColor;
     Color normalColor;
+    ArrayList errorsList;
 
     /**
      * Creates new form Usuario
@@ -37,23 +35,16 @@ public class UsuariosNovo extends javax.swing.JPanel {
         // Seta o tamanho do frame
         this.setSize(800, 500);
 
+        // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
         normalColor = new Color(60, 60, 60);
 
+        // Inicializa os DAO's
         userDAO = new UserDAO();
+        roleDAO = new RoleDAO();
 
-//        ArrayList<Object> users = userDAO.getAll();
-//        
-//        System.out.println(users);
-//        
-//        this.tableUsuarios.setModel(new UsersTableModel(users));
-        // Seta o tamano do panel
-//        tabPanUsuarios.setSize(200, 200);
-//        tabPanUsuarios.setBounds(10, 200, 100, 100);
-//        System.out.println(this.getSize());
-//        System.out.println(tabPanUsuarios.getSize());
-        controller = new UsersController();
-//        ArrayList<User> users = controller.popularTabela();
+        // Popula o combobox com os papéis
+        roleDAO.lists(selRole);
     }
 
     /**
@@ -88,8 +79,8 @@ public class UsuariosNovo extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtBiography = new javax.swing.JTextArea();
         btnSalvarUsuario = new javax.swing.JButton();
-        lblErrorNome = new javax.swing.JLabel();
-        lblSaveError1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listErrors = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -195,8 +186,15 @@ public class UsuariosNovo extends javax.swing.JPanel {
         selRole.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         selRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Papel" }));
         selRole.setToolTipText("");
-        selRole.setBorder(null);
         selRole.setOpaque(false);
+        selRole.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                selRoleFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                selRoleFocusLost(evt);
+            }
+        });
         sepF.add(selRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 350, -1));
 
         inpUsername.setBackground(new java.awt.Color(254, 254, 254));
@@ -262,12 +260,15 @@ public class UsuariosNovo extends javax.swing.JPanel {
         sepPassword.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
         sepF.add(sepPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 350, 1));
 
+        jScrollPane1.setBorder(null);
+
         txtBiography.setBackground(new java.awt.Color(254, 254, 254));
         txtBiography.setColumns(20);
         txtBiography.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtBiography.setForeground(new java.awt.Color(29, 29, 29));
         txtBiography.setRows(5);
         txtBiography.setText("Biografia");
-        txtBiography.setBorder(null);
+        txtBiography.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(29, 29, 29)));
         txtBiography.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtBiographyFocusGained(evt);
@@ -289,7 +290,6 @@ public class UsuariosNovo extends javax.swing.JPanel {
         btnSalvarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvarUsuario.setDefaultCapable(false);
         btnSalvarUsuario.setName(""); // NOI18N
-        btnSalvarUsuario.setOpaque(true);
         btnSalvarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarUsuarioActionPerformed(evt);
@@ -297,13 +297,14 @@ public class UsuariosNovo extends javax.swing.JPanel {
         });
         sepF.add(btnSalvarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
 
-        lblErrorNome.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
-        lblErrorNome.setText("Por favor, revise os campos!");
-        sepF.add(lblErrorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, -1));
+        jScrollPane2.setBorder(null);
 
-        lblSaveError1.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
-        lblSaveError1.setText("Por favor, revise os campos!");
-        sepF.add(lblSaveError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 480, -1, -1));
+        listErrors.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        listErrors.setEnabled(false);
+        listErrors.setFocusable(false);
+        jScrollPane2.setViewportView(listErrors);
+
+        sepF.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 640, 140));
 
         add(sepF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
@@ -343,11 +344,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
     }//GEN-LAST:event_inpEmailFocusGained
 
     private void inpEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpEmailFocusLost
-        String email = inpEmail.getText().trim();
-        if (email.isEmpty() || email.equals("Email")) {
-            inpEmail.setText("Email");
-            setTextFieldError(inpEmail, sepEmail);
-        }
+        validateEmail();
     }//GEN-LAST:event_inpEmailFocusLost
 
     private void inpUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpUsernameFocusGained
@@ -358,11 +355,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
     }//GEN-LAST:event_inpUsernameFocusGained
 
     private void inpUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpUsernameFocusLost
-        String username = inpUsername.getText().trim();
-        if (username.isEmpty() || username.equals("Usuário")) {
-            inpUsername.setText("Usuário");
-            setTextFieldError(inpUsername, sepUsername);
-        }
+        validateUsername();
     }//GEN-LAST:event_inpUsernameFocusLost
 
     private void inpPasswordConfirmationFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordConfirmationFocusGained
@@ -373,16 +366,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
     }//GEN-LAST:event_inpPasswordConfirmationFocusGained
 
     private void inpPasswordConfirmationFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordConfirmationFocusLost
-        String passwordConfirmation = new String(inpPasswordConfirmation.getPassword()).trim();
-        String password = new String(inpPassword.getPassword()).trim();
-        if (passwordConfirmation.equals("password") || passwordConfirmation.equals("")) {
-            inpPasswordConfirmation.setText("password");
-            setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
-        } else if (!passwordConfirmation.equals(password)) {
-            setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
-        } else {
-            setTextFieldNormal(inpPasswordConfirmation, sepPasswordConfirmation);
-        }
+        validatePasswordConfirmation();
     }//GEN-LAST:event_inpPasswordConfirmationFocusLost
 
     private void inpPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordFocusGained
@@ -392,19 +376,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_inpPasswordFocusGained
     private void inpPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordFocusLost
-        String passwordConfirmation = new String(inpPasswordConfirmation.getPassword()).trim();
-        String password = new String(inpPassword.getPassword()).trim();
-        if (password.equals("password") || password.equals("")) {
-            inpPassword.setText("password");
-            setTextFieldError(inpPassword, sepPassword);
-        }
-        if (!passwordConfirmation.equals("password")) {
-            if (!passwordConfirmation.equals(password)) {
-                setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
-            } else {
-                setTextFieldNormal(inpPasswordConfirmation, sepPasswordConfirmation);
-            }
-        }
+        validatePassword();
     }//GEN-LAST:event_inpPasswordFocusLost
 
     private void btnSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarUsuarioActionPerformed
@@ -413,28 +385,37 @@ public class UsuariosNovo extends javax.swing.JPanel {
         String email = inpEmail.getText();
         String firstName = inpFirstName.getText();
         String lastName = inpLastName.getText();
-        int roleId = 1;
+        int roleId = selRole.getSelectedIndex();
         String biography = txtBiography.getText();
 
-        if(!validateFirstName()){
-            
-        }
-        
-        if (username.equals("Usuário") || username.trim().isEmpty()) {
-            inpUsername.setForeground(errorColor);
-            sepUsername.setForeground(errorColor);
-        }
+        errorsList = new ArrayList();
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setRoleId(roleId);
-        user.setBiography(biography);
+        DefaultListModel listModel = new DefaultListModel();
+        int indexCount = 0;
 
-//        userDAO.save(user);
+        validateFirstName();
+        validateEmail();
+        validateRole();
+        validateUsername();
+        validatePassword();
+        validatePasswordConfirmation();
+
+        if (errorsList.size() != 0) {
+            for (int i = 0; i < errorsList.size(); i++) {
+                listModel.add(i, errorsList.get(i));
+            }
+            listErrors.setModel(listModel);
+        } else {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setRoleId(roleId);
+            user.setBiography(biography);
+            userDAO.save(user);
+        }
     }//GEN-LAST:event_btnSalvarUsuarioActionPerformed
 
     private void txtBiographyFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtBiographyFocusGained
@@ -449,6 +430,14 @@ public class UsuariosNovo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtBiographyFocusLost
 
+    private void selRoleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selRoleFocusGained
+        selRole.setForeground(normalColor);
+    }//GEN-LAST:event_selRoleFocusGained
+
+    private void selRoleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selRoleFocusLost
+        validateRole();
+    }//GEN-LAST:event_selRoleFocusLost
+
     private void setTextFieldError(JTextField textField, JSeparator separator) {
         textField.setForeground(errorColor);
         separator.setForeground(errorColor);
@@ -459,16 +448,77 @@ public class UsuariosNovo extends javax.swing.JPanel {
         separator.setForeground(normalColor);
     }
 
-    private boolean validateFirstName() {
+    private void validateFirstName() {
         String firstName = inpFirstName.getText().trim();
         if (firstName.isEmpty() || firstName.equals("Nome")) {
             inpFirstName.setText("Nome");
             setTextFieldError(inpFirstName, sepFirstName);
-            return false;
+            errorsList.add("O campo \"Usuário\" é obrigatório!");
         }
-        return true;
     }
-    
+
+    private void validateEmail() {
+        String email = inpEmail.getText().trim();
+        if (email.isEmpty() || email.equals("Email")) {
+            inpEmail.setText("Email");
+            setTextFieldError(inpEmail, sepEmail);
+            errorsList.add("O campo \"Email\" é obrigatório!");
+        } else if (email.indexOf("@") < 3 || email.indexOf(".") < 3) {
+            setTextFieldError(inpEmail, sepEmail);
+            errorsList.add("O campo \"Email\" é inválido!");
+        }
+    }
+
+    private void validateRole() {
+        int roleId = selRole.getSelectedIndex();
+        if (roleId == 0) {
+            selRole.setForeground(errorColor);
+            errorsList.add("O campo \"Papel\" é obrigatório!");
+        }
+    }
+
+    private void validateUsername() {
+        String username = inpUsername.getText().trim();
+        if (username.isEmpty() || username.equals("Usuário")) {
+            inpUsername.setText("Usuário");
+            setTextFieldError(inpUsername, sepUsername);
+            errorsList.add("O campo \"Usuário\" é obrigatório!");
+        }
+    }
+
+    private void validatePasswordConfirmation() {
+        String passwordConfirmation = new String(inpPasswordConfirmation.getPassword()).trim();
+        String password = new String(inpPassword.getPassword()).trim();
+        if (passwordConfirmation.equals("password") || passwordConfirmation.equals("")) {
+            inpPasswordConfirmation.setText("password");
+            setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
+            errorsList.add("O campo \"Confirmação de Senha\" é obrigatório!");
+        } else if (!passwordConfirmation.equals(password)) {
+            setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
+            errorsList.add("A confirmação de senha é diferente da senha!");
+        } else {
+            setTextFieldNormal(inpPasswordConfirmation, sepPasswordConfirmation);
+        }
+    }
+
+    private void validatePassword() {
+        String passwordConfirmation = new String(inpPasswordConfirmation.getPassword()).trim();
+        String password = new String(inpPassword.getPassword()).trim();
+        if (password.equals("password") || password.equals("")) {
+            inpPassword.setText("password");
+            setTextFieldError(inpPassword, sepPassword);
+            errorsList.add("O campo \"Senha\" é obrigatório!");
+        }
+        if (!passwordConfirmation.equals("password")) {
+            if (!passwordConfirmation.equals(password)) {
+                setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
+                errorsList.add("A confirmação de senha é diferente da senha!");
+            } else {
+                setTextFieldNormal(inpPasswordConfirmation, sepPasswordConfirmation);
+            }
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnExit;
     private javax.swing.JButton btnSalvarUsuario;
@@ -481,11 +531,11 @@ public class UsuariosNovo extends javax.swing.JPanel {
     private javax.swing.JTextField inpUsername;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblErrorNome;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblImagemUsuario;
     private javax.swing.JLabel lblNomeUsuario;
     private javax.swing.JLabel lblProjetos;
-    private javax.swing.JLabel lblSaveError1;
+    private javax.swing.JList<String> listErrors;
     private javax.swing.JComboBox<String> selRole;
     private javax.swing.JSeparator sepEmail;
     private javax.swing.JPanel sepF;

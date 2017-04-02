@@ -1,11 +1,14 @@
 package dao;
 
+import apoio.ComboboxItem;
 import classes.Role;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -192,6 +195,24 @@ public class RoleDAO implements DAOFactory {
             throw new RuntimeException(e);
         }
         return role;
+    }
+
+    public void lists(JComboBox combobox) {
+
+        combobox.removeAllItems();
+
+        ComboboxItem item = new ComboboxItem(0, "Papel");
+        combobox.addItem(item);
+
+        ArrayList<Object> roles = this.getAll();
+
+        Iterator<Object> iterator = roles.iterator();
+        while (iterator.hasNext()) {
+            Role role = (Role) iterator.next();
+            item = new ComboboxItem(role.getId(), role.getDescription());
+            combobox.addItem(item);
+        }
+
     }
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import apoio.ComboboxItem;
 import classes.Role;
 import classes.User;
 import connection.ConnectionFactory;
@@ -8,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -263,5 +266,23 @@ public class UserDAO implements DAOFactory{
             users.add((User) obj.get(i));
         }
         return users;
+    }
+    
+    public void lists(JComboBox combobox, String defaultItem) {
+
+        combobox.removeAllItems();
+
+        ComboboxItem item = new ComboboxItem(0, defaultItem);
+        combobox.addItem(item);
+
+        ArrayList<Object> users = this.getAll();
+
+        Iterator<Object> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User user = (User) iterator.next();
+            item = new ComboboxItem(user.getId(), user.getFirstName() + " " + user.getLastName());
+            combobox.addItem(item);
+        }
+
     }
 }

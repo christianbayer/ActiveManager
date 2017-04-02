@@ -5,17 +5,39 @@
  */
 package telas;
 
+import dao.RoleDAO;
+import dao.UserDAO;
+import java.awt.Color;
+import java.util.ArrayList;
+
 /**
  *
  * @author christian
  */
 public class ProjetosNovo extends javax.swing.JPanel {
 
+    UserDAO userDAO;
+    Color errorColor;
+    Color normalColor;
+    ArrayList errorsList;
+    
     /**
      * Creates new form ProjetosListagem
      */
     public ProjetosNovo() {
         initComponents();
+        // Seta o tamanho do frame
+        this.setSize(800, 500);
+
+        // Inicializa as cores;
+        errorColor = new Color(255, 0, 0);
+        normalColor = new Color(60, 60, 60);
+
+        // Inicializa os DAO's
+        userDAO = new UserDAO();
+        
+        // Popula o combobox com os papéis
+        userDAO.lists(selManager, "Gerente");
     }
 
     /**
@@ -32,8 +54,6 @@ public class ProjetosNovo extends javax.swing.JPanel {
         sepTitle = new javax.swing.JSeparator();
         selProjectType = new javax.swing.JComboBox<>();
         selManager = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtDescription = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
         lblImagemUsuario = new javax.swing.JLabel();
@@ -41,6 +61,10 @@ public class ProjetosNovo extends javax.swing.JPanel {
         btnVoltar = new javax.swing.JLabel();
         lblNomeUsuario = new javax.swing.JLabel();
         btnSalvarProjeto = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDescription = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listErrors = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setPreferredSize(new java.awt.Dimension(800, 540));
@@ -79,7 +103,6 @@ public class ProjetosNovo extends javax.swing.JPanel {
         selProjectType.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         selProjectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Projeto" }));
         selProjectType.setToolTipText("");
-        selProjectType.setBorder(null);
         selProjectType.setOpaque(false);
         selProjectType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,19 +115,8 @@ public class ProjetosNovo extends javax.swing.JPanel {
         selManager.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         selManager.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente" }));
         selManager.setToolTipText("");
-        selManager.setBorder(null);
         selManager.setOpaque(false);
         jPanel1.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 730, -1));
-
-        txtDescription.setBackground(new java.awt.Color(254, 254, 254));
-        txtDescription.setColumns(20);
-        txtDescription.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        txtDescription.setRows(5);
-        txtDescription.setText("Descrição");
-        txtDescription.setBorder(null);
-        jScrollPane1.setViewportView(txtDescription);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 730, 136));
 
         jPanel3.setBackground(new java.awt.Color(254, 254, 254));
         jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
@@ -146,13 +158,42 @@ public class ProjetosNovo extends javax.swing.JPanel {
         btnSalvarProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvarProjeto.setDefaultCapable(false);
         btnSalvarProjeto.setName(""); // NOI18N
-        btnSalvarProjeto.setOpaque(true);
         btnSalvarProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarProjetoActionPerformed(evt);
             }
         });
         jPanel1.add(btnSalvarProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+
+        jScrollPane2.setBorder(null);
+
+        txtDescription.setBackground(new java.awt.Color(254, 254, 254));
+        txtDescription.setColumns(20);
+        txtDescription.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDescription.setForeground(new java.awt.Color(29, 29, 29));
+        txtDescription.setRows(5);
+        txtDescription.setText("Biografia");
+        txtDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(29, 29, 29)));
+        txtDescription.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtDescriptionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtDescriptionFocusLost(evt);
+            }
+        });
+        jScrollPane2.setViewportView(txtDescription);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 730, 136));
+
+        jScrollPane3.setBorder(null);
+
+        listErrors.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        listErrors.setEnabled(false);
+        listErrors.setFocusable(false);
+        jScrollPane3.setViewportView(listErrors);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 640, 140));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
@@ -185,6 +226,18 @@ public class ProjetosNovo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSalvarProjetoActionPerformed
 
+    private void txtDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescriptionFocusGained
+        if (txtDescription.getText().trim().equals("Biografia")) {
+            txtDescription.setText("");
+        }
+    }//GEN-LAST:event_txtDescriptionFocusGained
+
+    private void txtDescriptionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescriptionFocusLost
+        if (txtDescription.getText().trim().isEmpty()) {
+            txtDescription.setText("Biografia");
+        }
+    }//GEN-LAST:event_txtDescriptionFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnExit;
@@ -193,10 +246,12 @@ public class ProjetosNovo extends javax.swing.JPanel {
     private javax.swing.JTextField inpTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblImagemUsuario;
     private javax.swing.JLabel lblNomeUsuario;
     private javax.swing.JLabel lblProjetos;
+    private javax.swing.JList<String> listErrors;
     private javax.swing.JComboBox<String> selManager;
     private javax.swing.JComboBox<String> selProjectType;
     private javax.swing.JSeparator sepTitle;
