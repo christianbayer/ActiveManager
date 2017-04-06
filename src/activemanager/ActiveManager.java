@@ -5,6 +5,7 @@
  */
 package activemanager;
 
+import classes.User;
 import telas.Login;
 import telas.Main;
 
@@ -19,10 +20,10 @@ public class ActiveManager {
      */
     public static void main(String[] args) {
 
-        Login login = new Login();
-        Main main = new Main();
-
+//        Login login = new Login();
 //        login.setVisible(true);
+        User user = new User("christian", "123456", "teste", "Christian", "Bayer", "", 0, 0);
+        Main main = new Main(user);
         main.setVisible(true);
     }
 

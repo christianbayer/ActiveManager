@@ -5,7 +5,9 @@
  */
 package telas;
 
+import classes.User;
 import controllers.UsersController;
+import dao.UserDAO;
 
 /**
  *
@@ -13,23 +15,27 @@ import controllers.UsersController;
  */
 public class Login extends javax.swing.JFrame {
 
+    UserDAO userDAO;
+
     /**
      * Creates new form Logi
      */
     public Login() {
-        
+
         initComponents();
-        
+
         // Faz a tela poder ser arrastada
         FrameDragListener frameDragListener = new FrameDragListener(this);
         this.addMouseListener(frameDragListener);
         this.addMouseMotionListener(frameDragListener);
-        
+
         // Seta o tamanho do frame
-        this.setSize(420,500);
-        
+        this.setSize(420, 500);
+
         // Esconde o label de login inválido
         lblLoginError.setVisible(false);
+        
+        userDAO = new UserDAO();
     }
 
     /**
@@ -150,15 +156,20 @@ public class Login extends javax.swing.JFrame {
         String username = inpUsername.getText();
         String password = new String(inpPassword.getPassword());
 
-        if (new UsersController().login(username, password)) {
-            Main main = new Main();
-            main.setVisible(true);
-            this.dispose();
-            lblLoginError.setVisible(false);
-        } else {
+        String query = "SELECT * FROM users WHERE username=\"" + username + "\"";
+        User user = (User) userDAO.getQuery(query);
+        if (user == null) {
             lblLoginError.setVisible(true);
+        } else {
+            if(user.getPassword().equals(password)) {
+                Main main = new Main(user);
+                main.setVisible(true);
+                this.dispose();
+                lblLoginError.setVisible(false);
+            } else {
+                lblLoginError.setVisible(true);
+            }
         }
-
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void inpUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpUsernameFocusGained

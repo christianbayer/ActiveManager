@@ -5,6 +5,7 @@
  */
 package telas;
 
+import classes.User;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -28,11 +29,12 @@ public class Main extends javax.swing.JFrame {
     UsuariosNovo usuariosNovo;
     Sobre sobre;
     Atividades atividades;
+    User user;
 
     /**
      * Creates new form Main
      */
-    public Main() {
+    public Main(User user) {
         initComponents();
         
         // Faz a tela poder ser arrastada
@@ -41,7 +43,9 @@ public class Main extends javax.swing.JFrame {
         this.addMouseMotionListener(frameDragListener);
         
         // Inicializa os painéis
+        this.user = user;
         
+        lblUser.setText(user.getFirstName() + " "+ user.getLastName());
         
         
         

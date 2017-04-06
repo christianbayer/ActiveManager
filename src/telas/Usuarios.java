@@ -68,6 +68,8 @@ public class Usuarios extends javax.swing.JPanel {
             User user = (User) iterator.next();
             listUser(user);
         }
+        
+        lblFound.setText(users.size() + " usuários encontrados:");
 
         row1.setVisible(false);
     }
@@ -112,7 +114,7 @@ public class Usuarios extends javax.swing.JPanel {
         basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblFound.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
-        lblFound.setText("2 usuários encontrados:");
+        lblFound.setText("1 usuários encontrados:");
         basePanel.add(lblFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         btnPesquisar.setBackground(new java.awt.Color(52, 100, 127));
