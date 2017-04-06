@@ -23,7 +23,7 @@ public class RoleDAO implements DAOFactory {
 
     private static final String INSERT = "INSERT INTO roles (description, created_by, updated_by) VALUES (?, ?, ?)";
     private static final String UPDATE = "UPDATE roles SET description=?, updated_by=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM roles WHERE id=?";
+    private static final String DELETE = "UPDATE roles SET active=0 WHERE id=?";
     private static final String GET_ALL = "SELECT * FROM roles";
     private static final String GET_BY_ID = "SELECT * FROM roles WHERE id = ?";
 

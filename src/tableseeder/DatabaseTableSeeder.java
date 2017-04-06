@@ -14,6 +14,7 @@ public class DatabaseTableSeeder {
     public static void seed() {
         RoleTableSeeder.seed();
         UserTableSeeder.seed();
+        ProjectTypeTableSeeder.seed();
     }
     
 }

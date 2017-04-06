@@ -41,11 +41,10 @@ public class Main extends javax.swing.JFrame {
         this.addMouseMotionListener(frameDragListener);
         
         // Inicializa os painéis
-        dashboard = new Dashboard();
-        projetos = new Projetos();
-        projetosNovo = new ProjetosNovo();
-        usuarios = new Usuarios();
-        usuariosNovo = new UsuariosNovo();
+        
+        
+        
+        
         sobre = new Sobre();
         atividades = new Atividades();
         
@@ -61,16 +60,16 @@ public class Main extends javax.swing.JFrame {
         this.setSize(1000, 600);
         
         // Seta adiciona os painéis para troca
+        dashboard = new Dashboard(lblWindow);
         cardPanel.add(dashboard, "dashboard");
-        cardPanel.add(projetos, "projetos");
-        cardPanel.add(projetosNovo, "projetosNovo");
-        cardPanel.add(usuarios, "usuarios");
-        cardPanel.add(usuariosNovo, "usuariosNovo");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "dashboard");
+        
+        
         cardPanel.add(atividades, "atividades");
         cardPanel.add(sobre, "sobre");
         cardPanel.setSize(800, 500);
 
-        dashboard.setVisible(true);
     }
 
     /**
@@ -89,6 +88,12 @@ public class Main extends javax.swing.JFrame {
         btnSobre = new javax.swing.JToggleButton();
         btnAtividades = new javax.swing.JToggleButton();
         btnUsuarios = new javax.swing.JToggleButton();
+        headerPanel = new javax.swing.JPanel();
+        btnExit = new javax.swing.JLabel();
+        lblUserImage = new javax.swing.JLabel();
+        lblWindow = new javax.swing.JLabel();
+        btnBack = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(52, 100, 127));
@@ -98,7 +103,7 @@ public class Main extends javax.swing.JFrame {
 
         cardPanel.setBackground(new java.awt.Color(254, 254, 254));
         cardPanel.setLayout(new java.awt.CardLayout());
-        getContentPane().add(cardPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 800, 600));
+        getContentPane().add(cardPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 800, 510));
 
         menuPanel.setBackground(new java.awt.Color(26, 50, 64));
         menuPanel.setForeground(new java.awt.Color(52, 100, 127));
@@ -107,7 +112,7 @@ public class Main extends javax.swing.JFrame {
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnDashboard.setBackground(new java.awt.Color(26, 50, 64));
-        btnDashboard.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        btnDashboard.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
         btnDashboard.setForeground(new java.awt.Color(254, 254, 254));
         btnDashboard.setSelected(true);
         btnDashboard.setBorder(null);
@@ -119,10 +124,10 @@ public class Main extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 200, 60));
+        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 200, 60));
 
         btnProjetos.setBackground(new java.awt.Color(26, 50, 64));
-        btnProjetos.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        btnProjetos.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
         btnProjetos.setForeground(new java.awt.Color(254, 254, 254));
         btnProjetos.setText("PROJETOS");
         btnProjetos.setBorder(null);
@@ -133,10 +138,10 @@ public class Main extends javax.swing.JFrame {
                 btnProjetosActionPerformed(evt);
             }
         });
-        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, 60));
+        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 200, 60));
 
         btnSobre.setBackground(new java.awt.Color(26, 50, 64));
-        btnSobre.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        btnSobre.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
         btnSobre.setForeground(new java.awt.Color(254, 254, 254));
         btnSobre.setText("SOBRE");
         btnSobre.setBorder(null);
@@ -147,10 +152,10 @@ public class Main extends javax.swing.JFrame {
                 btnSobreActionPerformed(evt);
             }
         });
-        menuPanel.add(btnSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 200, 60));
+        menuPanel.add(btnSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 200, 60));
 
         btnAtividades.setBackground(new java.awt.Color(26, 50, 64));
-        btnAtividades.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        btnAtividades.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
         btnAtividades.setForeground(new java.awt.Color(254, 254, 254));
         btnAtividades.setText("ATIVIDADES");
         btnAtividades.setBorder(null);
@@ -161,10 +166,10 @@ public class Main extends javax.swing.JFrame {
                 btnAtividadesActionPerformed(evt);
             }
         });
-        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 200, 60));
+        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 200, 60));
 
         btnUsuarios.setBackground(new java.awt.Color(26, 50, 64));
-        btnUsuarios.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        btnUsuarios.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(254, 254, 254));
         btnUsuarios.setText("USUÁRIOS");
         btnUsuarios.setBorder(null);
@@ -175,24 +180,62 @@ public class Main extends javax.swing.JFrame {
                 btnUsuariosActionPerformed(evt);
             }
         });
-        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 200, 60));
+        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 200, 60));
 
         getContentPane().add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 600));
+
+        headerPanel.setBackground(new java.awt.Color(254, 254, 254));
+        headerPanel.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
+        headerPanel.setPreferredSize(new java.awt.Dimension(900, 500));
+        headerPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
+        btnExit.setText("x");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
+        headerPanel.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
+
+        lblUserImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        headerPanel.add(lblUserImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
+
+        lblWindow.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
+        lblWindow.setText("DASHBOARD");
+        headerPanel.add(lblWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
+
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
+        headerPanel.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        lblUser.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblUser.setText("Christian Bayer");
+        headerPanel.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
+
+        getContentPane().add(headerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 800, 90));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        dashboard = new Dashboard(lblWindow);
+        cardPanel.add(dashboard, "dashboard");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "dashboard");
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetosActionPerformed
-//        layoutController = ((CardLayout) cardPanel.getLayout());
-//        layoutController.show(cardPanel, "projetos");
+        projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel);
+        cardPanel.add(projetos, "projetos");
         layoutController = ((CardLayout) cardPanel.getLayout());
-        layoutController.show(cardPanel, "projetosNovo");
+        layoutController.show(cardPanel, "projetos");
     }//GEN-LAST:event_btnProjetosActionPerformed
 
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
@@ -206,19 +249,34 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtividadesActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-//        layoutController = ((CardLayout) cardPanel.getLayout());
-//        layoutController.show(cardPanel, "usuarios");
+        usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
+        cardPanel.add(usuarios, "usuarios");
         layoutController = ((CardLayout) cardPanel.getLayout());
-        layoutController.show(cardPanel, "usuariosNovo");
+        layoutController.show(cardPanel, "usuarios");
     }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnExitMouseClicked
+
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "dashboard");
+    }//GEN-LAST:event_btnBackMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnAtividades;
+    private javax.swing.JLabel btnBack;
     private javax.swing.JToggleButton btnDashboard;
+    private javax.swing.JLabel btnExit;
     private javax.swing.JToggleButton btnProjetos;
     private javax.swing.JToggleButton btnSobre;
     private javax.swing.JToggleButton btnUsuarios;
     private javax.swing.JPanel cardPanel;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JLabel lblUser;
+    private javax.swing.JLabel lblUserImage;
+    private javax.swing.JLabel lblWindow;
     private javax.swing.JPanel menuPanel;
     // End of variables declaration//GEN-END:variables
 }

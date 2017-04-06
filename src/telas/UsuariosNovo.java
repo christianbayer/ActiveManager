@@ -8,9 +8,13 @@ package telas;
 import classes.User;
 import dao.RoleDAO;
 import dao.UserDAO;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
@@ -25,15 +29,37 @@ public class UsuariosNovo extends javax.swing.JPanel {
     Color errorColor;
     Color normalColor;
     ArrayList errorsList;
+    CardLayout layoutController;
+    JPanel cardPanel;
+    Usuarios usuarios;
+    JLabel btnBack;
+    JLabel lblWindow;
 
     /**
      * Creates new form Usuario
      */
-    public UsuariosNovo() {
+    public UsuariosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
         initComponents();
 
-        // Seta o tamanho do frame
-        this.setSize(800, 500);
+        // Seta o título da janela
+        lblWindow.setText("NOVO PROJETO");
+
+        // Troca o action do botão "Voltar"
+        btnBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
+                cardPanel.add(usuarios, "usuarios");
+                layoutController = ((CardLayout) cardPanel.getLayout());
+                layoutController.show(cardPanel, "usuarios");
+            }
+        });
+
+        // Inicializa as variáveis de tela
+        this.btnBack = btnBack;
+        this.lblWindow = lblWindow;
+        this.cardPanel = cardPanel;
+        this.layoutController = lController;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -45,6 +71,8 @@ public class UsuariosNovo extends javax.swing.JPanel {
 
         // Popula o combobox com os papéis
         roleDAO.lists(selRole);
+
+        errorsList = new ArrayList();
     }
 
     /**
@@ -56,13 +84,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sepF = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        btnExit = new javax.swing.JLabel();
-        lblImagemUsuario = new javax.swing.JLabel();
-        lblProjetos = new javax.swing.JLabel();
-        btnVoltar = new javax.swing.JLabel();
-        lblNomeUsuario = new javax.swing.JLabel();
+        basePanel = new javax.swing.JPanel();
         inpFirstName = new javax.swing.JTextField();
         sepFirstName = new javax.swing.JSeparator();
         inpLastName = new javax.swing.JTextField();
@@ -85,39 +107,8 @@ public class UsuariosNovo extends javax.swing.JPanel {
         setBackground(new java.awt.Color(254, 254, 254));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sepF.setBackground(new java.awt.Color(254, 254, 254));
-        sepF.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        btnExit.setText("x");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
-
-        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
-        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
-
-        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
-        lblProjetos.setText("NOVO USUÁRIO");
-        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
-
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
-        lblNomeUsuario.setText("Christian Bayer");
-        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
-
-        sepF.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
+        basePanel.setBackground(new java.awt.Color(254, 254, 254));
+        basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         inpFirstName.setBackground(new java.awt.Color(254, 254, 254));
         inpFirstName.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -133,12 +124,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 inpFirstNameFocusLost(evt);
             }
         });
-        sepF.add(inpFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 350, 20));
+        basePanel.add(inpFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 350, 20));
 
         sepFirstName.setBackground(new java.awt.Color(103, 103, 103));
         sepFirstName.setForeground(new java.awt.Color(29, 29, 29));
         sepFirstName.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        sepF.add(sepFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 350, 1));
+        basePanel.add(sepFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 350, 1));
 
         inpLastName.setBackground(new java.awt.Color(254, 254, 254));
         inpLastName.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -154,12 +145,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 inpLastNameFocusLost(evt);
             }
         });
-        sepF.add(inpLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 350, 20));
+        basePanel.add(inpLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 350, 20));
 
         sepLastName.setBackground(new java.awt.Color(103, 103, 103));
         sepLastName.setForeground(new java.awt.Color(29, 29, 29));
         sepLastName.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        sepF.add(sepLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 350, 1));
+        basePanel.add(sepLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 350, 1));
 
         inpEmail.setBackground(new java.awt.Color(254, 254, 254));
         inpEmail.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -175,12 +166,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 inpEmailFocusLost(evt);
             }
         });
-        sepF.add(inpEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 350, 20));
+        basePanel.add(inpEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 350, 20));
 
         sepEmail.setBackground(new java.awt.Color(103, 103, 103));
         sepEmail.setForeground(new java.awt.Color(29, 29, 29));
         sepEmail.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        sepF.add(sepEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 350, 1));
+        basePanel.add(sepEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 350, 1));
 
         selRole.setBackground(new java.awt.Color(254, 254, 254));
         selRole.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -195,7 +186,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 selRoleFocusLost(evt);
             }
         });
-        sepF.add(selRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 350, -1));
+        basePanel.add(selRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 350, -1));
 
         inpUsername.setBackground(new java.awt.Color(254, 254, 254));
         inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -211,12 +202,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 inpUsernameFocusLost(evt);
             }
         });
-        sepF.add(inpUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 350, 20));
+        basePanel.add(inpUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 350, 20));
 
         sepUsername.setBackground(new java.awt.Color(103, 103, 103));
         sepUsername.setForeground(new java.awt.Color(29, 29, 29));
         sepUsername.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        sepF.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 350, 1));
+        basePanel.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 350, 1));
 
         inpPasswordConfirmation.setBackground(new java.awt.Color(254, 254, 254));
         inpPasswordConfirmation.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -232,12 +223,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 inpPasswordConfirmationFocusLost(evt);
             }
         });
-        sepF.add(inpPasswordConfirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 350, 20));
+        basePanel.add(inpPasswordConfirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 350, 20));
 
         sepPasswordConfirmation.setBackground(new java.awt.Color(103, 103, 103));
         sepPasswordConfirmation.setForeground(new java.awt.Color(29, 29, 29));
         sepPasswordConfirmation.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        sepF.add(sepPasswordConfirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 350, 1));
+        basePanel.add(sepPasswordConfirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 350, 1));
 
         inpPassword.setBackground(new java.awt.Color(254, 254, 254));
         inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -253,12 +244,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
                 inpPasswordFocusLost(evt);
             }
         });
-        sepF.add(inpPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 350, 20));
+        basePanel.add(inpPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 350, 20));
 
         sepPassword.setBackground(new java.awt.Color(103, 103, 103));
         sepPassword.setForeground(new java.awt.Color(29, 29, 29));
         sepPassword.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        sepF.add(sepPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 350, 1));
+        basePanel.add(sepPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 350, 1));
 
         jScrollPane1.setBorder(null);
 
@@ -279,7 +270,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(txtBiography);
 
-        sepF.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 730, 136));
+        basePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 730, 136));
 
         btnSalvarUsuario.setBackground(new java.awt.Color(52, 100, 127));
         btnSalvarUsuario.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
@@ -290,12 +281,13 @@ public class UsuariosNovo extends javax.swing.JPanel {
         btnSalvarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvarUsuario.setDefaultCapable(false);
         btnSalvarUsuario.setName(""); // NOI18N
+        btnSalvarUsuario.setOpaque(true);
         btnSalvarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarUsuarioActionPerformed(evt);
             }
         });
-        sepF.add(btnSalvarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+        basePanel.add(btnSalvarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
 
         jScrollPane2.setBorder(null);
 
@@ -304,14 +296,10 @@ public class UsuariosNovo extends javax.swing.JPanel {
         listErrors.setFocusable(false);
         jScrollPane2.setViewportView(listErrors);
 
-        sepF.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 640, 140));
+        basePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 140));
 
-        add(sepF, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+        add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnExitMouseClicked
 
     private void inpFirstNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpFirstNameFocusGained
         if (inpFirstName.getText().trim().equals("Nome")) {
@@ -380,18 +368,11 @@ public class UsuariosNovo extends javax.swing.JPanel {
     }//GEN-LAST:event_inpPasswordFocusLost
 
     private void btnSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarUsuarioActionPerformed
-        String username = inpUsername.getText();
-        String password = new String(inpPassword.getPassword());
-        String email = inpEmail.getText();
-        String firstName = inpFirstName.getText();
-        String lastName = inpLastName.getText();
-        int roleId = selRole.getSelectedIndex();
-        String biography = txtBiography.getText();
-
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
+        // Cria uma lista padrão
         DefaultListModel listModel = new DefaultListModel();
-        int indexCount = 0;
 
         validateFirstName();
         validateEmail();
@@ -407,14 +388,19 @@ public class UsuariosNovo extends javax.swing.JPanel {
             listErrors.setModel(listModel);
         } else {
             User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setEmail(email);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setRoleId(roleId);
-            user.setBiography(biography);
+            user.setUsername(inpUsername.getText());
+            user.setPassword(new String(inpPassword.getPassword()));
+            user.setEmail(inpEmail.getText());
+            user.setFirstName(inpFirstName.getText());
+            user.setLastName(inpLastName.getText());
+            user.setRoleId(selRole.getSelectedIndex());
+            user.setBiography(txtBiography.getText());
             userDAO.save(user);
+
+            usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
+            cardPanel.add(usuarios, "usuarios");
+            layoutController = ((CardLayout) cardPanel.getLayout());
+            layoutController.show(cardPanel, "usuarios");
         }
     }//GEN-LAST:event_btnSalvarUsuarioActionPerformed
 
@@ -520,25 +506,19 @@ public class UsuariosNovo extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnExit;
+    private javax.swing.JPanel basePanel;
     private javax.swing.JButton btnSalvarUsuario;
-    private javax.swing.JLabel btnVoltar;
     private javax.swing.JTextField inpEmail;
     private javax.swing.JTextField inpFirstName;
     private javax.swing.JTextField inpLastName;
     private javax.swing.JPasswordField inpPassword;
     private javax.swing.JPasswordField inpPasswordConfirmation;
     private javax.swing.JTextField inpUsername;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblImagemUsuario;
-    private javax.swing.JLabel lblNomeUsuario;
-    private javax.swing.JLabel lblProjetos;
     private javax.swing.JList<String> listErrors;
     private javax.swing.JComboBox<String> selRole;
     private javax.swing.JSeparator sepEmail;
-    private javax.swing.JPanel sepF;
     private javax.swing.JSeparator sepFirstName;
     private javax.swing.JSeparator sepLastName;
     private javax.swing.JSeparator sepPassword;

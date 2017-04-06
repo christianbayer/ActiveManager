@@ -12,7 +12,7 @@ import java.util.Date;
  * @author christian
  */
 public class ProjectType {
-    
+
     private int id;
     private String description;
     private Date createdAt;
@@ -21,17 +21,21 @@ public class ProjectType {
     private int updatedBy;
     private boolean active;
 
-    public ProjectType(String description, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public ProjectType() {
+    }
+
+    public ProjectType(String description, int createdBy) {
         this.description = description;
-        this.createdAt = createdAt;
         this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
-        this.active = active;
+        this.updatedBy = createdBy;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -82,5 +86,4 @@ public class ProjectType {
         this.active = active;
     }
 
-    
 }

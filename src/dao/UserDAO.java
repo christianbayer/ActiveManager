@@ -25,7 +25,7 @@ public class UserDAO implements DAOFactory{
     
     private static final String INSERT = "INSERT INTO users (username, password, email, first_name, last_name, biography, role_id, created_by, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE users SET username=?, password=?, email=?, first_name=?, last_name=?, biography=?, role_id=?, updated_by=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM users WHERE id=?";
+    private static final String DELETE = "UPDATE users SET active=0 WHERE id=?";
     private static final String GET_ALL = "SELECT * FROM users";
     private static final String GET_BY_ID = "SELECT * FROM users WHERE id = ?";
 

@@ -24,20 +24,23 @@ public class Project {
     private int updatedBy;
     private boolean active;
 
-    public Project(String title, String description, int projectTypeId, int managerId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public Project() {}
+
+    public Project(String title, String description, int projectTypeId, int managerId, int createdBy) {
         this.title = title;
         this.description = description;
         this.projectTypeId = projectTypeId;
         this.managerId = managerId;
-        this.createdAt = createdAt;
         this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
-        this.active = active;
+        this.updatedBy = createdBy;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -112,5 +115,4 @@ public class Project {
         this.active = active;
     }
 
-    
 }

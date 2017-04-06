@@ -22,18 +22,21 @@ public class UserProject {
     private int updatedBy;
     private boolean active;
 
-    public UserProject(int userId, int projectId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public UserProject(int userId, int projectId, int createdBy) {
         this.userId = userId;
         this.projectId = projectId;
-        this.createdAt = createdAt;
         this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
-        this.active = active;
+        this.updatedBy = createdBy;
     }
+
+    public UserProject() {}
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUserId() {
@@ -91,5 +94,5 @@ public class UserProject {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
 }

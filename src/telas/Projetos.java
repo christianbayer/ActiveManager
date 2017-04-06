@@ -5,18 +5,49 @@
  */
 package telas;
 
+import java.awt.CardLayout;
+import java.awt.event.MouseAdapter;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author christian
  */
 public class Projetos extends javax.swing.JPanel {
 
+    JLabel lblWindow;
+    JLabel btnBack;
+    CardLayout layoutController;
+    JPanel cardPanel;
+    ProjetosNovo projetosNovo;
+    Dashboard dashboard;
+
     /**
      * Creates new form Usuario
      */
-    public Projetos() {
+    public Projetos(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
         initComponents();
-        this.setSize(800, 600);
+
+        // Seta o título da janela
+        lblWindow.setText("PROJETOS");
+
+        // Troca o action do botão "Voltar"
+        btnBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashboard = new Dashboard(lblWindow);
+                cardPanel.add(dashboard, "dashboard");
+                layoutController = ((CardLayout) cardPanel.getLayout());
+                layoutController.show(cardPanel, "dashboard");
+            }
+        });
+
+        // Inicializa as variáveis de tela
+        this.btnBack = btnBack;
+        this.lblWindow = lblWindow;
+        this.cardPanel = cardPanel;
+        this.layoutController = lController;
     }
 
     /**
@@ -28,6 +59,7 @@ public class Projetos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel4 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblTitulo1 = new javax.swing.JLabel();
         txtDescricao1 = new javax.swing.JTextArea();
@@ -56,12 +88,6 @@ public class Projetos extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        btnExit = new javax.swing.JLabel();
-        lblImagemUsuario = new javax.swing.JLabel();
-        lblProjetos = new javax.swing.JLabel();
-        btnVoltar = new javax.swing.JLabel();
-        lblNomeUsuario = new javax.swing.JLabel();
         lblEncontrados = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
         btnNovoProjeto = new javax.swing.JButton();
@@ -72,6 +98,9 @@ public class Projetos extends javax.swing.JPanel {
         setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
         setPreferredSize(new java.awt.Dimension(900, 500));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(238, 238, 238));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -131,7 +160,7 @@ public class Projetos extends javax.swing.JPanel {
         jLabel22.setText("Criado em:");
         jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 740, 110));
+        jPanel4.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 740, 110));
 
         jPanel1.setBackground(new java.awt.Color(194, 228, 253));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -191,42 +220,11 @@ public class Projetos extends javax.swing.JPanel {
         jLabel12.setText("Criado em:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 740, 110));
-
-        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        btnExit.setText("x");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
-
-        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
-        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
-
-        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
-        lblProjetos.setText("PROJETOS");
-        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
-
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
-        lblNomeUsuario.setText("Christian Bayer");
-        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
-
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
+        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 110));
 
         lblEncontrados.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
         lblEncontrados.setText("2 projetos encontrados:");
-        add(lblEncontrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jPanel4.add(lblEncontrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         btnPesquisar.setBackground(new java.awt.Color(52, 100, 127));
         btnPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
@@ -243,7 +241,7 @@ public class Projetos extends javax.swing.JPanel {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, 40, 40));
+        jPanel4.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 40, 40));
 
         btnNovoProjeto.setBackground(new java.awt.Color(52, 100, 127));
         btnNovoProjeto.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
@@ -260,7 +258,7 @@ public class Projetos extends javax.swing.JPanel {
                 btnNovoProjetoActionPerformed(evt);
             }
         });
-        add(btnNovoProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+        jPanel4.add(btnNovoProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
 
         inpPesquisar.setBackground(new java.awt.Color(254, 254, 254));
         inpPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
@@ -276,23 +274,24 @@ public class Projetos extends javax.swing.JPanel {
                 inpPesquisarFocusLost(evt);
             }
         });
-        add(inpPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, 230, 20));
+        jPanel4.add(inpPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 230, 20));
 
         sepPesquisar.setBackground(new java.awt.Color(103, 103, 103));
         sepPesquisar.setForeground(new java.awt.Color(29, 29, 29));
         sepPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 230, 1));
-    }// </editor-fold>//GEN-END:initComponents
+        jPanel4.add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 230, 1));
 
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnExitMouseClicked
+        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
-        // TODO add your handling code here:
+        projetosNovo = new ProjetosNovo(btnBack, lblWindow, layoutController, cardPanel);
+        cardPanel.add(projetosNovo, "projetosNovo");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "projetosNovo");
     }//GEN-LAST:event_btnNovoProjetoActionPerformed
 
     private void inpPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPesquisarFocusGained
@@ -309,10 +308,8 @@ public class Projetos extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnExit;
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JLabel btnVoltar;
     private javax.swing.JTextField inpPesquisar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -336,13 +333,10 @@ public class Projetos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblEncontrados;
-    private javax.swing.JLabel lblImagemUsuario;
-    private javax.swing.JLabel lblNomeUsuario;
-    private javax.swing.JLabel lblProjetos;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTitulo1;
     private javax.swing.JSeparator sepPesquisar;

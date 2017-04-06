@@ -5,10 +5,16 @@
  */
 package telas;
 
-import dao.RoleDAO;
+import classes.Project;
+import dao.ProjectDAO;
 import dao.UserDAO;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,26 +22,47 @@ import java.util.ArrayList;
  */
 public class ProjetosNovo extends javax.swing.JPanel {
 
+    ProjectDAO projectDAO;
     UserDAO userDAO;
     Color errorColor;
     Color normalColor;
     ArrayList errorsList;
-    
+    CardLayout layoutController;
+    JPanel cardPanel;
+    Projetos projetos;
+
     /**
      * Creates new form ProjetosListagem
      */
-    public ProjetosNovo() {
+    public ProjetosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
         initComponents();
-        // Seta o tamanho do frame
-        this.setSize(800, 500);
+
+        // Seta o título da janela
+        lblWindow.setText("NOVO PROJETO");
+
+        // Troca o action do botão "Voltar"
+        btnBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel);
+                cardPanel.add(projetos, "projetos");
+                layoutController = ((CardLayout) cardPanel.getLayout());
+                layoutController.show(cardPanel, "projetos");
+            }
+        });
+
+        // Inicializa as variáveis de tela
+        this.cardPanel = cardPanel;
+        this.layoutController = lController;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
         normalColor = new Color(60, 60, 60);
 
         // Inicializa os DAO's
+        projectDAO = new ProjectDAO();
         userDAO = new UserDAO();
-        
+
         // Popula o combobox com os papéis
         userDAO.lists(selManager, "Gerente");
     }
@@ -49,17 +76,11 @@ public class ProjetosNovo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        basePanel = new javax.swing.JPanel();
         inpTitle = new javax.swing.JTextField();
         sepTitle = new javax.swing.JSeparator();
         selProjectType = new javax.swing.JComboBox<>();
         selManager = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        btnExit = new javax.swing.JLabel();
-        lblImagemUsuario = new javax.swing.JLabel();
-        lblProjetos = new javax.swing.JLabel();
-        btnVoltar = new javax.swing.JLabel();
-        lblNomeUsuario = new javax.swing.JLabel();
         btnSalvarProjeto = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -70,8 +91,8 @@ public class ProjetosNovo extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(800, 540));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        basePanel.setBackground(new java.awt.Color(254, 254, 254));
+        basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         inpTitle.setBackground(new java.awt.Color(254, 254, 254));
         inpTitle.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -87,67 +108,42 @@ public class ProjetosNovo extends javax.swing.JPanel {
                 inpTitleFocusLost(evt);
             }
         });
-        inpTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inpTitleActionPerformed(evt);
-            }
-        });
-        jPanel1.add(inpTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 730, 20));
+        basePanel.add(inpTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 730, 20));
 
         sepTitle.setBackground(new java.awt.Color(103, 103, 103));
         sepTitle.setForeground(new java.awt.Color(29, 29, 29));
         sepTitle.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        jPanel1.add(sepTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 730, 1));
+        basePanel.add(sepTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 730, 1));
 
         selProjectType.setBackground(new java.awt.Color(254, 254, 254));
         selProjectType.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         selProjectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Projeto" }));
         selProjectType.setToolTipText("");
         selProjectType.setOpaque(false);
-        selProjectType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selProjectTypeActionPerformed(evt);
+        selProjectType.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                selProjectTypeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                selProjectTypeFocusLost(evt);
             }
         });
-        jPanel1.add(selProjectType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 730, -1));
+        basePanel.add(selProjectType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 730, -1));
 
         selManager.setBackground(new java.awt.Color(254, 254, 254));
         selManager.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         selManager.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente" }));
         selManager.setToolTipText("");
         selManager.setOpaque(false);
-        jPanel1.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 730, -1));
-
-        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        btnExit.setText("x");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
+        selManager.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                selManagerFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                selManagerFocusLost(evt);
             }
         });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
-
-        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
-        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
-
-        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
-        lblProjetos.setText("NOVO PROJETO");
-        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
-
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
-        lblNomeUsuario.setText("Christian Bayer");
-        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
+        basePanel.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 730, -1));
 
         btnSalvarProjeto.setBackground(new java.awt.Color(52, 100, 127));
         btnSalvarProjeto.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
@@ -158,12 +154,13 @@ public class ProjetosNovo extends javax.swing.JPanel {
         btnSalvarProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvarProjeto.setDefaultCapable(false);
         btnSalvarProjeto.setName(""); // NOI18N
+        btnSalvarProjeto.setOpaque(true);
         btnSalvarProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarProjetoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalvarProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, 90, 40));
+        basePanel.add(btnSalvarProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
 
         jScrollPane2.setBorder(null);
 
@@ -172,7 +169,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         txtDescription.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtDescription.setForeground(new java.awt.Color(29, 29, 29));
         txtDescription.setRows(5);
-        txtDescription.setText("Biografia");
+        txtDescription.setText("Descrição");
         txtDescription.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(29, 29, 29)));
         txtDescription.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -184,7 +181,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(txtDescription);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 730, 136));
+        basePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 730, 136));
 
         jScrollPane3.setBorder(null);
 
@@ -193,64 +190,122 @@ public class ProjetosNovo extends javax.swing.JPanel {
         listErrors.setFocusable(false);
         jScrollPane3.setViewportView(listErrors);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 640, 140));
+        basePanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 140));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
+        add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
 
     private void inpTitleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpTitleFocusGained
-        if (inpTitle.getText().trim().equals("Usuário")) {
+        if (inpTitle.getText().trim().equals("Título")) {
             inpTitle.setText("");
+            inpTitle.setForeground(normalColor);
+            sepTitle.setForeground(normalColor);
         }
     }//GEN-LAST:event_inpTitleFocusGained
 
     private void inpTitleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpTitleFocusLost
-        if (inpTitle.getText().trim().isEmpty()) {
-            inpTitle.setText("Usuário");
-        }
+        validateTitle();
     }//GEN-LAST:event_inpTitleFocusLost
 
-    private void inpTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inpTitleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inpTitleActionPerformed
-
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnExitMouseClicked
-
-    private void selProjectTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selProjectTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selProjectTypeActionPerformed
-
     private void btnSalvarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProjetoActionPerformed
-        // TODO add your handling code here:
+        // Inicia a lista de erros
+        errorsList = new ArrayList();
+
+        // Cria uma lista padrão
+        DefaultListModel listModel = new DefaultListModel();
+
+        validateTitle();
+        validateProjectType();
+        validateManager();
+        validateDescription();
+
+        if (errorsList.size() != 0) {
+            for (int i = 0; i < errorsList.size(); i++) {
+                listModel.add(i, errorsList.get(i));
+            }
+            listErrors.setModel(listModel);
+        } else {
+            Project project = new Project();
+            project.setTitle(inpTitle.getText());
+            project.setDescription(txtDescription.getText());
+            project.setProjectTypeId(selProjectType.getSelectedIndex());
+            project.setManagerId(selManager.getSelectedIndex());
+            projectDAO.save(project);
+        }
     }//GEN-LAST:event_btnSalvarProjetoActionPerformed
 
     private void txtDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescriptionFocusGained
-        if (txtDescription.getText().trim().equals("Biografia")) {
+        if (txtDescription.getText().trim().equals("Descrição")) {
             txtDescription.setText("");
+            txtDescription.setForeground(normalColor);
         }
     }//GEN-LAST:event_txtDescriptionFocusGained
 
     private void txtDescriptionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescriptionFocusLost
-        if (txtDescription.getText().trim().isEmpty()) {
-            txtDescription.setText("Biografia");
-        }
+        validateDescription();
     }//GEN-LAST:event_txtDescriptionFocusLost
 
+    private void selProjectTypeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selProjectTypeFocusGained
+        if (selProjectType.getSelectedIndex() == 0) {
+            selProjectType.setForeground(normalColor);
+        }
+    }//GEN-LAST:event_selProjectTypeFocusGained
+
+    private void selProjectTypeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selProjectTypeFocusLost
+        validateProjectType();
+    }//GEN-LAST:event_selProjectTypeFocusLost
+
+    private void selManagerFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selManagerFocusGained
+        if (selManager.getSelectedIndex() == 0) {
+            selManager.setForeground(normalColor);
+        }
+    }//GEN-LAST:event_selManagerFocusGained
+
+    private void selManagerFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selManagerFocusLost
+        validateManager();
+    }//GEN-LAST:event_selManagerFocusLost
+
+    private void validateTitle() {
+        String title = inpTitle.getText();
+        if (title.isEmpty() || title.equals("Título")) {
+            inpTitle.setText("Título");
+            inpTitle.setForeground(errorColor);
+            sepTitle.setForeground(errorColor);
+            errorsList.add("O campo \"Título\" é obrigatório!");
+        }
+    }
+
+    private void validateProjectType() {
+        int projectTypeId = selProjectType.getSelectedIndex();
+        if (projectTypeId == 0) {
+            selProjectType.setForeground(errorColor);
+            errorsList.add("O campo \"Tipo de Projeto\" é obrigatório!");
+        }
+    }
+
+    private void validateManager() {
+        int managerId = selManager.getSelectedIndex();
+        if (managerId == 0) {
+            selManager.setForeground(errorColor);
+            errorsList.add("O campo \"Gerente\" é obrigatório!");
+        }
+    }
+
+    private void validateDescription() {
+        String description = txtDescription.getText();
+        if (description.isEmpty() || description.equals("Descrição")) {
+            txtDescription.setText("Descrição");
+            txtDescription.setForeground(errorColor);
+            errorsList.add("O campo \"Descrição\" é obrigatório!");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnExit;
+    private javax.swing.JPanel basePanel;
     private javax.swing.JButton btnSalvarProjeto;
-    private javax.swing.JLabel btnVoltar;
     private javax.swing.JTextField inpTitle;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JLabel lblImagemUsuario;
-    private javax.swing.JLabel lblNomeUsuario;
-    private javax.swing.JLabel lblProjetos;
     private javax.swing.JList<String> listErrors;
     private javax.swing.JComboBox<String> selManager;
     private javax.swing.JComboBox<String> selProjectType;

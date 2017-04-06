@@ -5,6 +5,8 @@
  */
 package telas;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author christian
@@ -14,9 +16,13 @@ public class Dashboard extends javax.swing.JPanel {
     /**
      * Creates new form Usuario
      */
-    public Dashboard() {
+    public Dashboard(JLabel lblWindow) {
+        
+        // Inicializa os componentes
         initComponents();
-        this.setSize(800, 500);
+        
+        // Seta o título da janela
+        lblWindow.setText("DASHBOARD");
     }
 
     /**
@@ -28,59 +34,18 @@ public class Dashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        btnVoltar = new javax.swing.JLabel();
-        btnExit = new javax.swing.JLabel();
-        lblImagemUsuario = new javax.swing.JLabel();
-        lblNomeUsuario = new javax.swing.JLabel();
-        lblProjetos = new javax.swing.JLabel();
+        basePanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel3.setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
-        jPanel3.setPreferredSize(new java.awt.Dimension(900, 500));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        jPanel3.add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        btnExit.setFont(new java.awt.Font("Ubuntu", 0, 22)); // NOI18N
-        btnExit.setText("x");
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnExitMouseClicked(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
-
-        lblImagemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
-        jPanel3.add(lblImagemUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
-
-        lblNomeUsuario.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
-        lblNomeUsuario.setText("Christian Bayer");
-        jPanel3.add(lblNomeUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
-
-        lblProjetos.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
-        lblProjetos.setText("DASHBOARD");
-        jPanel3.add(lblProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
-
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 90));
+        basePanel.setBackground(new java.awt.Color(254, 254, 254));
+        basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_btnExitMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnExit;
-    private javax.swing.JLabel btnVoltar;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblImagemUsuario;
-    private javax.swing.JLabel lblNomeUsuario;
-    private javax.swing.JLabel lblProjetos;
+    private javax.swing.JPanel basePanel;
     // End of variables declaration//GEN-END:variables
 }
