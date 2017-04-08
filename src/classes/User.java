@@ -5,6 +5,8 @@
  */
 package classes;
 
+import dao.RoleDAO;
+import dao.UserDAO;
 import java.util.Date;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Date;
  * @author christian
  */
 public class User {
-    
+
     private int id;
     private String username;
     private String password;
@@ -27,8 +29,9 @@ public class User {
     private int updatedBy;
     private boolean active;
 
-    public User(){}
-    
+    public User() {
+    }
+
     public User(String username, String password, String email, String firstName, String lastName, String biography, int roleId, int createdBy) {
         this.username = username;
         this.password = password;
@@ -105,6 +108,12 @@ public class User {
         this.roleId = roleId;
     }
 
+    public String getRoleName() {
+        RoleDAO roleDAO = new RoleDAO();
+        Role role = (Role) roleDAO.getById(roleId);
+        return role.getDescription();
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -144,5 +153,12 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
-       
+
+    public boolean checkUsernameInUse(String username) {
+        UserDAO userDAO = new UserDAO();
+        String query = "SELECT * FROM users WHERE username=\"" + username + "\"";
+        User user = (User) userDAO.getQuery(query);
+        return user != null;
+    }
+
 }

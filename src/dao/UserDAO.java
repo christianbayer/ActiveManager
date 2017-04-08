@@ -1,7 +1,6 @@
 package dao;
 
 import apoio.ComboboxItem;
-import classes.Role;
 import classes.User;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -21,13 +20,13 @@ import javax.swing.JComboBox;
  *
  * @author christian
  */
-public class UserDAO implements DAOFactory{
-    
+public class UserDAO implements DAOFactory {
+
     private static final String INSERT = "INSERT INTO users (username, password, email, first_name, last_name, biography, role_id, created_by, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE users SET username=?, password=?, email=?, first_name=?, last_name=?, biography=?, role_id=?, updated_by=? WHERE id=?";
     private static final String DELETE = "UPDATE users SET active=0 WHERE id=?";
-    private static final String GET_ALL = "SELECT * FROM users";
-    private static final String GET_BY_ID = "SELECT * FROM users WHERE id = ?";
+    private static final String GET_ALL = "SELECT * FROM users where active=1";
+    private static final String GET_BY_ID = "SELECT * FROM users WHERE id = ? where active=0";
 
     @Override
     public boolean save(Object obj) {
@@ -107,7 +106,7 @@ public class UserDAO implements DAOFactory{
 
     @Override
     public boolean delete(int id) {
-         try {
+        try {
             // Cria o statement //
             PreparedStatement ps = ConnectionFactory.getInstance().getConnection().prepareStatement(DELETE);
 
@@ -164,7 +163,7 @@ public class UserDAO implements DAOFactory{
                 user.setUpdatedAt(resultSet.getDate("updated_at"));
                 user.setUpdatedBy(resultSet.getInt("updated_by"));
                 user.setActive(resultSet.getBoolean("active"));
-                        
+
                 users.add(user);
             }
 
@@ -222,7 +221,7 @@ public class UserDAO implements DAOFactory{
         }
         return user;
     }
-    
+
     public Object getQuery(String query) {
         User user = null;
         try {
@@ -259,15 +258,15 @@ public class UserDAO implements DAOFactory{
         }
         return user;
     }
-    
+
     private ArrayList<User> convertObjectToUser(ArrayList<Object> obj) {
         ArrayList<User> users = new ArrayList();
-        for(int i = 0; i < obj.size(); i++){
+        for (int i = 0; i < obj.size(); i++) {
             users.add((User) obj.get(i));
         }
         return users;
     }
-    
+
     public void lists(JComboBox combobox, String defaultItem) {
 
         combobox.removeAllItems();

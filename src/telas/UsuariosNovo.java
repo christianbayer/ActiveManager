@@ -34,15 +34,16 @@ public class UsuariosNovo extends javax.swing.JPanel {
     Usuarios usuarios;
     JLabel btnBack;
     JLabel lblWindow;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public UsuariosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public UsuariosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
         initComponents();
 
         // Seta o título da janela
-        lblWindow.setText("NOVO PROJETO");
+        lblWindow.setText("NOVO USUÁRIO");
 
         // Troca o action do botão "Voltar"
         btnBack.addMouseListener(new MouseAdapter() {
@@ -73,6 +74,24 @@ public class UsuariosNovo extends javax.swing.JPanel {
         roleDAO.lists(selRole);
 
         errorsList = new ArrayList();
+
+        // Edição
+        if (user.getFirstName() != null) {
+            this.user = user;
+            user.checkUsernameInUse("christian");
+            // Seta o título da janela
+            lblWindow.setText("EDITAR USUÁRIO");
+
+            // Inicializa os campos
+            inpFirstName.setText(user.getFirstName());
+            inpLastName.setText(user.getLastName());
+            inpEmail.setText(user.getEmail());
+            selRole.setSelectedIndex(user.getRoleId());
+            inpUsername.setText(user.getUsername());
+            inpPassword.setText(user.getPassword());
+            inpPasswordConfirmation.setText(user.getPassword());
+            txtBiography.setText(user.getBiography());
+        }
     }
 
     /**
@@ -381,7 +400,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         validatePassword();
         validatePasswordConfirmation();
 
-        if (errorsList.size() != 0) {
+        if (!errorsList.isEmpty()) {
             for (int i = 0; i < errorsList.size(); i++) {
                 listModel.add(i, errorsList.get(i));
             }
@@ -395,7 +414,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
             user.setLastName(inpLastName.getText());
             user.setRoleId(selRole.getSelectedIndex());
             user.setBiography(txtBiography.getText());
-            userDAO.save(user);
+            if (this.user != null) {
+                user.setId(this.user.getId());
+                userDAO.update(user);
+            } else {
+                userDAO.save(user);
+            }
 
             usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
             cardPanel.add(usuarios, "usuarios");
@@ -452,6 +476,8 @@ public class UsuariosNovo extends javax.swing.JPanel {
         } else if (email.indexOf("@") < 3 || email.indexOf(".") < 3) {
             setTextFieldError(inpEmail, sepEmail);
             errorsList.add("O campo \"Email\" é inválido!");
+        } else {
+            setTextFieldNormal(inpEmail, sepEmail);
         }
     }
 
@@ -469,6 +495,11 @@ public class UsuariosNovo extends javax.swing.JPanel {
             inpUsername.setText("Usuário");
             setTextFieldError(inpUsername, sepUsername);
             errorsList.add("O campo \"Usuário\" é obrigatório!");
+        } else if (new User().checkUsernameInUse(username)){
+            setTextFieldError(inpUsername, sepUsername);
+            errorsList.add("Este usuário já está em uso!");
+        } else {
+            setTextFieldNormal(inpUsername, sepUsername);
         }
     }
 

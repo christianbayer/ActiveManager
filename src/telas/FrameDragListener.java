@@ -37,4 +37,3 @@ public class FrameDragListener extends MouseAdapter {
         frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
     }
 }
-//}

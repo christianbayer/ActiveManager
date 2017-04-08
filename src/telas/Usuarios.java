@@ -6,7 +6,6 @@
 package telas;
 
 import classes.User;
-import controllers.UsersController;
 import dao.UserDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
@@ -28,7 +28,6 @@ public class Usuarios extends javax.swing.JPanel {
 
     JLabel lblWindow;
     JLabel btnBack;
-    UsersController controller;
     UserDAO userDAO;
     CardLayout layoutController;
     JPanel cardPanel;
@@ -62,14 +61,8 @@ public class Usuarios extends javax.swing.JPanel {
         this.layoutController = lController;
 
         userDAO = new UserDAO();
-        ArrayList<Object> users = userDAO.getAll();
-        Iterator<Object> iterator = users.iterator();
-        while (iterator.hasNext()) {
-            User user = (User) iterator.next();
-            listUser(user);
-        }
-        
-        lblFound.setText(users.size() + " usuários encontrados:");
+
+        inicializarLista();
 
         row1.setVisible(false);
     }
@@ -178,7 +171,6 @@ public class Usuarios extends javax.swing.JPanel {
 
         panUsers.setBackground(new java.awt.Color(254, 254, 254));
         panUsers.setBorder(null);
-        panUsers.setOpaque(false);
         panUsers.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         row1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -264,16 +256,16 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel);
+        usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel, new User());
         cardPanel.add(usuariosNovo, "usuariosNovo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "usuariosNovo");
     }//GEN-LAST:event_btnNewActionPerformed
 
-    private int panY = 0;
     private Color panColorA = new Color(194, 228, 253);
     private Color panColorB = new Color(254, 254, 254);
-    private int panRowCount = 1;
+    private int panY;
+    private int panRowCount;
 
     private void listUser(User user) {
         System.out.println(panRowCount % 2);
@@ -295,7 +287,7 @@ public class Usuarios extends javax.swing.JPanel {
         lblId.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
         lblId.setText(String.valueOf(user.getId()));
         userPanel.add(lblId, new AbsoluteConstraints(10, 8, -1, -1));
-        
+
         lblName.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
         lblName.setText(user.getFirstName() + " " + user.getLastName());
         userPanel.add(lblName, new AbsoluteConstraints(40, 8, -1, -1));
@@ -305,7 +297,7 @@ public class Usuarios extends javax.swing.JPanel {
         userPanel.add(lblEmail, new AbsoluteConstraints(200, 8, -1, -1));
 
         lblRole.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
-        lblRole.setText(String.valueOf(user.getRoleId()));
+        lblRole.setText(String.valueOf(user.getRoleName()));
         userPanel.add(lblRole, new AbsoluteConstraints(550, 8, -1, -1));
 
         lblUsername.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
@@ -313,9 +305,28 @@ public class Usuarios extends javax.swing.JPanel {
         userPanel.add(lblUsername, new AbsoluteConstraints(420, 8, -1, -1));
 
         btnTrash.setIcon(new ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
+        btnTrash.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int res = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este usuário? Esta ação não poderá ser desfeita!");
+                if (res == 0) {
+                    userDAO.delete(user.getId());
+                    inicializarLista();
+                }
+            }
+        });
         userPanel.add(btnTrash, new AbsoluteConstraints(700, 5, -1, -1));
 
         btnEdit.setIcon(new ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel, user);
+                cardPanel.add(usuariosNovo, "usuariosNovo");
+                layoutController = ((CardLayout) cardPanel.getLayout());
+                layoutController.show(cardPanel, "usuariosNovo");
+            }
+        });
         userPanel.add(btnEdit, new AbsoluteConstraints(670, 5, -1, -1));
 
         panUsers.add(userPanel, new AbsoluteConstraints(0, panY, 740, 30));
@@ -324,6 +335,20 @@ public class Usuarios extends javax.swing.JPanel {
         panY += 30;
         basePanel.revalidate();
         basePanel.repaint();
+    }
+
+    private void inicializarLista() {
+        panY = 0;
+        panRowCount = 1;
+        panUsers.removeAll();
+        panUsers.updateUI();
+        ArrayList<Object> users = userDAO.getAll();
+        Iterator<Object> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User user = (User) iterator.next();
+            listUser(user);
+        }
+        lblFound.setText(users.size() + " usuários encontrados:");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

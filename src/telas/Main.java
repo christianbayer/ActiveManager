@@ -7,12 +7,6 @@ package telas;
 
 import classes.User;
 import java.awt.CardLayout;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import javax.swing.ButtonGroup;
 
 /**
@@ -36,22 +30,20 @@ public class Main extends javax.swing.JFrame {
      */
     public Main(User user) {
         initComponents();
-        
+
         // Faz a tela poder ser arrastada
         FrameDragListener frameDragListener = new FrameDragListener(this);
         this.addMouseListener(frameDragListener);
         this.addMouseMotionListener(frameDragListener);
-        
+
         // Inicializa os painéis
         this.user = user;
-        
-        lblUser.setText(user.getFirstName() + " "+ user.getLastName());
-        
-        
-        
+
+        lblUser.setText(user.getFirstName() + " " + user.getLastName());
+
         sobre = new Sobre();
         atividades = new Atividades();
-        
+
         // Cria o grupo de botões do menu
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(btnDashboard);
@@ -59,17 +51,16 @@ public class Main extends javax.swing.JFrame {
         buttonGroup.add(btnAtividades);
         buttonGroup.add(btnUsuarios);
         buttonGroup.add(btnSobre);
-        
+
         // Seta o tamanho do frame
         this.setSize(1000, 600);
-        
+
         // Seta adiciona os painéis para troca
         dashboard = new Dashboard(lblWindow);
         cardPanel.add(dashboard, "dashboard");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "dashboard");
-        
-        
+
         cardPanel.add(atividades, "atividades");
         cardPanel.add(sobre, "sobre");
         cardPanel.setSize(800, 500);

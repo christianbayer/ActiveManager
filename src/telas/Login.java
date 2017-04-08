@@ -6,7 +6,6 @@
 package telas;
 
 import classes.User;
-import controllers.UsersController;
 import dao.UserDAO;
 
 /**
@@ -34,7 +33,7 @@ public class Login extends javax.swing.JFrame {
 
         // Esconde o label de login inválido
         lblLoginError.setVisible(false);
-        
+
         userDAO = new UserDAO();
     }
 
@@ -158,17 +157,16 @@ public class Login extends javax.swing.JFrame {
 
         String query = "SELECT * FROM users WHERE username=\"" + username + "\"";
         User user = (User) userDAO.getQuery(query);
+
         if (user == null) {
             lblLoginError.setVisible(true);
+        } else if (user.getPassword().equals(password)) {
+            Main main = new Main(user);
+            main.setVisible(true);
+            this.dispose();
+            lblLoginError.setVisible(false);
         } else {
-            if(user.getPassword().equals(password)) {
-                Main main = new Main(user);
-                main.setVisible(true);
-                this.dispose();
-                lblLoginError.setVisible(false);
-            } else {
-                lblLoginError.setVisible(true);
-            }
+            lblLoginError.setVisible(true);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
