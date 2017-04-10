@@ -17,14 +17,15 @@ public class RoleTableSeeder {
     public static void seed() {
         RoleDAO roleDAO = new RoleDAO();
 
-        Role admin = new Role("Admin", 0);
+        Role administrador = new Role("Administrador", 0);
         Role gerente = new Role("Gerente", 0);
         Role desenvolvedor = new Role("Desenvolvedor", 0);
         Role designer = new Role("Designer", 0);
         
-        roleDAO.save(admin);
+        roleDAO.save(administrador);
         roleDAO.save(gerente);
         roleDAO.save(desenvolvedor);
+        roleDAO.save(designer);
     }
     
 }

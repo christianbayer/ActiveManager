@@ -17,7 +17,7 @@ public class ProjectTableSeeder {
     public static void seed() {
         ProjectDAO projectDAO = new ProjectDAO();
 
-        Project activeManager = new Project("ActiveManager", "Projeto ActiveManager", 1, 2, 0);
+        Project activeManager = new Project("ActiveManager", "Projeto do ActiveManager, sendo desenvolvido na cadeira de Programação de Aplicações", 1, 2, 0);
 
         projectDAO.save(activeManager);
     }

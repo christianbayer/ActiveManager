@@ -15,6 +15,10 @@ public class DatabaseTableSeeder {
         RoleTableSeeder.seed();
         UserTableSeeder.seed();
         ProjectTypeTableSeeder.seed();
+        ProjectTableSeeder.seed();
+        IssueTypeTableSeeder.seed();
+        IssueStatusTableSeeder.seed();
+        IssuePriorityTableSeeder.seed();
     }
     
 }

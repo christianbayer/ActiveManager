@@ -25,13 +25,10 @@ public class IssueType {
     public IssueType() {
     }
 
-    public IssueType(String description, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public IssueType(String description, int createdBy) {
         this.description = description;
-        this.createdAt = createdAt;
         this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
-        this.active = active;
+        this.updatedBy = createdBy;
     }
 
     public int getId() {
