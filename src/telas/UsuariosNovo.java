@@ -78,7 +78,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         // Edição
         if (user.getFirstName() != null) {
             this.user = user;
-            user.checkUsernameInUse("christian");
+
             // Seta o título da janela
             lblWindow.setText("EDITAR USUÁRIO");
 
@@ -130,7 +130,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         inpFirstName.setBackground(new java.awt.Color(254, 254, 254));
-        inpFirstName.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpFirstName.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpFirstName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpFirstName.setText("Nome");
         inpFirstName.setBorder(null);
@@ -151,7 +151,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(sepFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 350, 1));
 
         inpLastName.setBackground(new java.awt.Color(254, 254, 254));
-        inpLastName.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpLastName.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpLastName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpLastName.setText("Sobrenome");
         inpLastName.setBorder(null);
@@ -172,7 +172,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(sepLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 350, 1));
 
         inpEmail.setBackground(new java.awt.Color(254, 254, 254));
-        inpEmail.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpEmail.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpEmail.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpEmail.setText("Email");
         inpEmail.setBorder(null);
@@ -193,8 +193,8 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(sepEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 350, 1));
 
         selRole.setBackground(new java.awt.Color(254, 254, 254));
-        selRole.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        selRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Papel" }));
+        selRole.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        selRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Função" }));
         selRole.setToolTipText("");
         selRole.setOpaque(false);
         selRole.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -208,7 +208,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(selRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 350, -1));
 
         inpUsername.setBackground(new java.awt.Color(254, 254, 254));
-        inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpUsername.setText("Usuário");
         inpUsername.setBorder(null);
@@ -229,7 +229,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 350, 1));
 
         inpPasswordConfirmation.setBackground(new java.awt.Color(254, 254, 254));
-        inpPasswordConfirmation.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpPasswordConfirmation.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpPasswordConfirmation.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpPasswordConfirmation.setText("password");
         inpPasswordConfirmation.setToolTipText("Senha");
@@ -250,7 +250,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(sepPasswordConfirmation, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 350, 1));
 
         inpPassword.setBackground(new java.awt.Color(254, 254, 254));
-        inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpPassword.setText("password");
         inpPassword.setToolTipText("Senha");
@@ -274,7 +274,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
 
         txtBiography.setBackground(new java.awt.Color(254, 254, 254));
         txtBiography.setColumns(20);
-        txtBiography.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtBiography.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         txtBiography.setForeground(new java.awt.Color(29, 29, 29));
         txtBiography.setRows(5);
         txtBiography.setText("Biografia");
@@ -310,9 +310,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(null);
 
-        listErrors.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        listErrors.setEnabled(false);
+        listErrors.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        listErrors.setForeground(new java.awt.Color(255, 0, 0));
+        listErrors.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listErrors.setToolTipText("");
         listErrors.setFocusable(false);
+        listErrors.setRequestFocusEnabled(false);
         jScrollPane2.setViewportView(listErrors);
 
         basePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 140));
@@ -393,6 +396,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         // Cria uma lista padrão
         DefaultListModel listModel = new DefaultListModel();
 
+        // Valida os campos
         validateFirstName();
         validateEmail();
         validateRole();
@@ -485,7 +489,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         int roleId = selRole.getSelectedIndex();
         if (roleId == 0) {
             selRole.setForeground(errorColor);
-            errorsList.add("O campo \"Papel\" é obrigatório!");
+            errorsList.add("O campo \"Função\" é obrigatório!");
         }
     }
 
@@ -495,9 +499,16 @@ public class UsuariosNovo extends javax.swing.JPanel {
             inpUsername.setText("Usuário");
             setTextFieldError(inpUsername, sepUsername);
             errorsList.add("O campo \"Usuário\" é obrigatório!");
-        } else if (new User().checkUsernameInUse(username)){
-            setTextFieldError(inpUsername, sepUsername);
-            errorsList.add("Este usuário já está em uso!");
+        } else if (new User().checkUsernameInUse(username)) {
+            if (this.user == null) {
+                setTextFieldError(inpUsername, sepUsername);
+                errorsList.add("Este usuário já está em uso!");
+            } else if (this.user.getUsername().equals(username)) {
+                setTextFieldNormal(inpUsername, sepUsername);
+            } else {
+                setTextFieldError(inpUsername, sepUsername);
+                errorsList.add("Este usuário já está em uso!");
+            }
         } else {
             setTextFieldNormal(inpUsername, sepUsername);
         }

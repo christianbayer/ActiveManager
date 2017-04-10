@@ -155,7 +155,7 @@ public class Login extends javax.swing.JFrame {
         String username = inpUsername.getText();
         String password = new String(inpPassword.getPassword());
 
-        String query = "SELECT * FROM users WHERE username=\"" + username + "\"";
+        String query = "SELECT * FROM users WHERE username=\"" + username + "\" AND active=1";
         User user = (User) userDAO.getQuery(query);
 
         if (user == null) {

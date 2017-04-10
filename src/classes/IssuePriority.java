@@ -5,6 +5,7 @@
  */
 package classes;
 
+import dao.IssuePriorityDAO;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  * @author christian
  */
 public class IssuePriority {
-    
+
     private int id;
     private String description;
     private Date createdAt;
@@ -20,6 +21,9 @@ public class IssuePriority {
     private Date updatedAt;
     private int updatedBy;
     private boolean active;
+
+    public IssuePriority() {
+    }
 
     public IssuePriority(String description, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
         this.description = description;
@@ -32,6 +36,10 @@ public class IssuePriority {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -82,4 +90,10 @@ public class IssuePriority {
         this.active = active;
     }
 
+    public boolean checkDescriptionInUse(String description) {
+        IssuePriorityDAO roleDAO = new IssuePriorityDAO();
+        String query = "SELECT * FROM issues_priorities WHERE description=\"" + description + "\" AND active=1";
+        IssuePriority issuePriority = (IssuePriority) roleDAO.getQuery(query);
+        return issuePriority != null;
+    }
 }

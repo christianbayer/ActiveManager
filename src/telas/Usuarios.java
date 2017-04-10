@@ -98,7 +98,7 @@ public class Usuarios extends javax.swing.JPanel {
         lblCabecalhoAcoes = new javax.swing.JLabel();
         lblCabecalhoEmail = new javax.swing.JLabel();
         lblCabecalhoPapel = new javax.swing.JLabel();
-        lblCabecalhoNome1 = new javax.swing.JLabel();
+        lblCabecalhoId = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -230,9 +230,9 @@ public class Usuarios extends javax.swing.JPanel {
         lblCabecalhoPapel.setText("PAPEL");
         panCabecalho.add(lblCabecalhoPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 8, -1, -1));
 
-        lblCabecalhoNome1.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
-        lblCabecalhoNome1.setText("ID");
-        panCabecalho.add(lblCabecalhoNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
+        lblCabecalhoId.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoId.setText("ID");
+        panCabecalho.add(lblCabecalhoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
 
         basePanel.add(panCabecalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 30));
 
@@ -268,7 +268,6 @@ public class Usuarios extends javax.swing.JPanel {
     private int panRowCount;
 
     private void listUser(User user) {
-        System.out.println(panRowCount % 2);
         JPanel userPanel;
         userPanel = new JPanel();
         userPanel.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
@@ -281,6 +280,14 @@ public class Usuarios extends javax.swing.JPanel {
         JLabel lblRole = new JLabel();
         JLabel lblEmail = new JLabel();
         JLabel lblUsername = new JLabel();
+
+        if (!user.isActive()) {
+            lblId.setForeground(new Color(172, 172, 172));
+            lblName.setForeground(new Color(172, 172, 172));
+            lblRole.setForeground(new Color(172, 172, 172));
+            lblEmail.setForeground(new Color(172, 172, 172));
+            lblUsername.setForeground(new Color(172, 172, 172));
+        }
 
         userPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -361,8 +368,8 @@ public class Usuarios extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCabecalhoAcoes;
     private javax.swing.JLabel lblCabecalhoEmail;
+    private javax.swing.JLabel lblCabecalhoId;
     private javax.swing.JLabel lblCabecalhoNome;
-    private javax.swing.JLabel lblCabecalhoNome1;
     private javax.swing.JLabel lblCabecalhoPapel;
     private javax.swing.JLabel lblCabecalhoUsuario;
     private javax.swing.JLabel lblEmail;

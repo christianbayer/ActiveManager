@@ -5,6 +5,7 @@
  */
 package classes;
 
+import dao.IssueTypeDAO;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  * @author christian
  */
 public class IssueType {
-    
+
     private int id;
     private String description;
     private Date createdAt;
@@ -20,6 +21,9 @@ public class IssueType {
     private Date updatedAt;
     private int updatedBy;
     private boolean active;
+
+    public IssueType() {
+    }
 
     public IssueType(String description, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
         this.description = description;
@@ -32,6 +36,10 @@ public class IssueType {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {
@@ -80,6 +88,13 @@ public class IssueType {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean checkDescriptionInUse(String description) {
+        IssueTypeDAO roleDAO = new IssueTypeDAO();
+        String query = "SELECT * FROM issues_types WHERE description=\"" + description + "\" AND active=1";
+        IssueType issueType = (IssueType) roleDAO.getQuery(query);
+        return issueType != null;
     }
 
 }

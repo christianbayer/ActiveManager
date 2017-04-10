@@ -4,9 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Usuarios.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Login.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/dao/RoleDAO.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Administrativo.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/RoleTableSeeder.java</file>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Projetos.java</file>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Main.java</file>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/dao/UserDAO.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Funcoes.java</file>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/ProjetosNovo.java</file>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/UsuariosNovo.java</file>
             <file>file:/home/christian/NetBeansProjects/ActiveManager/src/classes/User.java</file>

@@ -5,6 +5,7 @@
  */
 package classes;
 
+import dao.RoleDAO;
 import java.util.Date;
 
 /**
@@ -21,7 +22,8 @@ public class Role {
     private int updatedBy;
     private boolean active;
 
-    public Role() {}
+    public Role() {
+    }
 
     public Role(String description, int createdBy) {
         this.description = description;
@@ -84,5 +86,12 @@ public class Role {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
+    public boolean checkDescriptionInUse(String description) {
+        RoleDAO roleDAO = new RoleDAO();
+        String query = "SELECT * FROM roles WHERE description=\"" + description + "\" AND active=1";
+        Role role = (Role) roleDAO.getQuery(query);
+        return role != null;
+    }
+
 }

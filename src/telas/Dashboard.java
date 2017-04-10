@@ -17,10 +17,10 @@ public class Dashboard extends javax.swing.JPanel {
      * Creates new form Usuario
      */
     public Dashboard(JLabel lblWindow) {
-        
+
         // Inicializa os componentes
         initComponents();
-        
+
         // Seta o título da janela
         lblWindow.setText("DASHBOARD");
     }

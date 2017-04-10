@@ -6,6 +6,7 @@ import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JComboBox;
@@ -196,12 +197,43 @@ public class RoleDAO implements DAOFactory {
         }
         return role;
     }
+    
+    public Object getQuery(String query) {
+        Role role = null;
+        try {
+            // Cria o statement //
+            Statement stmt = ConnectionFactory.getInstance().getConnection().createStatement();
+            System.out.println(query);
+            // Executa a query e pega o objeto //
+            ResultSet resultSet = stmt.executeQuery(query);
+
+            if (resultSet.next()) {
+                role = new Role();
+                role.setId(resultSet.getInt("id"));
+                role.setDescription(resultSet.getString("description"));
+                role.setCreatedAt(resultSet.getDate("created_at"));
+                role.setCreatedBy(resultSet.getInt("created_by"));
+                role.setUpdatedAt(resultSet.getDate("updated_at"));
+                role.setUpdatedBy(resultSet.getInt("updated_by"));
+                role.setActive(resultSet.getBoolean("active"));
+            }
+
+            // Encerra o statement //
+            resultSet.close();
+            stmt.close();
+
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return role;
+    }
 
     public void lists(JComboBox combobox) {
 
         combobox.removeAllItems();
 
-        ComboboxItem item = new ComboboxItem(0, "Papel");
+        ComboboxItem item = new ComboboxItem(0, "Função");
         combobox.addItem(item);
 
         ArrayList<Object> roles = this.getAll();
@@ -209,8 +241,10 @@ public class RoleDAO implements DAOFactory {
         Iterator<Object> iterator = roles.iterator();
         while (iterator.hasNext()) {
             Role role = (Role) iterator.next();
-            item = new ComboboxItem(role.getId(), role.getDescription());
-            combobox.addItem(item);
+            if(role.isActive()){
+                item = new ComboboxItem(role.getId(), role.getDescription());
+                combobox.addItem(item);
+            }
         }
 
     }

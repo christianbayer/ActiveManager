@@ -25,8 +25,8 @@ public class UserDAO implements DAOFactory {
     private static final String INSERT = "INSERT INTO users (username, password, email, first_name, last_name, biography, role_id, created_by, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE users SET username=?, password=?, email=?, first_name=?, last_name=?, biography=?, role_id=?, updated_by=? WHERE id=?";
     private static final String DELETE = "UPDATE users SET active=0 WHERE id=?";
-    private static final String GET_ALL = "SELECT * FROM users where active=1";
-    private static final String GET_BY_ID = "SELECT * FROM users WHERE id = ? where active=0";
+    private static final String GET_ALL = "SELECT * FROM users";
+    private static final String GET_BY_ID = "SELECT * FROM users WHERE id = ?";
 
     @Override
     public boolean save(Object obj) {
@@ -257,14 +257,6 @@ public class UserDAO implements DAOFactory {
             throw new RuntimeException(e);
         }
         return user;
-    }
-
-    private ArrayList<User> convertObjectToUser(ArrayList<Object> obj) {
-        ArrayList<User> users = new ArrayList();
-        for (int i = 0; i < obj.size(); i++) {
-            users.add((User) obj.get(i));
-        }
-        return users;
     }
 
     public void lists(JComboBox combobox, String defaultItem) {

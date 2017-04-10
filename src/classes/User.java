@@ -156,7 +156,7 @@ public class User {
 
     public boolean checkUsernameInUse(String username) {
         UserDAO userDAO = new UserDAO();
-        String query = "SELECT * FROM users WHERE username=\"" + username + "\"";
+        String query = "SELECT * FROM users WHERE username=\"" + username + "\" AND active=1";
         User user = (User) userDAO.getQuery(query);
         return user != null;
     }

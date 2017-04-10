@@ -20,6 +20,7 @@ public class RoleTableSeeder {
         Role admin = new Role("Admin", 0);
         Role gerente = new Role("Gerente", 0);
         Role desenvolvedor = new Role("Desenvolvedor", 0);
+        Role designer = new Role("Designer", 0);
         
         roleDAO.save(admin);
         roleDAO.save(gerente);

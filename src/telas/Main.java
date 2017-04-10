@@ -24,6 +24,7 @@ public class Main extends javax.swing.JFrame {
     Sobre sobre;
     Atividades atividades;
     User user;
+    Administrativo administrativo;
 
     /**
      * Creates new form Main
@@ -51,6 +52,7 @@ public class Main extends javax.swing.JFrame {
         buttonGroup.add(btnAtividades);
         buttonGroup.add(btnUsuarios);
         buttonGroup.add(btnSobre);
+        buttonGroup.add(btnAdministrativo);
 
         // Seta o tamanho do frame
         this.setSize(1000, 600);
@@ -83,6 +85,7 @@ public class Main extends javax.swing.JFrame {
         btnSobre = new javax.swing.JToggleButton();
         btnAtividades = new javax.swing.JToggleButton();
         btnUsuarios = new javax.swing.JToggleButton();
+        btnAdministrativo = new javax.swing.JToggleButton();
         headerPanel = new javax.swing.JPanel();
         btnExit = new javax.swing.JLabel();
         lblUserImage = new javax.swing.JLabel();
@@ -119,7 +122,7 @@ public class Main extends javax.swing.JFrame {
                 btnDashboardActionPerformed(evt);
             }
         });
-        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 200, 60));
+        menuPanel.add(btnDashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
         btnProjetos.setBackground(new java.awt.Color(26, 50, 64));
         btnProjetos.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
@@ -133,7 +136,7 @@ public class Main extends javax.swing.JFrame {
                 btnProjetosActionPerformed(evt);
             }
         });
-        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 200, 60));
+        menuPanel.add(btnProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 200, 60));
 
         btnSobre.setBackground(new java.awt.Color(26, 50, 64));
         btnSobre.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
@@ -147,7 +150,7 @@ public class Main extends javax.swing.JFrame {
                 btnSobreActionPerformed(evt);
             }
         });
-        menuPanel.add(btnSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 200, 60));
+        menuPanel.add(btnSobre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 200, 60));
 
         btnAtividades.setBackground(new java.awt.Color(26, 50, 64));
         btnAtividades.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
@@ -161,7 +164,7 @@ public class Main extends javax.swing.JFrame {
                 btnAtividadesActionPerformed(evt);
             }
         });
-        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 200, 60));
+        menuPanel.add(btnAtividades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, 60));
 
         btnUsuarios.setBackground(new java.awt.Color(26, 50, 64));
         btnUsuarios.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
@@ -175,7 +178,21 @@ public class Main extends javax.swing.JFrame {
                 btnUsuariosActionPerformed(evt);
             }
         });
-        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 200, 60));
+        menuPanel.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 200, 60));
+
+        btnAdministrativo.setBackground(new java.awt.Color(26, 50, 64));
+        btnAdministrativo.setFont(new java.awt.Font("NanumGothic", 0, 16)); // NOI18N
+        btnAdministrativo.setForeground(new java.awt.Color(254, 254, 254));
+        btnAdministrativo.setText("ADMINISTRATIVO");
+        btnAdministrativo.setBorder(null);
+        btnAdministrativo.setBorderPainted(false);
+        btnAdministrativo.setFocusable(false);
+        btnAdministrativo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdministrativoActionPerformed(evt);
+            }
+        });
+        menuPanel.add(btnAdministrativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 200, 60));
 
         getContentPane().add(menuPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 600));
 
@@ -259,7 +276,15 @@ public class Main extends javax.swing.JFrame {
         layoutController.show(cardPanel, "dashboard");
     }//GEN-LAST:event_btnBackMouseClicked
 
+    private void btnAdministrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrativoActionPerformed
+        administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel);
+        cardPanel.add(administrativo, "administrativo");
+        layoutController = ((CardLayout) cardPanel.getLayout());
+        layoutController.show(cardPanel, "administrativo");
+    }//GEN-LAST:event_btnAdministrativoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnAdministrativo;
     private javax.swing.JToggleButton btnAtividades;
     private javax.swing.JLabel btnBack;
     private javax.swing.JToggleButton btnDashboard;
