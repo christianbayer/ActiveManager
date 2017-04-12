@@ -7,6 +7,7 @@ package telas;
 
 import classes.Project;
 import dao.ProjectDAO;
+import dao.ProjectTypeDAO;
 import dao.UserDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -24,6 +25,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
 
     ProjectDAO projectDAO;
     UserDAO userDAO;
+    ProjectTypeDAO projectTypeDAO;
     Color errorColor;
     Color normalColor;
     ArrayList errorsList;
@@ -62,9 +64,12 @@ public class ProjetosNovo extends javax.swing.JPanel {
         // Inicializa os DAO's
         projectDAO = new ProjectDAO();
         userDAO = new UserDAO();
+        projectTypeDAO = new ProjectTypeDAO();
 
         // Popula o combobox com os papéis
         userDAO.lists(selManager, "Gerente");
+        projectTypeDAO.lists(selProjectType, "Tipo de Projeto");
+        
     }
 
     /**
@@ -81,10 +86,10 @@ public class ProjetosNovo extends javax.swing.JPanel {
         sepTitle = new javax.swing.JSeparator();
         selProjectType = new javax.swing.JComboBox<>();
         selManager = new javax.swing.JComboBox<>();
-        btnSalvarProjeto = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         listErrors = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
@@ -145,22 +150,22 @@ public class ProjetosNovo extends javax.swing.JPanel {
         });
         basePanel.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 740, -1));
 
-        btnSalvarProjeto.setBackground(new java.awt.Color(52, 100, 127));
-        btnSalvarProjeto.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        btnSalvarProjeto.setForeground(new java.awt.Color(254, 254, 254));
-        btnSalvarProjeto.setText("SALVAR");
-        btnSalvarProjeto.setToolTipText("");
-        btnSalvarProjeto.setBorderPainted(false);
-        btnSalvarProjeto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvarProjeto.setDefaultCapable(false);
-        btnSalvarProjeto.setName(""); // NOI18N
-        btnSalvarProjeto.setOpaque(true);
-        btnSalvarProjeto.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(52, 100, 127));
+        btnSave.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(254, 254, 254));
+        btnSave.setText("SALVAR");
+        btnSave.setToolTipText("");
+        btnSave.setBorderPainted(false);
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSave.setDefaultCapable(false);
+        btnSave.setName(""); // NOI18N
+        btnSave.setOpaque(true);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarProjetoActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        basePanel.add(btnSalvarProjeto, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
+        basePanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
 
         jScrollPane2.setBorder(null);
 
@@ -183,14 +188,17 @@ public class ProjetosNovo extends javax.swing.JPanel {
 
         basePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 740, 136));
 
-        jScrollPane3.setBorder(null);
+        jScrollPane4.setBorder(null);
 
         listErrors.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
-        listErrors.setEnabled(false);
+        listErrors.setForeground(new java.awt.Color(255, 0, 0));
+        listErrors.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listErrors.setToolTipText("");
         listErrors.setFocusable(false);
-        jScrollPane3.setViewportView(listErrors);
+        listErrors.setRequestFocusEnabled(false);
+        jScrollPane4.setViewportView(listErrors);
 
-        basePanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 140));
+        basePanel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 640, 140));
 
         add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
@@ -207,7 +215,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         validateTitle();
     }//GEN-LAST:event_inpTitleFocusLost
 
-    private void btnSalvarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProjetoActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // Inicia a lista de erros
         errorsList = new ArrayList();
 
@@ -232,7 +240,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
             project.setManagerId(selManager.getSelectedIndex());
             projectDAO.save(project);
         }
-    }//GEN-LAST:event_btnSalvarProjetoActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescriptionFocusGained
         if (txtDescription.getText().trim().equals("Descrição")) {
@@ -302,10 +310,10 @@ public class ProjetosNovo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
-    private javax.swing.JButton btnSalvarProjeto;
+    private javax.swing.JButton btnSave;
     private javax.swing.JTextField inpTitle;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JList<String> listErrors;
     private javax.swing.JComboBox<String> selManager;
     private javax.swing.JComboBox<String> selProjectType;

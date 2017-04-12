@@ -1,5 +1,6 @@
 package dao;
 
+import apoio.ComboboxItem;
 import classes.ProjectType;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -7,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -226,4 +229,22 @@ public class ProjectTypeDAO implements DAOFactory {
         return projectType;
     }
 
+    public void lists(JComboBox combobox, String defaultItem) {
+
+        combobox.removeAllItems();
+
+        ComboboxItem item = new ComboboxItem(0, defaultItem);
+        combobox.addItem(item);
+
+        ArrayList<Object> projectsTypes = this.getAll();
+
+        Iterator<Object> iterator = projectsTypes.iterator();
+        while (iterator.hasNext()) {
+            ProjectType projectType = (ProjectType) iterator.next();
+            item = new ComboboxItem(projectType.getId(), projectType.getDescription());
+            combobox.addItem(item);
+        }
+
+    }
+    
 }
