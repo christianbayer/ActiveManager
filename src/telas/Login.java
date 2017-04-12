@@ -60,7 +60,6 @@ public class Login extends javax.swing.JFrame {
         setBackground(new java.awt.Color(254, 254, 254));
         setName("login"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(420, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,16 +71,15 @@ public class Login extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo_v1.jpg"))); // NOI18N
         panel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
 
-        lblLoginError.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        lblLoginError.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblLoginError.setText("Usuário e/ou Senha inválidos!");
-        panel.add(lblLoginError, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
+        panel.add(lblLoginError, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, -1, -1));
 
         btnLogin.setBackground(new java.awt.Color(52, 100, 127));
         btnLogin.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(254, 254, 254));
         btnLogin.setText("ENTRAR");
         btnLogin.setToolTipText("");
-        btnLogin.setBorder(null);
         btnLogin.setBorderPainted(false);
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogin.setDefaultCapable(false);
@@ -95,7 +93,7 @@ public class Login extends javax.swing.JFrame {
         panel.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 340, 40));
 
         inpUsername.setBackground(new java.awt.Color(254, 254, 254));
-        inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpUsername.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inpUsername.setText("Usuário");
         inpUsername.setBorder(null);
@@ -116,7 +114,7 @@ public class Login extends javax.swing.JFrame {
         panel.add(sepUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 340, 1));
 
         inpPassword.setBackground(new java.awt.Color(254, 254, 254));
-        inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpPassword.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         inpPassword.setText("password");
         inpPassword.setToolTipText("");

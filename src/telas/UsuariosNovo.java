@@ -292,7 +292,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         basePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 730, 136));
 
         btnSalvarUsuario.setBackground(new java.awt.Color(52, 100, 127));
-        btnSalvarUsuario.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnSalvarUsuario.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnSalvarUsuario.setForeground(new java.awt.Color(254, 254, 254));
         btnSalvarUsuario.setText("SALVAR");
         btnSalvarUsuario.setToolTipText("");

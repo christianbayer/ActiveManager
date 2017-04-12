@@ -214,7 +214,7 @@ public class Main extends javax.swing.JFrame {
         lblUserImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
         headerPanel.add(lblUserImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, -1, -1));
 
-        lblWindow.setFont(new java.awt.Font("NanumGothic", 0, 24)); // NOI18N
+        lblWindow.setFont(new java.awt.Font("Ubuntu Light", 0, 24)); // NOI18N
         lblWindow.setText("DASHBOARD");
         headerPanel.add(lblWindow, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, -1, -1));
 
@@ -226,7 +226,7 @@ public class Main extends javax.swing.JFrame {
         });
         headerPanel.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        lblUser.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblUser.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         lblUser.setText("Christian Bayer");
         headerPanel.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 35, -1, -1));
 

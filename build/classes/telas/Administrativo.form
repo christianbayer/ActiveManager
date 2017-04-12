@@ -45,7 +45,7 @@
               <Color blue="fd" green="e4" red="c2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="18" style="0"/>
+              <Font name="Ubuntu" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Fun&#xe7;&#xf5;es"/>
@@ -66,7 +66,7 @@
               <Color blue="fd" green="e4" red="c2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="18" style="0"/>
+              <Font name="Ubuntu" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Prioridades de Atividades"/>
@@ -87,7 +87,7 @@
               <Color blue="fd" green="e4" red="c2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="18" style="0"/>
+              <Font name="Ubuntu" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Tipos de Projetos"/>
@@ -108,7 +108,7 @@
               <Color blue="fd" green="e4" red="c2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="18" style="0"/>
+              <Font name="Ubuntu" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Tipos de Atividades"/>
@@ -129,7 +129,7 @@
               <Color blue="fd" green="e4" red="c2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="18" style="0"/>
+              <Font name="Ubuntu" size="18" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Status de Atividades"/>

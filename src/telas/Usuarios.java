@@ -106,7 +106,7 @@ public class Usuarios extends javax.swing.JPanel {
         basePanel.setBackground(new java.awt.Color(254, 254, 254));
         basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFound.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblFound.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         lblFound.setText("1 usuários encontrados:");
         basePanel.add(lblFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
@@ -128,7 +128,7 @@ public class Usuarios extends javax.swing.JPanel {
         basePanel.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 40, 40));
 
         inpPesquisar.setBackground(new java.awt.Color(254, 254, 254));
-        inpPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        inpPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpPesquisar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpPesquisar.setText("Pesquisar");
         inpPesquisar.setBorder(null);
@@ -149,7 +149,7 @@ public class Usuarios extends javax.swing.JPanel {
         basePanel.add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 230, 1));
 
         btnNew.setBackground(new java.awt.Color(52, 100, 127));
-        btnNew.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnNew.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnNew.setForeground(new java.awt.Color(254, 254, 254));
         btnNew.setText("NOVO");
         btnNew.setToolTipText("");
@@ -175,23 +175,23 @@ public class Usuarios extends javax.swing.JPanel {
 
         row1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblId.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblId.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblId.setText("1");
         row1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
 
-        lblEmail.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblEmail.setText("christian@oxigennio.com.br");
         row1.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 8, -1, -1));
 
-        lblRole.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblRole.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblRole.setText("Administrador");
         row1.add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 8, -1, -1));
 
-        lblName.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblName.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblName.setText("Christian Bayer");
         row1.add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 8, -1, -1));
 
-        lblUser.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblUser.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblUser.setText("christian");
         row1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 8, -1, -1));
 
@@ -210,27 +210,27 @@ public class Usuarios extends javax.swing.JPanel {
         panCabecalho.setBackground(new java.awt.Color(209, 209, 209));
         panCabecalho.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCabecalhoNome.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoNome.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoNome.setText("NOME");
         panCabecalho.add(lblCabecalhoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 8, -1, -1));
 
-        lblCabecalhoUsuario.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoUsuario.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoUsuario.setText("USUÁRIO");
         panCabecalho.add(lblCabecalhoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 8, -1, -1));
 
-        lblCabecalhoAcoes.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoAcoes.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoAcoes.setText("AÇÕES");
         panCabecalho.add(lblCabecalhoAcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 8, -1, -1));
 
-        lblCabecalhoEmail.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoEmail.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoEmail.setText("EMAIL");
         panCabecalho.add(lblCabecalhoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 8, -1, -1));
 
-        lblCabecalhoPapel.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoPapel.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoPapel.setText("PAPEL");
         panCabecalho.add(lblCabecalhoPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 8, -1, -1));
 
-        lblCabecalhoId.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoId.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoId.setText("ID");
         panCabecalho.add(lblCabecalhoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
 
@@ -291,23 +291,23 @@ public class Usuarios extends javax.swing.JPanel {
 
         userPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblId.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblId.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblId.setText(String.valueOf(user.getId()));
         userPanel.add(lblId, new AbsoluteConstraints(10, 8, -1, -1));
 
-        lblName.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblName.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblName.setText(user.getFirstName() + " " + user.getLastName());
         userPanel.add(lblName, new AbsoluteConstraints(40, 8, -1, -1));
 
-        lblEmail.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblEmail.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblEmail.setText(user.getEmail());
         userPanel.add(lblEmail, new AbsoluteConstraints(200, 8, -1, -1));
 
-        lblRole.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblRole.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblRole.setText(String.valueOf(user.getRoleName()));
         userPanel.add(lblRole, new AbsoluteConstraints(550, 8, -1, -1));
 
-        lblUsername.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblUsername.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblUsername.setText(user.getUsername());
         userPanel.add(lblUsername, new AbsoluteConstraints(420, 8, -1, -1));
 

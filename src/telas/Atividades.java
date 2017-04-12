@@ -32,7 +32,7 @@ public class Atividades extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(254, 254, 254));
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Ubuntu Light", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(1, 1, 1));
         jLabel3.setText("ATIVIDADES");
 
@@ -43,7 +43,7 @@ public class Atividades extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(314, 314, 314)
                 .addComponent(jLabel3)
-                .addContainerGap(355, Short.MAX_VALUE))
+                .addContainerGap(356, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -6,6 +6,7 @@
 package activemanager;
 
 import classes.User;
+import tableseeder.DatabaseTableSeeder;
 import telas.Login;
 import telas.Main;
 
@@ -20,11 +21,16 @@ public class ActiveManager {
      */
     public static void main(String[] args) {
 
-//        Login login = new Login();
-//        login.setVisible(true);
-        User user = new User("christian", "123456", "teste", "Christian", "Bayer", "", 0, 0);
-        Main main = new Main(user);
-        main.setVisible(true);
+        // Para popular o banco, descomentar a linha abaixo:
+         DatabaseTableSeeder.seed();
+        
+        Login login = new Login();
+        login.setVisible(true);
+
+//        User user = new User("christian", "123456", "teste", "Christian", "Bayer", "", 0, 0);
+//        Main main = new Main(user);
+//        main.setVisible(true);
+
     }
 
 }

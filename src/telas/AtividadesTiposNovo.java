@@ -125,7 +125,7 @@ public class AtividadesTiposNovo extends javax.swing.JPanel {
         basePanel.add(sepDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 730, 1));
 
         btnSave.setBackground(new java.awt.Color(52, 100, 127));
-        btnSave.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnSave.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnSave.setForeground(new java.awt.Color(254, 254, 254));
         btnSave.setText("SALVAR");
         btnSave.setToolTipText("");

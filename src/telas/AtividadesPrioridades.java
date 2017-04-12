@@ -100,7 +100,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         basePanel.setBackground(new java.awt.Color(254, 254, 254));
         basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFound.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        lblFound.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         lblFound.setText("1 tipos de projetos encontrados:");
         basePanel.add(lblFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
@@ -122,7 +122,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         basePanel.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 40, 40));
 
         inpPesquisar.setBackground(new java.awt.Color(254, 254, 254));
-        inpPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        inpPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpPesquisar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpPesquisar.setText("Pesquisar");
         inpPesquisar.setBorder(null);
@@ -143,7 +143,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         basePanel.add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 230, 1));
 
         btnNew.setBackground(new java.awt.Color(52, 100, 127));
-        btnNew.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnNew.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnNew.setForeground(new java.awt.Color(254, 254, 254));
         btnNew.setText("NOVO");
         btnNew.setToolTipText("");
@@ -169,11 +169,11 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
 
         row1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblId.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblId.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblId.setText("1");
         row1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
 
-        lblDescription.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblDescription.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblDescription.setText("Administrador");
         row1.add(lblDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 8, -1, -1));
 
@@ -192,15 +192,15 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         panCabecalho.setBackground(new java.awt.Color(209, 209, 209));
         panCabecalho.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCabecalhoDescricao.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoDescricao.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoDescricao.setText("DESCRIÇÃO");
         panCabecalho.add(lblCabecalhoDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 8, -1, -1));
 
-        lblCabecalhoAcoes.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoAcoes.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoAcoes.setText("AÇÕES");
         panCabecalho.add(lblCabecalhoAcoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 8, -1, -1));
 
-        lblCabecalhoId.setFont(new java.awt.Font("NanumGothic", 0, 12)); // NOI18N
+        lblCabecalhoId.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCabecalhoId.setText("ID");
         panCabecalho.add(lblCabecalhoId, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 8, -1, -1));
 
@@ -254,11 +254,11 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
 
         issuePriorityPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblId.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblId.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblId.setText(String.valueOf(issuePriority.getId()));
         issuePriorityPanel.add(lblId, new AbsoluteConstraints(10, 8, -1, -1));
 
-        lblDescription.setFont(new Font("NanumGothic", 0, 12)); // NOI18N
+        lblDescription.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblDescription.setText(issuePriority.getDescription());
         issuePriorityPanel.add(lblDescription, new AbsoluteConstraints(40, 8, -1, -1));
 

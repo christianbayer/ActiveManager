@@ -95,7 +95,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         inpTitle.setBackground(new java.awt.Color(254, 254, 254));
-        inpTitle.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        inpTitle.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         inpTitle.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         inpTitle.setText("Título");
         inpTitle.setBorder(null);
@@ -108,7 +108,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
                 inpTitleFocusLost(evt);
             }
         });
-        basePanel.add(inpTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 730, 20));
+        basePanel.add(inpTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 740, 20));
 
         sepTitle.setBackground(new java.awt.Color(103, 103, 103));
         sepTitle.setForeground(new java.awt.Color(29, 29, 29));
@@ -116,7 +116,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         basePanel.add(sepTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 730, 1));
 
         selProjectType.setBackground(new java.awt.Color(254, 254, 254));
-        selProjectType.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        selProjectType.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         selProjectType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Projeto" }));
         selProjectType.setToolTipText("");
         selProjectType.setOpaque(false);
@@ -128,10 +128,10 @@ public class ProjetosNovo extends javax.swing.JPanel {
                 selProjectTypeFocusLost(evt);
             }
         });
-        basePanel.add(selProjectType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 730, -1));
+        basePanel.add(selProjectType, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 740, -1));
 
         selManager.setBackground(new java.awt.Color(254, 254, 254));
-        selManager.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        selManager.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         selManager.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente" }));
         selManager.setToolTipText("");
         selManager.setOpaque(false);
@@ -143,10 +143,10 @@ public class ProjetosNovo extends javax.swing.JPanel {
                 selManagerFocusLost(evt);
             }
         });
-        basePanel.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 730, -1));
+        basePanel.add(selManager, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 740, -1));
 
         btnSalvarProjeto.setBackground(new java.awt.Color(52, 100, 127));
-        btnSalvarProjeto.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
+        btnSalvarProjeto.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         btnSalvarProjeto.setForeground(new java.awt.Color(254, 254, 254));
         btnSalvarProjeto.setText("SALVAR");
         btnSalvarProjeto.setToolTipText("");
@@ -166,7 +166,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
 
         txtDescription.setBackground(new java.awt.Color(254, 254, 254));
         txtDescription.setColumns(20);
-        txtDescription.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDescription.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         txtDescription.setForeground(new java.awt.Color(29, 29, 29));
         txtDescription.setRows(5);
         txtDescription.setText("Descrição");
@@ -181,11 +181,11 @@ public class ProjetosNovo extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(txtDescription);
 
-        basePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 730, 136));
+        basePanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 740, 136));
 
         jScrollPane3.setBorder(null);
 
-        listErrors.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        listErrors.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         listErrors.setEnabled(false);
         listErrors.setFocusable(false);
         jScrollPane3.setViewportView(listErrors);

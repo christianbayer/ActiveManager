@@ -83,7 +83,7 @@ public class Administrativo extends javax.swing.JPanel {
         basePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setBackground(new java.awt.Color(194, 228, 253));
-        jLabel8.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Funções");
         jLabel8.setOpaque(true);
@@ -95,7 +95,7 @@ public class Administrativo extends javax.swing.JPanel {
         basePanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 220, 160));
 
         jLabel9.setBackground(new java.awt.Color(194, 228, 253));
-        jLabel9.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Prioridades de Atividades");
         jLabel9.setOpaque(true);
@@ -107,7 +107,7 @@ public class Administrativo extends javax.swing.JPanel {
         basePanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 220, 160));
 
         jLabel10.setBackground(new java.awt.Color(194, 228, 253));
-        jLabel10.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Tipos de Projetos");
         jLabel10.setOpaque(true);
@@ -119,7 +119,7 @@ public class Administrativo extends javax.swing.JPanel {
         basePanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 220, 160));
 
         jLabel11.setBackground(new java.awt.Color(194, 228, 253));
-        jLabel11.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Tipos de Atividades");
         jLabel11.setOpaque(true);
@@ -131,7 +131,7 @@ public class Administrativo extends javax.swing.JPanel {
         basePanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 220, 160));
 
         jLabel12.setBackground(new java.awt.Color(194, 228, 253));
-        jLabel12.setFont(new java.awt.Font("NanumGothic", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Status de Atividades");
         jLabel12.setOpaque(true);
