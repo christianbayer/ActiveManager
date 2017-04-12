@@ -22,7 +22,7 @@ public class ActiveManager {
     public static void main(String[] args) {
 
         // Para popular o banco, descomentar a linha abaixo:
-         DatabaseTableSeeder.seed();
+//         DatabaseTableSeeder.seed();
         
         Login login = new Login();
         login.setVisible(true);
