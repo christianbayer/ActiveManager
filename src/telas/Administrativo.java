@@ -5,6 +5,7 @@
  */
 package telas;
 
+import classes.User;
 import dao.UserDAO;
 import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
@@ -29,11 +30,12 @@ public class Administrativo extends javax.swing.JPanel {
     AtividadesTipos atividadesTipos;
     AtividadesPrioridades atividadesPrioridades;
     AtividadesStatus atividadesStatus;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public Administrativo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public Administrativo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -55,6 +57,7 @@ public class Administrativo extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         userDAO = new UserDAO();
 
@@ -146,35 +149,35 @@ public class Administrativo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        funcoes = new Funcoes(btnBack, lblWindow, layoutController, cardPanel);
+        funcoes = new Funcoes(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(funcoes, "funcoes");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "funcoes");
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        projetosTipos = new ProjetosTipos(btnBack, lblWindow, layoutController, cardPanel);
+        projetosTipos = new ProjetosTipos(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(projetosTipos, "projetosTipos");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "projetosTipos");
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        atividadesTipos = new AtividadesTipos(btnBack, lblWindow, layoutController, cardPanel);
+        atividadesTipos = new AtividadesTipos(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(atividadesTipos, "atividadesTipos");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividadesTipos");
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        atividadesPrioridades = new AtividadesPrioridades(btnBack, lblWindow, layoutController, cardPanel);
+        atividadesPrioridades = new AtividadesPrioridades(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(atividadesPrioridades, "atividadesPrioridades");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividadesPrioridades");
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
-        atividadesStatus = new AtividadesStatus(btnBack, lblWindow, layoutController, cardPanel);
+        atividadesStatus = new AtividadesStatus(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(atividadesStatus, "atividadesStatus");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividadesStatus");

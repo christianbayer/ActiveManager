@@ -5,6 +5,7 @@
  */
 package classes;
 
+import dao.ProjectDAO;
 import java.util.Date;
 
 /**
@@ -113,6 +114,13 @@ public class Project {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+    
+    public boolean checkTitleInUse(String title) {
+        ProjectDAO projectDAO = new ProjectDAO();
+        String query = "SELECT * FROM projects WHERE title=\"" + title + "\" AND active=1";
+        Project project = (Project) projectDAO.getQuery(query);
+        return project != null;
     }
 
 }

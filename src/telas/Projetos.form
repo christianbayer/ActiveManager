@@ -29,7 +29,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel4">
+    <Container class="javax.swing.JPanel" name="basePanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -45,390 +45,10 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ee" green="ee" red="ee" type="rgb"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="170" width="740" height="110"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-            <Property name="useNullLayout" type="boolean" value="false"/>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblTitulo1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="NanumGothic" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="ActiveManager"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JTextArea" name="txtDescricao1">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ee" green="ee" red="ee" type="rgb"/>
-                </Property>
-                <Property name="columns" type="int" value="40"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Projeto do ActiveManager, sendo desenvolvido na cadeira de Programa&#xe7;&#xe3;o de Aplica&#xe7;&#xf5;es"/>
-                <Property name="wrapStyleWord" type="boolean" value="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="40" width="330" height="60"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel13">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/trash.png"/>
-                </Property>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="690" y="30" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator2">
-              <Properties>
-                <Property name="orientation" type="int" value="1"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="350" y="10" width="10" height="90"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel14">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/edit.png"/>
-                </Property>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="690" y="60" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel15">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Christian Bayer"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="30" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel16">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Andamento: 4"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="30" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel17">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Total: 17"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="70" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel18">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Teste: 7"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="50" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel19">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Aberta: 6"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel20">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="24/03/2017"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="70" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel21">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Gerente:"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel22">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Criado em:"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="50" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="fd" green="e4" red="c2" type="rgb"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="30" y="60" width="740" height="110"/>
-            </Constraint>
-          </Constraints>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-            <Property name="useNullLayout" type="boolean" value="false"/>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblTitulo">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="NanumGothic" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="ActiveManager"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JTextArea" name="txtDescricao">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="fd" green="e4" red="c2" type="rgb"/>
-                </Property>
-                <Property name="columns" type="int" value="40"/>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Projeto do ActiveManager, sendo desenvolvido na cadeira de Programa&#xe7;&#xe3;o de Aplica&#xe7;&#xf5;es"/>
-                <Property name="wrapStyleWord" type="boolean" value="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="40" width="330" height="60"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/trash.png"/>
-                </Property>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="690" y="30" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator1">
-              <Properties>
-                <Property name="orientation" type="int" value="1"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="350" y="10" width="10" height="90"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/icons/edit.png"/>
-                </Property>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="690" y="60" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Christian Bayer"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="30" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Andamento: 4"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="30" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Total: 17"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="70" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Teste: 7"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="50" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Aberta: 6"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="370" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="24/03/2017"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="70" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Gerente:"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="10" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Ubuntu" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Criado em:"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="520" y="50" width="-1" height="-1"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Component class="javax.swing.JLabel" name="lblEncontrados">
+        <Component class="javax.swing.JLabel" name="lblFound">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="18" style="0"/>
+              <Font name="Ubuntu Light" size="18" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="2 projetos encontrados:"/>
           </Properties>
@@ -476,7 +96,7 @@
               <Color blue="7f" green="64" red="34" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="14" style="0"/>
+              <Font name="Ubuntu" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -500,13 +120,239 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="fe" green="fe" red="fe" type="rgb"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
+            <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="30" y="60" width="740" height="360"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="panProjects">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="fe" green="fe" red="fe" type="rgb"/>
+                </Property>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                <Property name="useNullLayout" type="boolean" value="false"/>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="row1">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="fd" green="e4" red="c2" type="rgb"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="0" y="0" width="740" height="90"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                    <Property name="useNullLayout" type="boolean" value="false"/>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="lblTitulo">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu Light" size="16" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ActiveManager"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="10" y="10" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JTextArea" name="txtDescricao">
+                      <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="fd" green="e4" red="c2" type="rgb"/>
+                        </Property>
+                        <Property name="columns" type="int" value="40"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="lineWrap" type="boolean" value="true"/>
+                        <Property name="rows" type="int" value="5"/>
+                        <Property name="text" type="java.lang.String" value="Projeto do ActiveManager, sendo desenvolvido na cadeira de Programa&#xe7;&#xe3;o de Aplica&#xe7;&#xf5;es"/>
+                        <Property name="wrapStyleWord" type="boolean" value="true"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="10" y="30" width="330" height="50"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="btnTrash">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/icons/trash.png"/>
+                        </Property>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="690" y="20" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JSeparator" name="separador">
+                      <Properties>
+                        <Property name="orientation" type="int" value="1"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="350" y="0" width="10" height="90"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="btnEdit">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/icons/edit.png"/>
+                        </Property>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="690" y="50" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblManager">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Christian Bayer"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="520" y="30" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblAndamento">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Andamento: 4"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="370" y="30" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblTotal">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Total: 17"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="370" y="70" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblTeste">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Teste: 7"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="370" y="50" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblAberta">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Aberta: 6"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="370" y="10" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblCreatedAt">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="24/03/2017"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="520" y="70" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblGerente">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Gerente:"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="520" y="10" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblCriadoEm">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Ubuntu" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Criado em:"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="520" y="50" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
         <Component class="javax.swing.JTextField" name="inpPesquisar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="NanumGothic" size="14" style="0"/>
+              <Font name="Ubuntu Light" size="12" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Pesquisar"/>

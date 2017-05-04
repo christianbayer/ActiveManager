@@ -6,6 +6,7 @@
 package telas;
 
 import classes.IssuePriority;
+import classes.User;
 import dao.IssuePriorityDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class AtividadesPrioridadesNovo extends javax.swing.JPanel {
     JLabel btnBack;
     JLabel lblWindow;
     IssuePriority issuePriority;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public AtividadesPrioridadesNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, IssuePriority issuePriority) {
+    public AtividadesPrioridadesNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, IssuePriority issuePriority, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class AtividadesPrioridadesNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atividadesPrioridades = new AtividadesPrioridades(btnBack, lblWindow, layoutController, cardPanel);
+                atividadesPrioridades = new AtividadesPrioridades(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(atividadesPrioridades, "atividadesPrioridades");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "atividadesPrioridades");
@@ -59,6 +61,7 @@ public class AtividadesPrioridadesNovo extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -187,12 +190,15 @@ public class AtividadesPrioridadesNovo extends javax.swing.JPanel {
             issuePriority.setDescription(inpDescription.getText());
             if (this.issuePriority != null) {
                 issuePriority.setId(this.issuePriority.getId());
+                issuePriority.setUpdatedBy(this.user.getId());
                 issuePriorityDAO.update(issuePriority);
             } else {
+                issuePriority.setCreatedBy(this.user.getId());
+                issuePriority.setUpdatedBy(this.user.getId());
                 issuePriorityDAO.save(issuePriority);
             }
 
-            atividadesPrioridades = new AtividadesPrioridades(btnBack, lblWindow, layoutController, cardPanel);
+            atividadesPrioridades = new AtividadesPrioridades(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(atividadesPrioridades, "atividadesPrioridades");
             layoutController = ((CardLayout) cardPanel.getLayout());
             layoutController.show(cardPanel, "atividadesPrioridades");

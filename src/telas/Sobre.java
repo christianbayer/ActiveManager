@@ -5,18 +5,22 @@
  */
 package telas;
 
+import classes.User;
+
 /**
  *
  * @author christian
  */
 public class Sobre extends javax.swing.JPanel {
 
+    User user;
     /**
      * Creates new form Usuario
      */
-    public Sobre() {
+    public Sobre(User user) {
         initComponents();
         this.setSize(800, 500);
+        this.user = user;
     }
 
     /**

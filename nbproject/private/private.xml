@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/activemanager/ActiveManager.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/classes/IssueStatus.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/classes/IssueType.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/Projetos.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/ProjectTypeTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/IssueTypeTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/classes/ProjectType.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/IssuePriorityTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/classes/IssuePriority.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/ProjectTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/DatabaseTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/UserTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/connection/ConnectionFactory.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/IssueStatusTableSeeder.java</file>
-            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/tableseeder/RoleTableSeeder.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/telas/ProjetosTiposNovo.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/dao/UserDAO.java</file>
+            <file>file:/home/christian/NetBeansProjects/ActiveManager/src/classes/User.java</file>
         </group>
     </open-files>
 </project-private>

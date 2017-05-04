@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ProjectDAO implements DAOFactory {
 
     private static final String INSERT = "INSERT INTO projects (title, description, project_type_id, manager_id, created_by, updated_by) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE projects SET title=?, decription=?, project_type_id=?, manager_id=?, updated_by=? WHERE id=?";
+    private static final String UPDATE = "UPDATE projects SET title=?, description=?, project_type_id=?, manager_id=?, updated_by=? WHERE id=?";
     private static final String DELETE = "UPDATE projects SET active=0 WHERE id=?";
     private static final String GET_ALL = "SELECT * FROM projects";
     private static final String GET_BY_ID = "SELECT * FROM projects WHERE id = ?";

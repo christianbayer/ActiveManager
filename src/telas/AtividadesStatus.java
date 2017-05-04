@@ -6,6 +6,7 @@
 package telas;
 
 import classes.IssueStatus;
+import classes.User;
 import dao.IssueStatusDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class AtividadesStatus extends javax.swing.JPanel {
     JPanel cardPanel;
     Administrativo administrativo;
     AtividadesStatusNovo atividadesStatusNovo;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public AtividadesStatus(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public AtividadesStatus(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class AtividadesStatus extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel);
+                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(administrativo, "administrativo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "administrativo");
@@ -59,6 +61,7 @@ public class AtividadesStatus extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         issueStatusDAO = new IssueStatusDAO();
 
@@ -226,7 +229,7 @@ public class AtividadesStatus extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        atividadesStatusNovo = new AtividadesStatusNovo(btnBack, lblWindow, layoutController, cardPanel, new IssueStatus());
+        atividadesStatusNovo = new AtividadesStatusNovo(btnBack, lblWindow, layoutController, cardPanel, new IssueStatus(), user);
         cardPanel.add(atividadesStatusNovo, "atividadesStatusNovo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividadesStatusNovo");
@@ -279,7 +282,7 @@ public class AtividadesStatus extends javax.swing.JPanel {
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atividadesStatusNovo = new AtividadesStatusNovo(btnBack, lblWindow, layoutController, cardPanel, issueStatus);
+                atividadesStatusNovo = new AtividadesStatusNovo(btnBack, lblWindow, layoutController, cardPanel, issueStatus, user);
                 cardPanel.add(atividadesStatusNovo, "atividadesStatusNovo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "atividadesStatusNovo");

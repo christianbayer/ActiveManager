@@ -6,6 +6,7 @@
 package telas;
 
 import classes.IssuePriority;
+import classes.User;
 import dao.IssuePriorityDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
     JPanel cardPanel;
     Administrativo administrativo;
     AtividadesPrioridadesNovo atividadesPrioridadesNovo;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public AtividadesPrioridades(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public AtividadesPrioridades(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel);
+                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(administrativo, "administrativo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "administrativo");
@@ -59,6 +61,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         issuePriorityDAO = new IssuePriorityDAO();
 
@@ -226,7 +229,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        atividadesPrioridadesNovo = new AtividadesPrioridadesNovo(btnBack, lblWindow, layoutController, cardPanel, new IssuePriority());
+        atividadesPrioridadesNovo = new AtividadesPrioridadesNovo(btnBack, lblWindow, layoutController, cardPanel, new IssuePriority(), user);
         cardPanel.add(atividadesPrioridadesNovo, "atividadesPrioridadesNovo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividadesPrioridadesNovo");
@@ -279,7 +282,7 @@ public class AtividadesPrioridades extends javax.swing.JPanel {
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atividadesPrioridadesNovo = new AtividadesPrioridadesNovo(btnBack, lblWindow, layoutController, cardPanel, issuePriority);
+                atividadesPrioridadesNovo = new AtividadesPrioridadesNovo(btnBack, lblWindow, layoutController, cardPanel, issuePriority, user);
                 cardPanel.add(atividadesPrioridadesNovo, "atividadesPrioridadesNovo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "atividadesPrioridadesNovo");

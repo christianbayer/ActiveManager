@@ -42,8 +42,8 @@ public class Main extends javax.swing.JFrame {
 
         lblUser.setText(user.getFirstName() + " " + user.getLastName());
 
-        sobre = new Sobre();
-        atividades = new Atividades();
+        sobre = new Sobre(user);
+        atividades = new Atividades(user);
 
         // Cria o grupo de botões do menu
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -244,7 +244,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProjetosActionPerformed
-        projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel);
+        projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(projetos, "projetos");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "projetos");
@@ -261,7 +261,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtividadesActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
+        usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(usuarios, "usuarios");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "usuarios");
@@ -277,7 +277,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void btnAdministrativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdministrativoActionPerformed
-        administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel);
+        administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel, user);
         cardPanel.add(administrativo, "administrativo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "administrativo");

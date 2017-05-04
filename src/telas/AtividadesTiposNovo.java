@@ -6,6 +6,7 @@
 package telas;
 
 import classes.IssueType;
+import classes.User;
 import dao.IssueTypeDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class AtividadesTiposNovo extends javax.swing.JPanel {
     JLabel btnBack;
     JLabel lblWindow;
     IssueType issueType;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public AtividadesTiposNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, IssueType issueType) {
+    public AtividadesTiposNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, IssueType issueType, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class AtividadesTiposNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atividadesTipos = new AtividadesTipos(btnBack, lblWindow, layoutController, cardPanel);
+                atividadesTipos = new AtividadesTipos(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(atividadesTipos, "atividadesTipos");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "atividadesTipos");
@@ -59,6 +61,7 @@ public class AtividadesTiposNovo extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -187,12 +190,15 @@ public class AtividadesTiposNovo extends javax.swing.JPanel {
             issueType.setDescription(inpDescription.getText());
             if (this.issueType != null) {
                 issueType.setId(this.issueType.getId());
+                issueType.setUpdatedBy(this.user.getId());
                 issueTypeDAO.update(issueType);
             } else {
+                issueType.setCreatedBy(this.user.getId());
+                issueType.setUpdatedBy(this.user.getId());
                 issueTypeDAO.save(issueType);
             }
 
-            atividadesTipos = new AtividadesTipos(btnBack, lblWindow, layoutController, cardPanel);
+            atividadesTipos = new AtividadesTipos(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(atividadesTipos, "atividadesTipos");
             layoutController = ((CardLayout) cardPanel.getLayout());
             layoutController.show(cardPanel, "atividadesTipos");

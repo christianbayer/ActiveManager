@@ -6,6 +6,7 @@
 package telas;
 
 import classes.ProjectType;
+import classes.User;
 import dao.ProjectTypeDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class ProjetosTiposNovo extends javax.swing.JPanel {
     JLabel btnBack;
     JLabel lblWindow;
     ProjectType projectType;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public ProjetosTiposNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, ProjectType projectType) {
+    public ProjetosTiposNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, ProjectType projectType, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class ProjetosTiposNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                projetosTipos = new ProjetosTipos(btnBack, lblWindow, layoutController, cardPanel);
+                projetosTipos = new ProjetosTipos(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(projetosTipos, "projetosTipos");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "projetosTipos");
@@ -187,12 +189,15 @@ public class ProjetosTiposNovo extends javax.swing.JPanel {
             projectType.setDescription(inpDescription.getText());
             if (this.projectType != null) {
                 projectType.setId(this.projectType.getId());
+                projectType.setUpdatedBy(this.user.getId());
                 projectTypeDAO.update(projectType);
             } else {
+                projectType.setCreatedBy(this.user.getId());
+                projectType.setUpdatedBy(this.user.getId());
                 projectTypeDAO.save(projectType);
             }
 
-            projetosTipos = new ProjetosTipos(btnBack, lblWindow, layoutController, cardPanel);
+            projetosTipos = new ProjetosTipos(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(projetosTipos, "projetosTipos");
             layoutController = ((CardLayout) cardPanel.getLayout());
             layoutController.show(cardPanel, "projetosTipos");

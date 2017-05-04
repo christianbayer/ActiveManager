@@ -6,6 +6,7 @@
 package telas;
 
 import classes.Role;
+import classes.User;
 import dao.RoleDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class FuncoesNovo extends javax.swing.JPanel {
     JLabel btnBack;
     JLabel lblWindow;
     Role role;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public FuncoesNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, Role role) {
+    public FuncoesNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, Role role, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class FuncoesNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                funcoes = new Funcoes(btnBack, lblWindow, layoutController, cardPanel);
+                funcoes = new Funcoes(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(funcoes, "funcoes");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "funcoes");
@@ -59,6 +61,7 @@ public class FuncoesNovo extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -93,7 +96,7 @@ public class FuncoesNovo extends javax.swing.JPanel {
         basePanel = new javax.swing.JPanel();
         inpDescription = new javax.swing.JTextField();
         sepDescription = new javax.swing.JSeparator();
-        btnSalvarUsuario = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listErrors = new javax.swing.JList<>();
 
@@ -124,22 +127,22 @@ public class FuncoesNovo extends javax.swing.JPanel {
         sepDescription.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
         basePanel.add(sepDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 730, 1));
 
-        btnSalvarUsuario.setBackground(new java.awt.Color(52, 100, 127));
-        btnSalvarUsuario.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
-        btnSalvarUsuario.setForeground(new java.awt.Color(254, 254, 254));
-        btnSalvarUsuario.setText("SALVAR");
-        btnSalvarUsuario.setToolTipText("");
-        btnSalvarUsuario.setBorderPainted(false);
-        btnSalvarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnSalvarUsuario.setDefaultCapable(false);
-        btnSalvarUsuario.setName(""); // NOI18N
-        btnSalvarUsuario.setOpaque(true);
-        btnSalvarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(52, 100, 127));
+        btnSave.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(254, 254, 254));
+        btnSave.setText("SALVAR");
+        btnSave.setToolTipText("");
+        btnSave.setBorderPainted(false);
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSave.setDefaultCapable(false);
+        btnSave.setName(""); // NOI18N
+        btnSave.setOpaque(true);
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalvarUsuarioActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        basePanel.add(btnSalvarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
+        basePanel.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 90, 40));
 
         jScrollPane2.setBorder(null);
 
@@ -167,7 +170,7 @@ public class FuncoesNovo extends javax.swing.JPanel {
         validateDescription();
     }//GEN-LAST:event_inpDescriptionFocusLost
 
-    private void btnSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarUsuarioActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // Inicia a lista de erros
         errorsList = new ArrayList();
 
@@ -187,17 +190,20 @@ public class FuncoesNovo extends javax.swing.JPanel {
             role.setDescription(inpDescription.getText());
             if (this.role != null) {
                 role.setId(this.role.getId());
+                role.setUpdatedBy(this.user.getId());
                 roleDAO.update(role);
             } else {
+                role.setCreatedBy(this.user.getId());
+                role.setUpdatedBy(this.user.getId());
                 roleDAO.save(role);
             }
 
-            funcoes = new Funcoes(btnBack, lblWindow, layoutController, cardPanel);
+            funcoes = new Funcoes(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(funcoes, "funcoes");
             layoutController = ((CardLayout) cardPanel.getLayout());
             layoutController.show(cardPanel, "funcoes");
         }
-    }//GEN-LAST:event_btnSalvarUsuarioActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void setTextFieldError(JTextField textField, JSeparator separator) {
         textField.setForeground(errorColor);
@@ -232,7 +238,7 @@ public class FuncoesNovo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
-    private javax.swing.JButton btnSalvarUsuario;
+    private javax.swing.JButton btnSave;
     private javax.swing.JTextField inpDescription;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList<String> listErrors;

@@ -6,6 +6,7 @@
 package telas;
 
 import classes.Project;
+import classes.User;
 import dao.ProjectDAO;
 import dao.ProjectTypeDAO;
 import dao.UserDAO;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 /**
  *
@@ -31,12 +34,16 @@ public class ProjetosNovo extends javax.swing.JPanel {
     ArrayList errorsList;
     CardLayout layoutController;
     JPanel cardPanel;
+    JLabel btnBack;
+    JLabel lblWindow;
     Projetos projetos;
+    Project project;
+    User user;
 
     /**
      * Creates new form ProjetosListagem
      */
-    public ProjetosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public ProjetosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, Project project, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -46,7 +53,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel);
+                projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(projetos, "projetos");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "projetos");
@@ -54,8 +61,11 @@ public class ProjetosNovo extends javax.swing.JPanel {
         });
 
         // Inicializa as variáveis de tela
+        this.btnBack = btnBack;
+        this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -70,6 +80,19 @@ public class ProjetosNovo extends javax.swing.JPanel {
         userDAO.lists(selManager, "Gerente");
         projectTypeDAO.lists(selProjectType, "Tipo de Projeto");
         
+         // Edição
+        if (project.getTitle()!= null) {
+            this.project = project;
+
+            // Seta o título da janela
+            lblWindow.setText("EDITAR PROJETO");
+
+            // Inicializa os campos
+            inpTitle.setText(project.getTitle());
+            selManager.setSelectedIndex(project.getManagerId());
+            selProjectType.setSelectedIndex(project.getProjectTypeId());
+            txtDescription.setText(project.getDescription());
+        }
     }
 
     /**
@@ -227,7 +250,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         validateManager();
         validateDescription();
 
-        if (errorsList.size() != 0) {
+        if (!errorsList.isEmpty()) {
             for (int i = 0; i < errorsList.size(); i++) {
                 listModel.add(i, errorsList.get(i));
             }
@@ -238,7 +261,21 @@ public class ProjetosNovo extends javax.swing.JPanel {
             project.setDescription(txtDescription.getText());
             project.setProjectTypeId(selProjectType.getSelectedIndex());
             project.setManagerId(selManager.getSelectedIndex());
-            projectDAO.save(project);
+            
+            if (this.project != null) {
+                project.setId(this.project.getId());
+                project.setUpdatedBy(this.user.getId());
+                projectDAO.update(project);
+            } else {                
+                project.setCreatedBy(this.user.getId());
+                project.setUpdatedBy(this.user.getId());
+                projectDAO.save(project);
+            }
+            
+            projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel, user);
+            cardPanel.add(projetos, "funcoes");
+            layoutController = ((CardLayout) cardPanel.getLayout());
+            layoutController.show(cardPanel, "funcoes");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -273,6 +310,16 @@ public class ProjetosNovo extends javax.swing.JPanel {
         validateManager();
     }//GEN-LAST:event_selManagerFocusLost
 
+     private void setTextFieldError(JTextField textField, JSeparator separator) {
+        textField.setForeground(errorColor);
+        separator.setForeground(errorColor);
+    }
+
+    private void setTextFieldNormal(JTextField textField, JSeparator separator) {
+        textField.setForeground(normalColor);
+        separator.setForeground(normalColor);
+    }
+    
     private void validateTitle() {
         String title = inpTitle.getText();
         if (title.isEmpty() || title.equals("Título")) {
@@ -280,7 +327,16 @@ public class ProjetosNovo extends javax.swing.JPanel {
             inpTitle.setForeground(errorColor);
             sepTitle.setForeground(errorColor);
             errorsList.add("O campo \"Título\" é obrigatório!");
-        }
+        } else if (new Project().checkTitleInUse(title)) {
+            if(this.project.getTitle().equals(title)) {
+                setTextFieldNormal(inpTitle, sepTitle);
+            } else {
+                setTextFieldError(inpTitle, sepTitle);
+                errorsList.add("Este tipo de atividade já está cadastrado!");
+            }
+        } else {
+            setTextFieldNormal(inpTitle, sepTitle);
+        }        
     }
 
     private void validateProjectType() {
@@ -307,7 +363,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
             errorsList.add("O campo \"Descrição\" é obrigatório!");
         }
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
     private javax.swing.JButton btnSave;

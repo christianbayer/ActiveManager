@@ -24,12 +24,12 @@ public class ActiveManager {
         // Para popular o banco, descomentar a linha abaixo:
         // DatabaseTableSeeder.seed();
         
-        Login login = new Login();
-        login.setVisible(true);
+//        Login login = new Login();
+//        login.setVisible(true);
 
-//        User user = new User("christian", "123456", "teste", "Christian", "Bayer", "", 0, 0);
-//        Main main = new Main(user);
-//        main.setVisible(true);
+        User user = new User("christian", "123456", "teste", "Christian", "Bayer", "", 0, 0);
+        Main main = new Main(user);
+        main.setVisible(true);
     }
 
 }

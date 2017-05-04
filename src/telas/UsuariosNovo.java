@@ -35,11 +35,12 @@ public class UsuariosNovo extends javax.swing.JPanel {
     JLabel btnBack;
     JLabel lblWindow;
     User user;
+    User logedUser;
 
     /**
      * Creates new form Usuario
      */
-    public UsuariosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
+    public UsuariosNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user, User logedUser) {
         initComponents();
 
         // Seta o título da janela
@@ -49,7 +50,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
+                usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(usuarios, "usuarios");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "usuarios");
@@ -61,6 +62,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.logedUser = logedUser;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -420,12 +422,15 @@ public class UsuariosNovo extends javax.swing.JPanel {
             user.setBiography(txtBiography.getText());
             if (this.user != null) {
                 user.setId(this.user.getId());
+                user.setUpdatedBy(this.logedUser.getId());
                 userDAO.update(user);
             } else {
+                user.setCreatedBy(this.logedUser.getId());
+                user.setUpdatedBy(this.logedUser.getId());
                 userDAO.save(user);
             }
 
-            usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel);
+            usuarios = new Usuarios(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(usuarios, "usuarios");
             layoutController = ((CardLayout) cardPanel.getLayout());
             layoutController.show(cardPanel, "usuarios");

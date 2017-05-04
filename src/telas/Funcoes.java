@@ -6,6 +6,7 @@
 package telas;
 
 import classes.Role;
+import classes.User;
 import dao.RoleDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class Funcoes extends javax.swing.JPanel {
     JPanel cardPanel;
     Administrativo administrativo;
     FuncoesNovo funcoesNovo;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public Funcoes(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public Funcoes(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class Funcoes extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel);
+                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(administrativo, "administrativo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "administrativo");
@@ -59,6 +61,7 @@ public class Funcoes extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         roleDAO = new RoleDAO();
 
@@ -226,7 +229,7 @@ public class Funcoes extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        funcoesNovo = new FuncoesNovo(btnBack, lblWindow, layoutController, cardPanel, new Role());
+        funcoesNovo = new FuncoesNovo(btnBack, lblWindow, layoutController, cardPanel, new Role(), user);
         cardPanel.add(funcoesNovo, "funcoesNovo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "funcoesNovo");
@@ -279,7 +282,7 @@ public class Funcoes extends javax.swing.JPanel {
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                funcoesNovo = new FuncoesNovo(btnBack, lblWindow, layoutController, cardPanel, role);
+                funcoesNovo = new FuncoesNovo(btnBack, lblWindow, layoutController, cardPanel, role, user);
                 cardPanel.add(funcoesNovo, "funcoesNovo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "funcoesNovo");

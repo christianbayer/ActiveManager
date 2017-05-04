@@ -6,6 +6,7 @@
 package telas;
 
 import classes.IssueStatus;
+import classes.User;
 import dao.IssueStatusDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class AtividadesStatusNovo extends javax.swing.JPanel {
     JLabel btnBack;
     JLabel lblWindow;
     IssueStatus issueStatus;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public AtividadesStatusNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, IssueStatus issueStatus) {
+    public AtividadesStatusNovo(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, IssueStatus issueStatus, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class AtividadesStatusNovo extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atividadesStatus = new AtividadesStatus(btnBack, lblWindow, layoutController, cardPanel);
+                atividadesStatus = new AtividadesStatus(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(atividadesStatus, "atividadesStatus");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "atividadesStatus");
@@ -59,6 +61,7 @@ public class AtividadesStatusNovo extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
@@ -187,12 +190,15 @@ public class AtividadesStatusNovo extends javax.swing.JPanel {
             issueStatus.setDescription(inpDescription.getText());
             if (this.issueStatus != null) {
                 issueStatus.setId(this.issueStatus.getId());
+                issueStatus.setUpdatedBy(this.user.getId());
                 issueStatusDAO.update(issueStatus);
             } else {
+                issueStatus.setCreatedBy(this.user.getId());
+                issueStatus.setUpdatedBy(this.user.getId());
                 issueStatusDAO.save(issueStatus);
             }
 
-            atividadesStatus = new AtividadesStatus(btnBack, lblWindow, layoutController, cardPanel);
+            atividadesStatus = new AtividadesStatus(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(atividadesStatus, "atividadesStatus");
             layoutController = ((CardLayout) cardPanel.getLayout());
             layoutController.show(cardPanel, "atividadesStatus");

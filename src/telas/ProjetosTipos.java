@@ -6,6 +6,7 @@
 package telas;
 
 import classes.ProjectType;
+import classes.User;
 import dao.ProjectTypeDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -33,11 +34,12 @@ public class ProjetosTipos extends javax.swing.JPanel {
     JPanel cardPanel;
     Administrativo administrativo;
     ProjetosTiposNovo projetosTiposNovo;
+    User user;
 
     /**
      * Creates new form Usuario
      */
-    public ProjetosTipos(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public ProjetosTipos(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User user) {
         initComponents();
 
         // Seta o título da janela
@@ -47,7 +49,7 @@ public class ProjetosTipos extends javax.swing.JPanel {
         btnBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel);
+                administrativo = new Administrativo(btnBack, lblWindow, layoutController, cardPanel, user);
                 cardPanel.add(administrativo, "administrativo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "administrativo");
@@ -59,6 +61,7 @@ public class ProjetosTipos extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.user = user;
 
         projectTypeDAO = new ProjectTypeDAO();
 
@@ -226,7 +229,7 @@ public class ProjetosTipos extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        projetosTiposNovo = new ProjetosTiposNovo(btnBack, lblWindow, layoutController, cardPanel, new ProjectType());
+        projetosTiposNovo = new ProjetosTiposNovo(btnBack, lblWindow, layoutController, cardPanel, new ProjectType(), user);
         cardPanel.add(projetosTiposNovo, "projetosTiposNovo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "projetosTiposNovo");
@@ -279,7 +282,7 @@ public class ProjetosTipos extends javax.swing.JPanel {
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                projetosTiposNovo = new ProjetosTiposNovo(btnBack, lblWindow, layoutController, cardPanel, projectType);
+                projetosTiposNovo = new ProjetosTiposNovo(btnBack, lblWindow, layoutController, cardPanel, projectType, user);
                 cardPanel.add(projetosTiposNovo, "projetosTiposNovo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "projetosTiposNovo");

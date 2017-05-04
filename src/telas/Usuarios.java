@@ -11,6 +11,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.ImageIcon;
@@ -33,11 +34,12 @@ public class Usuarios extends javax.swing.JPanel {
     JPanel cardPanel;
     Dashboard dashboard;
     UsuariosNovo usuariosNovo;
+    User logedUser;
 
     /**
      * Creates new form Usuario
      */
-    public Usuarios(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel) {
+    public Usuarios(JLabel btnBack, JLabel lblWindow, CardLayout lController, JPanel cardPanel, User logedUser) {
         initComponents();
 
         // Seta o título da janela
@@ -59,6 +61,7 @@ public class Usuarios extends javax.swing.JPanel {
         this.lblWindow = lblWindow;
         this.cardPanel = cardPanel;
         this.layoutController = lController;
+        this.logedUser = logedUser;
 
         userDAO = new UserDAO();
 
@@ -256,7 +259,7 @@ public class Usuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel, new User());
+        usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel, new User(), logedUser);
         cardPanel.add(usuariosNovo, "usuariosNovo");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "usuariosNovo");
@@ -268,8 +271,7 @@ public class Usuarios extends javax.swing.JPanel {
     private int panRowCount;
 
     private void listUser(User user) {
-        JPanel userPanel;
-        userPanel = new JPanel();
+        JPanel userPanel = new JPanel();
         userPanel.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
         userPanel.setLayout(new AbsoluteLayout());
 
@@ -288,8 +290,6 @@ public class Usuarios extends javax.swing.JPanel {
             lblEmail.setForeground(new Color(172, 172, 172));
             lblUsername.setForeground(new Color(172, 172, 172));
         }
-
-        userPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblId.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblId.setText(String.valueOf(user.getId()));
@@ -312,9 +312,9 @@ public class Usuarios extends javax.swing.JPanel {
         userPanel.add(lblUsername, new AbsoluteConstraints(420, 8, -1, -1));
 
         btnTrash.setIcon(new ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
-        btnTrash.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnTrash.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            public void mouseClicked(MouseEvent evt) {
                 int res = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este usuário? Esta ação não poderá ser desfeita!");
                 if (res == 0) {
                     userDAO.delete(user.getId());
@@ -325,10 +325,10 @@ public class Usuarios extends javax.swing.JPanel {
         userPanel.add(btnTrash, new AbsoluteConstraints(700, 5, -1, -1));
 
         btnEdit.setIcon(new ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEdit.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel, user);
+            public void mouseClicked(MouseEvent evt) {
+                usuariosNovo = new UsuariosNovo(btnBack, lblWindow, layoutController, cardPanel, user, logedUser);
                 cardPanel.add(usuariosNovo, "usuariosNovo");
                 layoutController = ((CardLayout) cardPanel.getLayout());
                 layoutController.show(cardPanel, "usuariosNovo");

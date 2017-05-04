@@ -5,18 +5,23 @@
  */
 package telas;
 
+import classes.User;
+
 /**
  *
  * @author christian
  */
 public class Atividades extends javax.swing.JPanel {
 
+    
+    User user;
     /**
      * Creates new form Usuario
      */
-    public Atividades() {
+    public Atividades(User user) {
         initComponents();
         this.setSize(800, 500);
+        this.user = user;
     }
 
     /**
