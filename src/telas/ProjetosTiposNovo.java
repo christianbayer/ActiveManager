@@ -69,6 +69,7 @@ public class ProjetosTiposNovo extends javax.swing.JPanel {
         // Inicializa os DAO's
         projectTypeDAO = new ProjectTypeDAO();
 
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
         // Edição

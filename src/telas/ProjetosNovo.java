@@ -7,13 +7,16 @@ package telas;
 
 import classes.Project;
 import classes.User;
+import classes.UserProject;
 import dao.ProjectDAO;
 import dao.ProjectTypeDAO;
 import dao.UserDAO;
+import dao.UserProjectDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,6 +32,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
     ProjectDAO projectDAO;
     UserDAO userDAO;
     ProjectTypeDAO projectTypeDAO;
+    UserProjectDAO userProjectDAO;
     Color errorColor;
     Color normalColor;
     ArrayList errorsList;
@@ -75,13 +79,17 @@ public class ProjetosNovo extends javax.swing.JPanel {
         projectDAO = new ProjectDAO();
         userDAO = new UserDAO();
         projectTypeDAO = new ProjectTypeDAO();
+        userProjectDAO = new UserProjectDAO();
+        
+        // Inicia a lista de erros
+        errorsList = new ArrayList();
 
         // Popula o combobox com os papéis
         userDAO.lists(selManager, "Gerente");
         projectTypeDAO.lists(selProjectType, "Tipo de Projeto");
-        
-         // Edição
-        if (project.getTitle()!= null) {
+
+        // Edição
+        if (project.getTitle() != null) {
             this.project = project;
 
             // Seta o título da janela
@@ -261,21 +269,41 @@ public class ProjetosNovo extends javax.swing.JPanel {
             project.setDescription(txtDescription.getText());
             project.setProjectTypeId(selProjectType.getSelectedIndex());
             project.setManagerId(selManager.getSelectedIndex());
-            
+
             if (this.project != null) {
                 project.setId(this.project.getId());
                 project.setUpdatedBy(this.user.getId());
                 projectDAO.update(project);
-            } else {                
+            } else {
                 project.setCreatedBy(this.user.getId());
                 project.setUpdatedBy(this.user.getId());
                 projectDAO.save(project);
             }
-            
+
+            userProjectDAO.getAll();
+
+            ArrayList<Integer> usersProjectsUsersIds = new ArrayList();
+            ArrayList<Object> usersProjects = userProjectDAO.getQuerys("SELECT * FROM users_projects WHERE project_id=" + project.getId() + " AND active=1;");
+            Iterator<Object> iterator = usersProjects.iterator();
+            boolean alreadyExists = false;
+            while (iterator.hasNext()) {
+                UserProject userProject = (UserProject) iterator.next();
+                if (userProject.getUserId() == project.getManagerId()) {
+                    alreadyExists = true;
+                }
+            }
+
+            if (!alreadyExists) {
+                UserProject userProject = new UserProject();
+                userProject.setUserId(project.getManagerId());
+                userProject.setProjectId(project.getId());
+                userProjectDAO.save(userProject);
+            }
+
             projetos = new Projetos(btnBack, lblWindow, layoutController, cardPanel, user);
-            cardPanel.add(projetos, "funcoes");
+            cardPanel.add(projetos, "projetos");
             layoutController = ((CardLayout) cardPanel.getLayout());
-            layoutController.show(cardPanel, "funcoes");
+            layoutController.show(cardPanel, "projetos");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -310,7 +338,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         validateManager();
     }//GEN-LAST:event_selManagerFocusLost
 
-     private void setTextFieldError(JTextField textField, JSeparator separator) {
+    private void setTextFieldError(JTextField textField, JSeparator separator) {
         textField.setForeground(errorColor);
         separator.setForeground(errorColor);
     }
@@ -319,7 +347,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
         textField.setForeground(normalColor);
         separator.setForeground(normalColor);
     }
-    
+
     private void validateTitle() {
         String title = inpTitle.getText();
         if (title.isEmpty() || title.equals("Título")) {
@@ -328,7 +356,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
             sepTitle.setForeground(errorColor);
             errorsList.add("O campo \"Título\" é obrigatório!");
         } else if (new Project().checkTitleInUse(title)) {
-            if(this.project.getTitle().equals(title)) {
+            if (this.project.getTitle().equals(title)) {
                 setTextFieldNormal(inpTitle, sepTitle);
             } else {
                 setTextFieldError(inpTitle, sepTitle);
@@ -336,7 +364,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
             }
         } else {
             setTextFieldNormal(inpTitle, sepTitle);
-        }        
+        }
     }
 
     private void validateProjectType() {
@@ -363,7 +391,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
             errorsList.add("O campo \"Descrição\" é obrigatório!");
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
     private javax.swing.JButton btnSave;

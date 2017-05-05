@@ -75,6 +75,7 @@ public class UsuariosNovo extends javax.swing.JPanel {
         // Popula o combobox com os papéis
         roleDAO.lists(selRole);
 
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
         // Edição

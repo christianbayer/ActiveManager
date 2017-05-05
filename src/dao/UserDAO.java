@@ -25,7 +25,8 @@ public class UserDAO implements DAOFactory {
     private static final String INSERT = "INSERT INTO users (username, password, email, first_name, last_name, biography, role_id, created_by, updated_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE users SET username=?, password=?, email=?, first_name=?, last_name=?, biography=?, role_id=?, updated_by=? WHERE id=?";
     private static final String DELETE = "UPDATE users SET active=0 WHERE id=?";
-    private static final String GET_ALL = "SELECT * FROM users";
+    private static final String GET_ALL = "SELECT * FROM users WHERE active=1";
+    private static final String GET_ALL_TRASHED = "SELECT * FROM users";
     private static final String GET_BY_ID = "SELECT * FROM users WHERE id = ?";
 
     @Override
@@ -163,7 +164,49 @@ public class UserDAO implements DAOFactory {
                 user.setUpdatedAt(resultSet.getDate("updated_at"));
                 user.setUpdatedBy(resultSet.getInt("updated_by"));
                 user.setActive(resultSet.getBoolean("active"));
+                users.add(user);
+            }
 
+            // Encerra o statement //
+            resultSet.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return users;
+    }
+    
+    public ArrayList<Object> getAll(boolean trashed) {
+        // Inicia o objeto como null //
+        ArrayList<Object> users = new ArrayList<>();
+
+        try {
+            // Cria o statement //
+            PreparedStatement ps = ConnectionFactory.getInstance().getConnection().prepareStatement(trashed ? GET_ALL_TRASHED : GET_ALL);
+
+            // Executa a query e pega o objeto //
+            ResultSet resultSet = ps.executeQuery();
+
+            User user = null;
+
+            while (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getInt("id"));
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setEmail(resultSet.getString("email"));
+                user.setFirstName(resultSet.getString("first_name"));
+                user.setLastName(resultSet.getString("last_name"));
+                user.setBiography(resultSet.getString("biography"));
+                user.setRoleId(resultSet.getInt("role_id"));
+                user.setCreatedAt(resultSet.getDate("created_at"));
+                user.setCreatedBy(resultSet.getInt("created_by"));
+                user.setUpdatedAt(resultSet.getDate("updated_at"));
+                user.setUpdatedBy(resultSet.getInt("updated_by"));
+                user.setActive(resultSet.getBoolean("active"));
                 users.add(user);
             }
 

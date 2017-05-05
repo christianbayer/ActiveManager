@@ -70,6 +70,7 @@ public class FuncoesNovo extends javax.swing.JPanel {
         // Inicializa os DAO's
         roleDAO = new RoleDAO();
 
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
         // Edição

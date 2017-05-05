@@ -22,6 +22,7 @@ public class UserProjectDAO implements DAOFactory {
     private static final String INSERT = "INSERT INTO users_projects (user_id, project_id, created_by, updated_by) VALUES (?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE users_projects SET user_id=?, project_id=?, updated_by=? WHERE id=?";
     private static final String DELETE = "UPDATE users_projects SET active=0 WHERE id=?";
+    private static final String DELETE_BY_USER_ID = "UPDATE users_projects SET active=0 WHERE user_id=? AND project_id=? AND active=1";
     private static final String GET_ALL = "SELECT * FROM users_projects";
     private static final String GET_BY_ID = "SELECT * FROM users_projects WHERE id=?";
 
@@ -229,6 +230,76 @@ public class UserProjectDAO implements DAOFactory {
             throw new RuntimeException(e);
         }
         return userProject;
+    }
+    
+    
+    public boolean delete(int userId, int projectId) {
+        try {
+            // Cria o statement //
+            PreparedStatement ps = ConnectionFactory.getInstance().getConnection().prepareStatement(DELETE_BY_USER_ID);
+
+            // Seta os valores //
+            ps.setInt(1, userId);
+            ps.setInt(2, projectId);
+
+            // Echo da query //
+            System.out.println("Query : " + ps);
+
+            // Executa a query //
+            int result = ps.executeUpdate();
+
+            // Encerra o statement //
+            ps.close();
+
+            // Retorna boolean //
+            if (result != 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Error while updating UserProject: " + e);
+        }
+        return false;
+    }
+            
+    public ArrayList<Object> getQuerys(String query) {
+        // Inicia o objeto como null //
+        ArrayList<Object> usersProjects = new ArrayList<>();
+
+        try {
+            // Cria o statement //
+            PreparedStatement ps = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
+
+            // Executa a query e pega o objeto //
+            ResultSet resultSet = ps.executeQuery();
+
+            UserProject userProject = null;
+
+            while (resultSet.next()) {
+                userProject = new UserProject();
+                userProject.setId(resultSet.getInt("id"));
+                userProject.setUserId(resultSet.getInt("user_id"));
+                userProject.setProjectId(resultSet.getInt("project_id"));
+                userProject.setCreatedAt(resultSet.getDate("created_at"));
+                userProject.setCreatedBy(resultSet.getInt("created_by"));
+                userProject.setUpdatedAt(resultSet.getDate("updated_at"));
+                userProject.setUpdatedBy(resultSet.getInt("updated_by"));
+                userProject.setActive(resultSet.getBoolean("active"));
+
+                usersProjects.add(userProject);
+            }
+
+            // Encerra o statement //
+            resultSet.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return usersProjects;
     }
 
 }

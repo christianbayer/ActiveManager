@@ -70,6 +70,7 @@ public class AtividadesStatusNovo extends javax.swing.JPanel {
         // Inicializa os DAO's
         issueStatusDAO = new IssueStatusDAO();
 
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
         // Edição

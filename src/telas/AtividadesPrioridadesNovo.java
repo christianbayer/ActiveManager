@@ -70,6 +70,7 @@ public class AtividadesPrioridadesNovo extends javax.swing.JPanel {
         // Inicializa os DAO's
         issuePriorityDAO = new IssuePriorityDAO();
 
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
         // Edição

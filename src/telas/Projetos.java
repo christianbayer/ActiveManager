@@ -36,6 +36,7 @@ public class Projetos extends javax.swing.JPanel {
     CardLayout layoutController;
     JPanel cardPanel;
     ProjetosNovo projetosNovo;
+    ProjetoUsuarios projetoUsuarios;
     Dashboard dashboard;
     User user;
     ProjectDAO projectDAO;
@@ -94,7 +95,7 @@ public class Projetos extends javax.swing.JPanel {
         txtDescricao = new javax.swing.JTextArea();
         btnTrash = new javax.swing.JLabel();
         separador = new javax.swing.JSeparator();
-        btnEdit = new javax.swing.JLabel();
+        btnUsers = new javax.swing.JLabel();
         lblManager = new javax.swing.JLabel();
         lblAndamento = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
@@ -103,6 +104,8 @@ public class Projetos extends javax.swing.JPanel {
         lblCreatedAt = new javax.swing.JLabel();
         lblGerente = new javax.swing.JLabel();
         lblCriadoEm = new javax.swing.JLabel();
+        btnEdit = new javax.swing.JLabel();
+        btnMore = new javax.swing.JLabel();
         inpPesquisar = new javax.swing.JTextField();
         sepPesquisar = new javax.swing.JSeparator();
 
@@ -178,13 +181,13 @@ public class Projetos extends javax.swing.JPanel {
         row1.add(txtDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 330, 50));
 
         btnTrash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
-        row1.add(btnTrash, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
+        row1.add(btnTrash, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
 
         separador.setOrientation(javax.swing.SwingConstants.VERTICAL);
         row1.add(separador, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 10, 90));
 
-        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        row1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, -1, -1));
+        btnUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
+        row1.add(btnUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
 
         lblManager.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblManager.setText("Christian Bayer");
@@ -217,6 +220,12 @@ public class Projetos extends javax.swing.JPanel {
         lblCriadoEm.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
         lblCriadoEm.setText("Criado em:");
         row1.add(lblCriadoEm, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, -1, -1));
+
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        row1.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 20, -1, -1));
+
+        btnMore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/more.png"))); // NOI18N
+        row1.add(btnMore, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, -1, -1));
 
         panProjects.add(row1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 90));
 
@@ -293,6 +302,8 @@ public class Projetos extends javax.swing.JPanel {
         JLabel lblCreatedAt = new JLabel();
         JLabel btnTrash = new JLabel();
         JLabel btnEdit = new JLabel();
+        JLabel btnUsers = new JLabel();
+        JLabel btnMore = new JLabel();
         JSeparator separador = new JSeparator();
 
         if (!project.isActive()) {
@@ -322,6 +333,9 @@ public class Projetos extends javax.swing.JPanel {
         txtDescricao.setWrapStyleWord(true);
         projectPanel.add(txtDescricao, new AbsoluteConstraints(10, 30, 330, 50));
 
+        separador.setOrientation(SwingConstants.VERTICAL);
+        projectPanel.add(separador, new AbsoluteConstraints(350, 0, 10, 90));
+        
         btnTrash.setIcon(new ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
         btnTrash.addMouseListener(new MouseAdapter() {
             @Override
@@ -333,10 +347,7 @@ public class Projetos extends javax.swing.JPanel {
                 }
             }
         });
-        projectPanel.add(btnTrash, new AbsoluteConstraints(690, 20, -1, -1));
-
-        separador.setOrientation(SwingConstants.VERTICAL);
-        projectPanel.add(separador, new AbsoluteConstraints(350, 0, 10, 90));
+        projectPanel.add(btnTrash, new AbsoluteConstraints(660, 20, -1, -1));
 
         btnEdit.setIcon(new ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         btnEdit.addMouseListener(new MouseAdapter() {
@@ -348,7 +359,22 @@ public class Projetos extends javax.swing.JPanel {
                 layoutController.show(cardPanel, "projetosNovo");
             }
         });
-        projectPanel.add(btnEdit, new AbsoluteConstraints(690, 50, -1, -1));
+        projectPanel.add(btnEdit, new AbsoluteConstraints(690, 20, -1, -1));
+        
+        btnUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
+        btnUsers.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                projetoUsuarios = new ProjetoUsuarios(btnBack, lblWindow, layoutController, cardPanel, project, user);
+                cardPanel.add(projetoUsuarios, "projetoUsuarios");
+                layoutController = ((CardLayout) cardPanel.getLayout());
+                layoutController.show(cardPanel, "projetoUsuarios");
+            }
+        });
+        projectPanel.add(btnUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
+
+        btnMore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/more.png"))); // NOI18N
+        projectPanel.add(btnMore, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, -1, -1));
 
         lblManager.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblManager.setText("Xablau");
@@ -408,9 +434,11 @@ public class Projetos extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
     private javax.swing.JLabel btnEdit;
+    private javax.swing.JLabel btnMore;
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel btnTrash;
+    private javax.swing.JLabel btnUsers;
     private javax.swing.JTextField inpPesquisar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAberta;

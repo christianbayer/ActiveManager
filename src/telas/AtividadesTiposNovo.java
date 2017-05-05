@@ -70,6 +70,7 @@ public class AtividadesTiposNovo extends javax.swing.JPanel {
         // Inicializa os DAO's
         issueTypeDAO = new IssueTypeDAO();
 
+        // Inicia a lista de erros
         errorsList = new ArrayList();
 
         // Edição
