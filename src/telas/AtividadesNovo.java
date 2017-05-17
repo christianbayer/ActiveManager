@@ -108,7 +108,9 @@ public class AtividadesNovo extends javax.swing.JPanel {
 
             // Inicializa os campos
             inpTitle.setText(issue.getTitle());
-            inpParentIssueId.setText(String.valueOf(issue.getParentIssueId()));
+            if (issue.getParentIssueId() != 0) {
+                inpParentIssueId.setText(String.valueOf(issue.getParentIssueId()));
+            }
             new JComboBoxItem().setSelectedItem(selProject, issue.getProjectId());
             userProjectDAO.lists(selAssignedUser, selProject.getSelectedIndex());
             new JComboBoxItem().setSelectedItem(selAssignedUser, issue.getAssignedUserId());
@@ -116,11 +118,21 @@ public class AtividadesNovo extends javax.swing.JPanel {
             new JComboBoxItem().setSelectedItem(selStatus, issue.getIssueStatusId());
             new JComboBoxItem().setSelectedItem(selPriority, issue.getIssuePriorityId());
             selDoneRatio.setSelectedItem(String.valueOf(issue.getDoneRatio()));
-            inpEstimatedHours.setText(String.valueOf(issue.getEstimatedHours()));
-            inpSpentHours.setText(String.valueOf(issue.getSpentHours()));
-            inpDueDate.setText(dateToString(issue.getDueDate()));
-            inpStartDate.setText(dateToString(issue.getStartDate()));
-            inpEndDate.setText(dateToString(issue.getEndDate()));
+            if (issue.getEstimatedHours() != 0) {
+                inpEstimatedHours.setText(String.valueOf(issue.getEstimatedHours()));
+            }
+            if (issue.getSpentHours() != 0) {
+                inpSpentHours.setText(String.valueOf(issue.getSpentHours()));
+            }
+            if (issue.getDueDate() != null) {
+                inpDueDate.setText(dateToString(issue.getDueDate()));
+            }
+            if (issue.getStartDate() != null) {
+                inpStartDate.setText(dateToString(issue.getStartDate()));
+            }
+            if (issue.getEndDate() != null) {
+                inpEndDate.setText(dateToString(issue.getEndDate()));
+            }
             txtDescription.setText(issue.getDescription());
         }
     }

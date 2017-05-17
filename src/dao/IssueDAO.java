@@ -48,8 +48,16 @@ public class IssueDAO implements DAOFactory {
             ps.setDate(9, issue.getDueDate() != null ? new Date(issue.getDueDate().getTime()) : null);
             ps.setDate(10, issue.getStartDate() != null ? new Date(issue.getStartDate().getTime()) : null);
             ps.setDate(11, issue.getEndDate() != null ? new Date(issue.getEndDate().getTime()) : null);
-            ps.setFloat(12, issue.getEstimatedHours());
-            ps.setFloat(13, issue.getSpentHours());
+            if (issue.getEstimatedHours() == 0) {
+                ps.setString(12, null);
+            } else {
+                ps.setFloat(12, issue.getEstimatedHours());
+            }
+            if (issue.getSpentHours() == 0) {
+                ps.setString(13, null);
+            } else {
+                ps.setFloat(13, issue.getSpentHours());
+            }
             if (issue.getParentIssueId() == 0) {
                 ps.setString(14, null);
             } else {
@@ -94,12 +102,24 @@ public class IssueDAO implements DAOFactory {
             ps.setInt(6, issue.getAssignedUserId());
             ps.setInt(7, issue.getDoneRatio());
             ps.setInt(8, issue.getDoneRatio());
-            ps.setDate(9, new Date(issue.getDueDate().getTime()));
-            ps.setDate(10, new Date(issue.getStartDate().getTime()));
-            ps.setDate(11, new Date(issue.getEndDate().getTime()));
-            ps.setFloat(12, issue.getEstimatedHours());
-            ps.setFloat(13, issue.getSpentHours());
-            ps.setInt(14, issue.getParentIssueId());
+            ps.setDate(9, issue.getDueDate() != null ? new Date(issue.getDueDate().getTime()) : null);
+            ps.setDate(10, issue.getStartDate() != null ? new Date(issue.getStartDate().getTime()) : null);
+            ps.setDate(11, issue.getEndDate() != null ? new Date(issue.getEndDate().getTime()) : null);
+            if (issue.getEstimatedHours() == 0) {
+                ps.setString(12, null);
+            } else {
+                ps.setFloat(12, issue.getEstimatedHours());
+            }
+            if (issue.getSpentHours() == 0) {
+                ps.setString(13, null);
+            } else {
+                ps.setFloat(13, issue.getSpentHours());
+            }
+            if (issue.getParentIssueId() == 0) {
+                ps.setString(14, null);
+            } else {
+                ps.setInt(14, issue.getParentIssueId());
+            }
             ps.setInt(15, issue.getUpdatedBy());
             ps.setInt(16, issue.getId());
 
