@@ -94,27 +94,42 @@ public class IssueDAO implements DAOFactory {
             Issue issue = (Issue) obj;
 
             // Seta os valores //
+            // project_id=?, 
             ps.setInt(1, issue.getProjectId());
-            ps.setString(2, issue.getDescription());
-            ps.setInt(3, issue.getIssueTypeId());
-            ps.setInt(4, issue.getIssueStatusId());
-            ps.setInt(5, issue.getIssuePriorityId());
-            ps.setInt(6, issue.getAssignedUserId());
-            ps.setInt(7, issue.getDoneRatio());
+            // title=?, 
+            ps.setString(2, issue.getTitle());
+            // description=?, 
+            ps.setString(3, issue.getDescription());
+            // issue_type_id=?, 
+            ps.setInt(4, issue.getIssueTypeId());
+            // issue_status_id=?, 
+            ps.setInt(5, issue.getIssueStatusId());
+            // issue_priority_id=?, 
+            ps.setInt(6, issue.getIssuePriorityId());
+            // assigned_user_id=?, 
+            ps.setInt(7, issue.getAssignedUserId());
+            // done_ratio=?, 
             ps.setInt(8, issue.getDoneRatio());
+            // due_date=?, 
+            // start_date=?, 
             ps.setDate(9, issue.getDueDate() != null ? new Date(issue.getDueDate().getTime()) : null);
+            // end_date=?, 
             ps.setDate(10, issue.getStartDate() != null ? new Date(issue.getStartDate().getTime()) : null);
+            // estimated_hours=?, 
             ps.setDate(11, issue.getEndDate() != null ? new Date(issue.getEndDate().getTime()) : null);
+            // spent_hours=?, 
             if (issue.getEstimatedHours() == 0) {
                 ps.setString(12, null);
             } else {
                 ps.setFloat(12, issue.getEstimatedHours());
             }
+            // parent_issue_id=?, 
             if (issue.getSpentHours() == 0) {
                 ps.setString(13, null);
             } else {
                 ps.setFloat(13, issue.getSpentHours());
             }
+            // updated_by=? WHERE id=?
             if (issue.getParentIssueId() == 0) {
                 ps.setString(14, null);
             } else {

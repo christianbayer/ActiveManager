@@ -557,6 +557,8 @@ public class AtividadesNovo extends javax.swing.JPanel {
             issue.setIssuePriorityId(priorityItem.getKey());
             JComboBoxItem assignedUserItem = (JComboBoxItem) selAssignedUser.getSelectedItem();
             issue.setAssignedUserId(assignedUserItem.getKey());
+            System.out.println("combo val "+selAssignedUser.getSelectedItem());
+            System.out.println("item val"+assignedUserItem.getKey());
             issue.setDoneRatio(Integer.valueOf(String.valueOf(selDoneRatio.getSelectedItem())));
 
             String strDueDate = inpDueDate.getText();
