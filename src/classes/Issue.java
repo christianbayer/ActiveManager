@@ -5,6 +5,12 @@
  */
 package classes;
 
+import dao.IssuePriorityDAO;
+import dao.IssueStatusDAO;
+import dao.IssueTypeDAO;
+import dao.ProjectDAO;
+import dao.UserDAO;
+import dao.UserProjectDAO;
 import java.util.Date;
 
 /**
@@ -12,7 +18,7 @@ import java.util.Date;
  * @author christian
  */
 public class Issue {
-    
+
     private int id;
     private int projectId;
     private String title;
@@ -34,7 +40,11 @@ public class Issue {
     private int updatedBy;
     private boolean active;
 
-    public Issue(int projectId, String title, String description, int issueTypeId, int issueStatusId, int issuePriorityId, int assignedUserId, int doneRatio, Date dueDate, Date startDate, Date endDate, float estimatedHours, float spentHours, int parentIssueId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public Issue() {
+    }
+
+    public Issue(int id, int projectId, String title, String description, int issueTypeId, int issueStatusId, int issuePriorityId, int assignedUserId, int doneRatio, Date dueDate, Date startDate, Date endDate, float estimatedHours, float spentHours, int parentIssueId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+        this.id = id;
         this.projectId = projectId;
         this.title = title;
         this.description = description;
@@ -60,12 +70,22 @@ public class Issue {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getProjectId() {
         return projectId;
     }
 
     public void setProjectId(int projectId) {
         this.projectId = projectId;
+    }
+
+    public String getProjectTitle() {
+        ProjectDAO projectDAO = new ProjectDAO();
+        Project project = (Project) projectDAO.getById(issueTypeId);
+        return project.getTitle();
     }
 
     public String getTitle() {
@@ -92,12 +112,24 @@ public class Issue {
         this.issueTypeId = issueTypeId;
     }
 
+    public String getIssueTypeDescription() {
+        IssueTypeDAO issueTypeDAO = new IssueTypeDAO();
+        IssueType issueType = (IssueType) issueTypeDAO.getById(issueTypeId);
+        return issueType.getDescription();
+    }
+
     public int getIssueStatusId() {
         return issueStatusId;
     }
 
     public void setIssueStatusId(int issueStatusId) {
         this.issueStatusId = issueStatusId;
+    }
+
+    public String getIssueStatusDescription() {
+        IssueStatusDAO issueStatusDAO = new IssueStatusDAO();
+        IssueStatus issueStatus = (IssueStatus) issueStatusDAO.getById(issueStatusId);
+        return issueStatus.getDescription();
     }
 
     public int getIssuePriorityId() {
@@ -108,12 +140,26 @@ public class Issue {
         this.issuePriorityId = issuePriorityId;
     }
 
+    public String getIssuePriorityDescription() {
+        IssuePriorityDAO issuePriorityDAO = new IssuePriorityDAO();
+        IssuePriority issuePriority = (IssuePriority) issuePriorityDAO.getById(issuePriorityId);
+        return issuePriority.getDescription();
+    }
+
     public int getAssignedUserId() {
         return assignedUserId;
     }
 
     public void setAssignedUserId(int assignedUserId) {
         this.assignedUserId = assignedUserId;
+    }
+
+    public String getAssignedUserName() {
+        UserProjectDAO userProjectDAO= new UserProjectDAO();
+        UserDAO userDAO = new UserDAO();
+        UserProject userProject = (UserProject) userProjectDAO.getById(assignedUserId);
+        User user = (User) userDAO.getById(userProject.getUserId());
+        return user.getFirstName() + " " + user.getLastName();
     }
 
     public int getDoneRatio() {
@@ -212,5 +258,4 @@ public class Issue {
         this.active = active;
     }
 
-    
 }

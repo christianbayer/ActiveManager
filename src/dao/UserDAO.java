@@ -1,6 +1,6 @@
 package dao;
 
-import apoio.ComboboxItem;
+import apoio.JComboBoxItem;
 import classes.User;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -306,7 +306,7 @@ public class UserDAO implements DAOFactory {
 
         combobox.removeAllItems();
 
-        ComboboxItem item = new ComboboxItem(0, defaultItem);
+        JComboBoxItem item = new JComboBoxItem(0, defaultItem);
         combobox.addItem(item);
 
         ArrayList<Object> users = this.getAll();
@@ -314,7 +314,7 @@ public class UserDAO implements DAOFactory {
         Iterator<Object> iterator = users.iterator();
         while (iterator.hasNext()) {
             User user = (User) iterator.next();
-            item = new ComboboxItem(user.getId(), user.getFirstName() + " " + user.getLastName());
+            item = new JComboBoxItem(user.getId(), user.getFirstName() + " " + user.getLastName());
             combobox.addItem(item);
         }
 

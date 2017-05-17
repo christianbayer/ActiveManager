@@ -5,6 +5,7 @@
  */
 package classes;
 
+import dao.UserDAO;
 import java.util.Date;
 
 /**
@@ -45,6 +46,12 @@ public class UserProject {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+    
+     public String getUserName() {
+        UserDAO userDAO = new UserDAO();
+        User user = (User) userDAO.getById(userId);
+        return user.getFirstName() + " " + user.getLastName();
     }
 
     public int getProjectId() {

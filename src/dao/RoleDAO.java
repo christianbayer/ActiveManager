@@ -1,6 +1,6 @@
 package dao;
 
-import apoio.ComboboxItem;
+import apoio.JComboBoxItem;
 import classes.Role;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -233,7 +233,7 @@ public class RoleDAO implements DAOFactory {
 
         combobox.removeAllItems();
 
-        ComboboxItem item = new ComboboxItem(0, "Função");
+        JComboBoxItem item = new JComboBoxItem(0, "Função");
         combobox.addItem(item);
 
         ArrayList<Object> roles = this.getAll();
@@ -242,7 +242,7 @@ public class RoleDAO implements DAOFactory {
         while (iterator.hasNext()) {
             Role role = (Role) iterator.next();
             if(role.isActive()){
-                item = new ComboboxItem(role.getId(), role.getDescription());
+                item = new JComboBoxItem(role.getId(), role.getDescription());
                 combobox.addItem(item);
             }
         }

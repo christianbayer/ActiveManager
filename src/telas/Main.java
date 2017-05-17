@@ -43,7 +43,7 @@ public class Main extends javax.swing.JFrame {
         lblUser.setText(user.getFirstName() + " " + user.getLastName());
 
         sobre = new Sobre(user);
-        atividades = new Atividades(user);
+        
 
         // Cria o grupo de botões do menu
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -63,7 +63,6 @@ public class Main extends javax.swing.JFrame {
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "dashboard");
 
-        cardPanel.add(atividades, "atividades");
         cardPanel.add(sobre, "sobre");
         cardPanel.setSize(800, 500);
 
@@ -256,6 +255,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSobreActionPerformed
 
     private void btnAtividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtividadesActionPerformed
+        atividades = new Atividades(btnBack, lblWindow, layoutController, cardPanel, user);
+        cardPanel.add(atividades, "atividades");
         layoutController = ((CardLayout) cardPanel.getLayout());
         layoutController.show(cardPanel, "atividades");
     }//GEN-LAST:event_btnAtividadesActionPerformed

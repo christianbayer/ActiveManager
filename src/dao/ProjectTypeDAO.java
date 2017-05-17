@@ -1,6 +1,6 @@
 package dao;
 
-import apoio.ComboboxItem;
+import apoio.JComboBoxItem;
 import classes.ProjectType;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -233,7 +233,7 @@ public class ProjectTypeDAO implements DAOFactory {
 
         combobox.removeAllItems();
 
-        ComboboxItem item = new ComboboxItem(0, defaultItem);
+        JComboBoxItem item = new JComboBoxItem(0, defaultItem);
         combobox.addItem(item);
 
         ArrayList<Object> projectsTypes = this.getAll();
@@ -241,7 +241,7 @@ public class ProjectTypeDAO implements DAOFactory {
         Iterator<Object> iterator = projectsTypes.iterator();
         while (iterator.hasNext()) {
             ProjectType projectType = (ProjectType) iterator.next();
-            item = new ComboboxItem(projectType.getId(), projectType.getDescription());
+            item = new JComboBoxItem(projectType.getId(), projectType.getDescription());
             combobox.addItem(item);
         }
 

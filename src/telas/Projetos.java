@@ -7,6 +7,7 @@ package telas;
 
 import classes.Project;
 import classes.User;
+import connection.ConnectionFactory;
 import dao.ProjectDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -14,7 +15,9 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,6 +25,11 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import org.netbeans.lib.awtextra.AbsoluteLayout;
 
@@ -70,7 +78,7 @@ public class Projetos extends javax.swing.JPanel {
 
         projectDAO = new ProjectDAO();
 
-        inicializarLista();
+        listProjects();
 
         row1.setVisible(false);
     }
@@ -108,6 +116,7 @@ public class Projetos extends javax.swing.JPanel {
         btnMore = new javax.swing.JLabel();
         inpPesquisar = new javax.swing.JTextField();
         sepPesquisar = new javax.swing.JSeparator();
+        btnImprimir = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
@@ -254,6 +263,23 @@ public class Projetos extends javax.swing.JPanel {
         sepPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
         basePanel.add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 230, 1));
 
+        btnImprimir.setBackground(new java.awt.Color(52, 100, 127));
+        btnImprimir.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnImprimir.setForeground(new java.awt.Color(254, 254, 254));
+        btnImprimir.setText("IMPRIMIR");
+        btnImprimir.setToolTipText("");
+        btnImprimir.setBorderPainted(false);
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnImprimir.setDefaultCapable(false);
+        btnImprimir.setName(""); // NOI18N
+        btnImprimir.setOpaque(true);
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        basePanel.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 140, 40));
+
         add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,6 +304,24 @@ public class Projetos extends javax.swing.JPanel {
             inpPesquisar.setText("Pesquisar");
         }
     }//GEN-LAST:event_inpPesquisarFocusLost
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+         try {
+            // Compila o relatorio
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/ListagemProjetos.jrxml"));
+
+            // Mapeia campos de parametros para o relatorio, mesmo que nao existam
+            Map params = new HashMap();
+
+            // Executa relatoio
+            JasperPrint print = JasperFillManager.fillReport(report, params, ConnectionFactory.getInstance().getConnection());
+
+            // Exibe resultado em video
+            JasperViewer.viewReport(print, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     private Color panColorA = new Color(194, 228, 253);
     private Color panColorB = new Color(254, 254, 254);
@@ -343,7 +387,7 @@ public class Projetos extends javax.swing.JPanel {
                 int res = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este projeto? Esta ação não poderá ser desfeita!");
                 if (res == 0) {
                     projectDAO.delete(project.getId());
-                    inicializarLista();
+                    listProjects();
                 }
             }
         });
@@ -416,7 +460,7 @@ public class Projetos extends javax.swing.JPanel {
         basePanel.repaint();
     }
 
-    private void inicializarLista() {
+    private void listProjects() {
         panY = 0;
         panRowCount = 1;
         panProjects.removeAll();
@@ -434,6 +478,7 @@ public class Projetos extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
     private javax.swing.JLabel btnEdit;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JLabel btnMore;
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnPesquisar;

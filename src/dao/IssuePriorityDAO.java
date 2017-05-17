@@ -1,12 +1,16 @@
 package dao;
 
+import apoio.JComboBoxItem;
 import classes.IssuePriority;
+import classes.IssueStatus;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -224,6 +228,27 @@ public class IssuePriorityDAO implements DAOFactory {
             throw new RuntimeException(e);
         }
         return issuePriority;
+    }
+    
+        
+    public void lists(JComboBox combobox) {
+
+        combobox.removeAllItems();
+
+        JComboBoxItem item = new JComboBoxItem(0, "Prioridade");
+        combobox.addItem(item);
+
+        ArrayList<Object> priorities = this.getAll();
+
+        Iterator<Object> iterator = priorities.iterator();
+        while (iterator.hasNext()) {
+            IssuePriority issuePriority = (IssuePriority) iterator.next();
+            if (issuePriority.isActive()) {
+                item = new JComboBoxItem(issuePriority.getId(), issuePriority.getDescription());
+                combobox.addItem(item);
+            }
+        }
+
     }
 
 }

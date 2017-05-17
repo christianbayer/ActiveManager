@@ -1,5 +1,6 @@
 package dao;
 
+import apoio.JComboBoxItem;
 import classes.IssueType;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -7,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -226,4 +229,23 @@ public class IssueTypeDAO implements DAOFactory {
         return issueType;
     }
 
+    public void lists(JComboBox combobox) {
+
+        combobox.removeAllItems();
+
+        JComboBoxItem item = new JComboBoxItem(0, "Tipo de Atividade");
+        combobox.addItem(item);
+
+        ArrayList<Object> issuesTypes = this.getAll();
+
+        Iterator<Object> iterator = issuesTypes.iterator();
+        while (iterator.hasNext()) {
+            IssueType issueType = (IssueType) iterator.next();
+            if (issueType.isActive()) {
+                item = new JComboBoxItem(issueType.getId(), issueType.getDescription());
+                combobox.addItem(item);
+            }
+        }
+
+    }
 }

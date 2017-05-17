@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListagemProjetos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5095f4f0-4f93-434c-98c4-6f2bde137b40">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select projects.*, count(issues.id) as issuesCount from projects left join issues on issues.project_id=projects.id where projects.active=true group by projects.id;]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="title" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="project_type_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="manager_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="created_at" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="created_by" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updated_at" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updated_by" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="active" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="issuesCount" class="java.lang.Long"/>
+	<variable name="issuesCount_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{issuesCount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="110" y="16" width="81" height="63" uuid="9b4659d1-987c-4912-a8c7-3f9b3def9411"/>
+				<imageExpression><![CDATA["/home/christian/NetBeansProjects/ActiveManager/src/icons/logo_v2.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="204" y="19" width="192" height="60" uuid="7381b75b-456c-4769-a794-f260ae908ba4"/>
+				<imageExpression><![CDATA["/home/christian/NetBeansProjects/ActiveManager/src/icons/logo_v3.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="13" y="0" width="35" height="20" uuid="4512496c-70c7-46c2-afa8-30d4abd36aa0"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="0" width="169" height="20" uuid="a97a20fc-8379-45b1-856a-bd1508f58546"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TÍTULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="122" height="20" uuid="dfd0dc8e-e54c-4c6c-9582-c7a0136844da"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GERENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="0" width="102" height="20" uuid="46123a48-cbea-4406-9a40-d45769520eed"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DE PROJETO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="0" width="69" height="20" uuid="7f3357dc-8c87-48eb-9d5c-7d2aaa583996"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATIVIDADES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="13" y="0" width="35" height="20" uuid="5a24ddda-bba5-4aaa-93e3-fa6234fa2bc5"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="0" width="169" height="20" uuid="eda21db1-6953-4fe4-9cc6-9814d4234139"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="122" height="20" uuid="06354be6-26f1-4f1d-8519-a3b50fb9742c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{manager_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="0" width="102" height="20" uuid="516d1a27-e305-4a91-9370-704e5e7da19a"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{project_type_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="0" width="69" height="20" uuid="6822c855-d05b-4b93-a64a-d877962c5459"/>
+				<textFieldExpression><![CDATA[$F{issuesCount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

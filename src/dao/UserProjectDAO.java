@@ -1,5 +1,6 @@
 package dao;
 
+import apoio.JComboBoxItem;
 import classes.UserProject;
 import connection.ConnectionFactory;
 import java.sql.PreparedStatement;
@@ -7,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JComboBox;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -300,6 +303,26 @@ public class UserProjectDAO implements DAOFactory {
         }
 
         return usersProjects;
+    }
+    
+    public void lists(JComboBox combobox, int projectId) {
+
+        combobox.removeAllItems();
+        
+        ArrayList<Object> usersProjects = this.getQuerys("SELECT * FROM users_projects WHERE project_id=" + projectId + " AND active=1;");
+
+        JComboBoxItem item = new JComboBoxItem(0, "Atribuído Para");
+        combobox.addItem(item);
+
+        Iterator<Object> iterator = usersProjects.iterator();
+        while (iterator.hasNext()) {
+            UserProject userProject = (UserProject) iterator.next();
+            if(userProject.isActive()){
+                item = new JComboBoxItem(userProject.getId(), userProject.getUserName());
+                combobox.addItem(item);
+            }
+        }
+
     }
 
 }
