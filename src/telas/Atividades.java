@@ -77,9 +77,9 @@ public class Atividades extends javax.swing.JPanel {
         this.user = user;
 
         issueDAO = new IssueDAO();
-        
+
         row1.setVisible(false);
-        
+
         listIssues();
     }
 
@@ -337,15 +337,16 @@ public class Atividades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        int issue_id = Integer.valueOf(JOptionPane.showInputDialog("ID da Atividade"));
+        System.out.println(issue_id);
         try {
             // Compila o relatorio
-            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/ListagemProjetos.jrxml"));
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/ListagemAtividadesParam.jrxml"));
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map params = new HashMap();
-            
-//             parametros.put("nomeParametro1","valorParametro1");
-//            parametros.put("nomeParametro2","valorParametro2");
+
+            params.put("issue_id", issue_id);
 
             // Executa relatoio
             JasperPrint print = JasperFillManager.fillReport(report, params, ConnectionFactory.getInstance().getConnection());
@@ -358,7 +359,21 @@ public class Atividades extends javax.swing.JPanel {
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            // Compila o relatorio
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/ListagemAtividades.jrxml"));
+
+            // Mapeia campos de parametros para o relatorio, mesmo que nao existam
+            Map params = new HashMap();
+
+            // Executa relatoio
+            JasperPrint print = JasperFillManager.fillReport(report, params, ConnectionFactory.getInstance().getConnection());
+
+            // Exibe resultado em video
+            JasperViewer.viewReport(print, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
+        }
     }//GEN-LAST:event_btnImprimir1ActionPerformed
 
     private Color panColorA = new Color(194, 228, 253);

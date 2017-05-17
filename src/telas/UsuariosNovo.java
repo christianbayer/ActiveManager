@@ -5,13 +5,19 @@
  */
 package telas;
 
+import apoio.md5;
 import classes.User;
 import dao.RoleDAO;
 import dao.UserDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -91,8 +97,6 @@ public class UsuariosNovo extends javax.swing.JPanel {
             inpEmail.setText(user.getEmail());
             selRole.setSelectedIndex(user.getRoleId());
             inpUsername.setText(user.getUsername());
-            inpPassword.setText(user.getPassword());
-            inpPasswordConfirmation.setText(user.getPassword());
             txtBiography.setText(user.getBiography());
         }
     }
@@ -379,7 +383,9 @@ public class UsuariosNovo extends javax.swing.JPanel {
     }//GEN-LAST:event_inpPasswordConfirmationFocusGained
 
     private void inpPasswordConfirmationFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordConfirmationFocusLost
-        validatePasswordConfirmation();
+        if (this.user == null) {
+            validatePasswordConfirmation();
+        }
     }//GEN-LAST:event_inpPasswordConfirmationFocusLost
 
     private void inpPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordFocusGained
@@ -389,7 +395,9 @@ public class UsuariosNovo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_inpPasswordFocusGained
     private void inpPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPasswordFocusLost
-        validatePassword();
+        if (this.user == null) {
+            validatePassword();
+        }
     }//GEN-LAST:event_inpPasswordFocusLost
 
     private void btnSalvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarUsuarioActionPerformed
@@ -404,8 +412,31 @@ public class UsuariosNovo extends javax.swing.JPanel {
         validateEmail();
         validateRole();
         validateUsername();
-        validatePassword();
-        validatePasswordConfirmation();
+        if (this.user == null) {
+            validatePassword();
+            validatePasswordConfirmation();
+        } else {
+            String passwordConfirmation = new String(inpPasswordConfirmation.getPassword()).trim();
+            String password = new String(inpPassword.getPassword()).trim();
+            if (!password.equals("password") || !password.equals("")) {
+                if (!passwordConfirmation.equals("password")) {
+                    if (!passwordConfirmation.equals(password)) {
+                        setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
+                        errorsList.add("A confirmação de senha é diferente da senha!");
+                    } else {
+                        setTextFieldNormal(inpPasswordConfirmation, sepPasswordConfirmation);
+                    }
+                }
+            }
+            if (!passwordConfirmation.equals("password") || !passwordConfirmation.equals("")) {
+                if (!passwordConfirmation.equals(password)) {
+                    setTextFieldError(inpPasswordConfirmation, sepPasswordConfirmation);
+                    errorsList.add("A confirmação de senha é diferente da senha!");
+                } else {
+                    setTextFieldNormal(inpPasswordConfirmation, sepPasswordConfirmation);
+                }
+            }
+        }
 
         if (!errorsList.isEmpty()) {
             for (int i = 0; i < errorsList.size(); i++) {
@@ -415,7 +446,13 @@ public class UsuariosNovo extends javax.swing.JPanel {
         } else {
             User user = new User();
             user.setUsername(inpUsername.getText());
-            user.setPassword(new String(inpPassword.getPassword()));
+            String password = new String(inpPassword.getPassword());
+            if (!password.equals("password")) {
+                System.out.println("diferente password");
+                user.setPassword(new md5().md5(password));
+            } else {
+                user.setPassword(this.user.getPassword());
+            }
             user.setEmail(inpEmail.getText());
             user.setFirstName(inpFirstName.getText());
             user.setLastName(inpLastName.getText());
@@ -457,6 +494,18 @@ public class UsuariosNovo extends javax.swing.JPanel {
     private void selRoleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selRoleFocusLost
         validateRole();
     }//GEN-LAST:event_selRoleFocusLost
+
+//    private String md5(String string) {
+//        try {
+//            MessageDigest m = MessageDigest.getInstance("MD5");
+//            m.update(string.getBytes(), 0, string.length());
+//            System.out.println("MD5: " + new BigInteger(1, m.digest()).toString(16));
+//            return new BigInteger(1, m.digest()).toString(16);
+//        } catch (NoSuchAlgorithmException exception) {
+//            System.out.println(exception);
+//        }
+//        return null;
+//    }
 
     private void setTextFieldError(JTextField textField, JSeparator separator) {
         textField.setForeground(errorColor);

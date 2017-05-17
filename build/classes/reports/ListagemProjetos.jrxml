@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListagemProjetos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5095f4f0-4f93-434c-98c4-6f2bde137b40">
-	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.zoom" value="1.6105100000000014"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[select projects.*, count(issues.id) as issuesCount from projects left join issues on issues.project_id=projects.id where projects.active=true group by projects.id;]]>
+		<![CDATA[select projects.*,
+count(issues.id) as issuesCount,
+projects_types.description as project_type_description,
+concat(users.first_name, " ", users.last_name) as user_name
+from projects
+left join issues on issues.project_id=projects.id
+left join projects_types on projects.project_type_id=projects_types.id
+left join users on users.id=manager_id
+where projects.active=true
+group by projects.id;]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -37,6 +46,8 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="issuesCount" class="java.lang.Long"/>
+	<field name="project_type_description" class="java.lang.String"/>
+	<field name="user_name" class="java.lang.String"/>
 	<variable name="issuesCount_1" class="java.lang.Integer" resetType="Column" calculation="Count">
 		<variableExpression><![CDATA[$F{issuesCount}]]></variableExpression>
 	</variable>
@@ -59,77 +70,71 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="36" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="13" y="0" width="35" height="20" uuid="4512496c-70c7-46c2-afa8-30d4abd36aa0"/>
+				<reportElement x="0" y="0" width="35" height="20" uuid="4512496c-70c7-46c2-afa8-30d4abd36aa0"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="48" y="0" width="169" height="20" uuid="a97a20fc-8379-45b1-856a-bd1508f58546"/>
+				<reportElement x="35" y="0" width="169" height="20" uuid="a97a20fc-8379-45b1-856a-bd1508f58546"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TÍTULO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="337" y="0" width="122" height="20" uuid="dfd0dc8e-e54c-4c6c-9582-c7a0136844da"/>
+				<reportElement x="321" y="0" width="138" height="20" uuid="dfd0dc8e-e54c-4c6c-9582-c7a0136844da"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[GERENTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="217" y="0" width="102" height="20" uuid="46123a48-cbea-4406-9a40-d45769520eed"/>
+				<reportElement x="204" y="0" width="102" height="20" uuid="46123a48-cbea-4406-9a40-d45769520eed"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TIPO DE PROJETO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="469" y="0" width="69" height="20" uuid="7f3357dc-8c87-48eb-9d5c-7d2aaa583996"/>
+				<reportElement x="468" y="0" width="87" height="20" uuid="7f3357dc-8c87-48eb-9d5c-7d2aaa583996"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[ATIVIDADES]]></text>
+				<text><![CDATA[Nº ATIVIDADES]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="29" splitType="Stretch">
+		<band height="22" splitType="Stretch">
 			<textField>
-				<reportElement x="13" y="0" width="35" height="20" uuid="5a24ddda-bba5-4aaa-93e3-fa6234fa2bc5"/>
+				<reportElement x="0" y="0" width="35" height="20" uuid="5a24ddda-bba5-4aaa-93e3-fa6234fa2bc5"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="48" y="0" width="169" height="20" uuid="eda21db1-6953-4fe4-9cc6-9814d4234139"/>
+				<reportElement x="35" y="0" width="169" height="20" uuid="eda21db1-6953-4fe4-9cc6-9814d4234139"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="337" y="0" width="122" height="20" uuid="06354be6-26f1-4f1d-8519-a3b50fb9742c"/>
-				<textElement>
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{manager_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="217" y="0" width="102" height="20" uuid="516d1a27-e305-4a91-9370-704e5e7da19a"/>
-				<textElement>
-					<font size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{project_type_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="469" y="0" width="69" height="20" uuid="6822c855-d05b-4b93-a64a-d877962c5459"/>
+				<reportElement x="469" y="0" width="86" height="20" uuid="6822c855-d05b-4b93-a64a-d877962c5459"/>
 				<textFieldExpression><![CDATA[$F{issuesCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="1" width="100" height="20" uuid="fc647fbe-acb1-4fcd-ad2d-4a695b73d79b"/>
+				<textFieldExpression><![CDATA[$F{project_type_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="1" width="138" height="20" uuid="cccd132f-4a09-4315-8b45-425a3fa35412"/>
+				<textFieldExpression><![CDATA[$F{user_name}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

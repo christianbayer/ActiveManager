@@ -117,6 +117,7 @@ public class Projetos extends javax.swing.JPanel {
         inpPesquisar = new javax.swing.JTextField();
         sepPesquisar = new javax.swing.JSeparator();
         btnImprimir = new javax.swing.JButton();
+        btnImprimir1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setFont(new java.awt.Font("Ubuntu Light", 0, 30)); // NOI18N
@@ -280,6 +281,23 @@ public class Projetos extends javax.swing.JPanel {
         });
         basePanel.add(btnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 140, 40));
 
+        btnImprimir1.setBackground(new java.awt.Color(52, 100, 127));
+        btnImprimir1.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        btnImprimir1.setForeground(new java.awt.Color(254, 254, 254));
+        btnImprimir1.setText("IMPRIMIR ATIVIDADES");
+        btnImprimir1.setToolTipText("");
+        btnImprimir1.setBorderPainted(false);
+        btnImprimir1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnImprimir1.setDefaultCapable(false);
+        btnImprimir1.setName(""); // NOI18N
+        btnImprimir1.setOpaque(true);
+        btnImprimir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimir1ActionPerformed(evt);
+            }
+        });
+        basePanel.add(btnImprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, 180, 40));
+
         add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -322,6 +340,28 @@ public class Projetos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnImprimir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimir1ActionPerformed
+        int project_id = Integer.valueOf(JOptionPane.showInputDialog("ID do Projeto"));
+        System.out.println(project_id);
+        try {
+            // Compila o relatorio
+            JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/ListagemAtividadesProjeto.jrxml"));
+
+            // Mapeia campos de parametros para o relatorio, mesmo que nao existam
+            Map params = new HashMap();
+
+            params.put("project_id", project_id);
+
+            // Executa relatoio
+            JasperPrint print = JasperFillManager.fillReport(report, params, ConnectionFactory.getInstance().getConnection());
+
+            // Exibe resultado em video
+            JasperViewer.viewReport(print, false);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
+        }
+    }//GEN-LAST:event_btnImprimir1ActionPerformed
 
     private Color panColorA = new Color(194, 228, 253);
     private Color panColorB = new Color(254, 254, 254);
@@ -479,6 +519,7 @@ public class Projetos extends javax.swing.JPanel {
     private javax.swing.JPanel basePanel;
     private javax.swing.JLabel btnEdit;
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnImprimir1;
     private javax.swing.JLabel btnMore;
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JButton btnPesquisar;

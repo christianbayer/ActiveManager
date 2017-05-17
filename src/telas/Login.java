@@ -5,6 +5,7 @@
  */
 package telas;
 
+import apoio.md5;
 import classes.User;
 import dao.UserDAO;
 
@@ -158,7 +159,7 @@ public class Login extends javax.swing.JFrame {
 
         if (user == null) {
             lblLoginError.setVisible(true);
-        } else if (user.getPassword().equals(password)) {
+        } else if (user.getPassword().equals(new md5().md5(password))) {
             Main main = new Main(user);
             main.setVisible(true);
             this.dispose();
