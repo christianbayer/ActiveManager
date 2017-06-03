@@ -28,15 +28,4 @@ public class md5 {
         return sen;
     }
 
-//    public String md5(String string) {
-//        try {
-//            MessageDigest m = MessageDigest.getInstance("MD5");
-//            m.update(string.getBytes(), 0, string.length());
-//            System.out.println("MD5: " + new BigInteger(1, m.digest()).toString(16));
-//            return new BigInteger(1, m.digest()).toString(16);
-//        } catch (NoSuchAlgorithmException exception) {
-//            System.out.println(exception);
-//        }
-//        return null;
-//    }
 }

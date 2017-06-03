@@ -6,6 +6,7 @@
 package telas;
 
 import apoio.JComboBoxItem;
+import apoio.Masks;
 import classes.Issue;
 import classes.User;
 import dao.IssueDAO;
@@ -50,6 +51,7 @@ public class AtividadesNovo extends javax.swing.JPanel {
     User user;
     Issue issue;
     Atividades atividades;
+    Masks masks;
 
     /**
      * Creates new form Usuario
@@ -78,6 +80,14 @@ public class AtividadesNovo extends javax.swing.JPanel {
         this.layoutController = lController;
         this.user = user;
 
+        masks = new Masks();
+        masks.integer(inpParentIssueId);
+        masks.integer(inpEstimatedHours);
+        masks.integer(inpSpentHours);
+        masks.date(inpDueDate);
+        masks.date(inpStartDate);
+        masks.date(inpEndDate);
+
         // Inicializa as cores;
         errorColor = new Color(255, 0, 0);
         normalColor = new Color(60, 60, 60);
@@ -98,43 +108,6 @@ public class AtividadesNovo extends javax.swing.JPanel {
 
         // Inicia a lista de erros
         errorsList = new ArrayList();
-
-        // Edição
-        if (issue.getTitle() != null) {
-            this.issue = issue;
-
-            // Seta o título da janela
-            lblWindow.setText("EDITAR ATIVIDADE");
-
-            // Inicializa os campos
-            inpTitle.setText(issue.getTitle());
-            if (issue.getParentIssueId() != 0) {
-                inpParentIssueId.setText(String.valueOf(issue.getParentIssueId()));
-            }
-            new JComboBoxItem().setSelectedItem(selProject, issue.getProjectId());
-            userProjectDAO.lists(selAssignedUser, selProject.getSelectedIndex());
-            new JComboBoxItem().setSelectedItem(selAssignedUser, issue.getAssignedUserId());
-            new JComboBoxItem().setSelectedItem(selIssueType, issue.getIssueTypeId());
-            new JComboBoxItem().setSelectedItem(selStatus, issue.getIssueStatusId());
-            new JComboBoxItem().setSelectedItem(selPriority, issue.getIssuePriorityId());
-            selDoneRatio.setSelectedItem(String.valueOf(issue.getDoneRatio()));
-            if (issue.getEstimatedHours() != 0) {
-                inpEstimatedHours.setText(String.valueOf(issue.getEstimatedHours()));
-            }
-            if (issue.getSpentHours() != 0) {
-                inpSpentHours.setText(String.valueOf(issue.getSpentHours()));
-            }
-            if (issue.getDueDate() != null) {
-                inpDueDate.setText(dateToString(issue.getDueDate()));
-            }
-            if (issue.getStartDate() != null) {
-                inpStartDate.setText(dateToString(issue.getStartDate()));
-            }
-            if (issue.getEndDate() != null) {
-                inpEndDate.setText(dateToString(issue.getEndDate()));
-            }
-            txtDescription.setText(issue.getDescription());
-        }
     }
 
     /**
@@ -549,17 +522,22 @@ public class AtividadesNovo extends javax.swing.JPanel {
 
             JComboBoxItem projectItem = (JComboBoxItem) selProject.getSelectedItem();
             issue.setProjectId(projectItem.getKey());
+
             JComboBoxItem issueTypeItem = (JComboBoxItem) selIssueType.getSelectedItem();
             issue.setIssueTypeId(issueTypeItem.getKey());
+
             JComboBoxItem statusItem = (JComboBoxItem) selStatus.getSelectedItem();
             issue.setIssueStatusId(statusItem.getKey());
+
             JComboBoxItem priorityItem = (JComboBoxItem) selPriority.getSelectedItem();
             issue.setIssuePriorityId(priorityItem.getKey());
+
             JComboBoxItem assignedUserItem = (JComboBoxItem) selAssignedUser.getSelectedItem();
             issue.setAssignedUserId(assignedUserItem.getKey());
-            System.out.println("combo val "+selAssignedUser.getSelectedItem());
-            System.out.println("item val"+assignedUserItem.getKey());
-            issue.setDoneRatio(Integer.valueOf(String.valueOf(selDoneRatio.getSelectedItem())));
+
+            System.out.println("combo val " + selAssignedUser.getSelectedItem());
+            System.out.println("item val" + assignedUserItem.getKey());
+            issue.setDoneRatio(String.valueOf(selDoneRatio.getSelectedItem()));
 
             String strDueDate = inpDueDate.getText();
             if (!strDueDate.trim().equals("Data Estimada")) {
@@ -577,26 +555,20 @@ public class AtividadesNovo extends javax.swing.JPanel {
             }
 
             if (!inpEstimatedHours.getText().trim().equals("Horas Estimadas")) {
-                issue.setEstimatedHours(Float.parseFloat(inpEstimatedHours.getText()));
+                issue.setEstimatedHours(Integer.parseInt(inpEstimatedHours.getText()));
             }
 
             if (!inpSpentHours.getText().trim().equals("Horas Gastas")) {
-                issue.setSpentHours(Float.parseFloat(inpSpentHours.getText()));
+                issue.setSpentHours(Integer.parseInt(inpSpentHours.getText()));
             }
 
             if (!inpParentIssueId.getText().trim().equals("Tarefa Pai")) {
                 issue.setParentIssueId(Integer.parseInt(inpParentIssueId.getText()));
             }
 
-            if (this.issue != null) {
-                issue.setId(this.issue.getId());
-                issue.setUpdatedBy(this.user.getId());
-                issueDAO.update(issue);
-            } else {
-                issue.setCreatedBy(this.user.getId());
-                issue.setUpdatedBy(this.user.getId());
-                issueDAO.save(issue);
-            }
+            issue.setCreatedBy(this.user.getId());
+            issue.setUpdatedBy(this.user.getId());
+            issueDAO.save(issue);
 
             atividades = new Atividades(btnBack, lblWindow, layoutController, cardPanel, user);
             cardPanel.add(atividades, "atividades");
@@ -608,7 +580,7 @@ public class AtividadesNovo extends javax.swing.JPanel {
     private void txtDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescriptionFocusGained
         if (txtDescription.getText().trim().equals("Descrição")) {
             txtDescription.setText("");
-            setTextFieldNormal(inpTitle, sepTitle);
+            txtDescription.setForeground(normalColor);
         }
     }//GEN-LAST:event_txtDescriptionFocusGained
 
@@ -631,7 +603,8 @@ public class AtividadesNovo extends javax.swing.JPanel {
     private void selProjectFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_selProjectFocusLost
         validateProject();
         if (selProject.getSelectedIndex() != 0) {
-            userProjectDAO.lists(selAssignedUser, selProject.getSelectedIndex());
+            JComboBoxItem projectItem = (JComboBoxItem) selProject.getSelectedItem();
+            userProjectDAO.lists(selAssignedUser, projectItem.getKey());
         }
     }//GEN-LAST:event_selProjectFocusLost
 

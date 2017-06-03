@@ -280,7 +280,7 @@ public class ProjetosNovo extends javax.swing.JPanel {
                 projectDAO.save(project);
             }
 
-            userProjectDAO.getAll();
+            project = (Project) projectDAO.getQuery("SELECT * FROM projects WHERE title=\""+project.getTitle()+"\"");
 
             ArrayList<Integer> usersProjectsUsersIds = new ArrayList();
             ArrayList<Object> usersProjects = userProjectDAO.getQuerys("SELECT * FROM users_projects WHERE project_id=" + project.getId() + " AND active=1;");
@@ -288,10 +288,14 @@ public class ProjetosNovo extends javax.swing.JPanel {
             boolean alreadyExists = false;
             while (iterator.hasNext()) {
                 UserProject userProject = (UserProject) iterator.next();
+                System.out.println(userProject.getUserName());
                 if (userProject.getUserId() == project.getManagerId()) {
+                    System.out.println("entrou");
                     alreadyExists = true;
                 }
             }
+            
+            System.out.println(alreadyExists);
 
             if (!alreadyExists) {
                 UserProject userProject = new UserProject();

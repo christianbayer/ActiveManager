@@ -91,14 +91,14 @@ where issues.active=true and project_id=$P{project_id}]]>
 	</background>
 	<title>
 		<band height="79" splitType="Stretch">
-			<image>
+<!--			<image>
 				<reportElement x="110" y="16" width="81" height="63" uuid="9b4659d1-987c-4912-a8c7-3f9b3def9411"/>
 				<imageExpression><![CDATA["/home/christian/NetBeansProjects/ActiveManager/src/icons/logo_v2.jpg"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="204" y="19" width="192" height="60" uuid="7381b75b-456c-4769-a794-f260ae908ba4"/>
 				<imageExpression><![CDATA["/home/christian/NetBeansProjects/ActiveManager/src/icons/logo_v3.jpg"]]></imageExpression>
-			</image>
+			</image>-->
 		</band>
 	</title>
 	<pageHeader>

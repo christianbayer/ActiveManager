@@ -12,7 +12,7 @@ import java.util.Date;
  * @author christian
  */
 public class ProjectHistoric {
-    
+
     private int id;
     private int projectId;
     private String title;
@@ -26,7 +26,11 @@ public class ProjectHistoric {
     private int updatedBy;
     private boolean active;
 
-    public ProjectHistoric(int projectId, String title, String description, boolean isPublic, int projectTypeId, int managerId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public ProjectHistoric() {
+    }
+
+    public ProjectHistoric(int id, int projectId, String title, String description, boolean isPublic, int projectTypeId, int managerId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+        this.id = id;
         this.projectId = projectId;
         this.title = title;
         this.description = description;
@@ -42,6 +46,10 @@ public class ProjectHistoric {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getProjectId() {
@@ -131,5 +139,5 @@ public class ProjectHistoric {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
 }

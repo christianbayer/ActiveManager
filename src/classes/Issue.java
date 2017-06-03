@@ -27,12 +27,12 @@ public class Issue {
     private int issueStatusId;
     private int issuePriorityId;
     private int assignedUserId;
-    private int doneRatio;
+    private String doneRatio;
     private Date dueDate;
     private Date startDate;
     private Date endDate;
-    private float estimatedHours;
-    private float spentHours;
+    private int estimatedHours;
+    private int spentHours;
     private int parentIssueId;
     private Date createdAt;
     private int createdBy;
@@ -43,7 +43,7 @@ public class Issue {
     public Issue() {
     }
 
-    public Issue(int id, int projectId, String title, String description, int issueTypeId, int issueStatusId, int issuePriorityId, int assignedUserId, int doneRatio, Date dueDate, Date startDate, Date endDate, float estimatedHours, float spentHours, int parentIssueId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public Issue(int id, int projectId, String title, String description, int issueTypeId, int issueStatusId, int issuePriorityId, int assignedUserId, String doneRatio, Date dueDate, Date startDate, Date endDate, int estimatedHours, int spentHours, int parentIssueId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
         this.id = id;
         this.projectId = projectId;
         this.title = title;
@@ -162,11 +162,11 @@ public class Issue {
         return user.getFirstName() + " " + user.getLastName();
     }
 
-    public int getDoneRatio() {
+    public String getDoneRatio() {
         return doneRatio;
     }
 
-    public void setDoneRatio(int doneRatio) {
+    public void setDoneRatio(String doneRatio) {
         this.doneRatio = doneRatio;
     }
 
@@ -194,19 +194,19 @@ public class Issue {
         this.endDate = endDate;
     }
 
-    public float getEstimatedHours() {
+    public int getEstimatedHours() {
         return estimatedHours;
     }
 
-    public void setEstimatedHours(float estimatedHours) {
+    public void setEstimatedHours(int estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
-    public float getSpentHours() {
+    public int getSpentHours() {
         return spentHours;
     }
 
-    public void setSpentHours(float spentHours) {
+    public void setSpentHours(int spentHours) {
         this.spentHours = spentHours;
     }
 

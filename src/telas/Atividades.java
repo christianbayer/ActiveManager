@@ -6,7 +6,6 @@
 package telas;
 
 import classes.Issue;
-import classes.Project;
 import classes.User;
 import connection.ConnectionFactory;
 import dao.IssueDAO;
@@ -23,9 +22,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -47,6 +43,7 @@ public class Atividades extends javax.swing.JPanel {
     Dashboard dashboard;
     User user;
     AtividadesNovo atividadesNovo;
+    AtividadesAtualizar atividadesAtualizar;
     IssueDAO issueDAO;
 
     /**
@@ -453,10 +450,10 @@ public class Atividades extends javax.swing.JPanel {
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
-                atividadesNovo = new AtividadesNovo(btnBack, lblWindow, layoutController, cardPanel, issue, user);
-                cardPanel.add(atividadesNovo, "atividadesNovo");
+                atividadesAtualizar = new AtividadesAtualizar(btnBack, lblWindow, layoutController, cardPanel, issue, user);
+                cardPanel.add(atividadesAtualizar, "atividadesAtualizar");
                 layoutController = ((CardLayout) cardPanel.getLayout());
-                layoutController.show(cardPanel, "atividadesNovo");
+                layoutController.show(cardPanel, "atividadesAtualizar");
             }
         });
         issuePanel.add(btnEdit, new AbsoluteConstraints(640, 5, -1, -1));

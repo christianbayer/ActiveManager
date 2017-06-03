@@ -12,9 +12,8 @@ import java.util.Date;
  * @author christian
  */
 public class Journal {
-    
+
     private int id;
-    private int issueId;
     private String description;
     private Date createdAt;
     private int createdBy;
@@ -22,8 +21,11 @@ public class Journal {
     private int updatedBy;
     private boolean active;
 
-    public Journal(int issueId, String description, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
-        this.issueId = issueId;
+    public Journal() {
+    }
+
+    public Journal(int id, String description, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+        this.id = id;
         this.description = description;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
@@ -36,12 +38,8 @@ public class Journal {
         return id;
     }
 
-    public int getIssueId() {
-        return issueId;
-    }
-
-    public void setIssueId(int issueId) {
-        this.issueId = issueId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescription() {

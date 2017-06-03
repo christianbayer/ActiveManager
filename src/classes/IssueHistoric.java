@@ -12,21 +12,20 @@ import java.util.Date;
  * @author christian
  */
 public class IssueHistoric {
-    
+
     private int id;
     private int issueId;
-    private String title;
-    private String description;
+    private int journalId;
     private int issueTypeId;
     private int issueStatusId;
     private int issuePriorityId;
     private int assignedUserId;
-    private int doneRatio;
+    private String doneRatio;
     private Date dueDate;
     private Date startDate;
     private Date endDate;
-    private float estimatedHours;
-    private float spentHours;
+    private int estimatedHours;
+    private int spentHours;
     private int parentIssueId;
     private Date createdAt;
     private int createdBy;
@@ -34,10 +33,13 @@ public class IssueHistoric {
     private int updatedBy;
     private boolean active;
 
-    public IssueHistoric(int issueId, String title, String description, int issueTypeId, int issueStatusId, int issuePriorityId, int assignedUserId, int doneRatio, Date dueDate, Date startDate, Date endDate, float estimatedHours, float spentHours, int parentIssueId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+    public IssueHistoric() {
+    }
+
+    public IssueHistoric(int id, int issueId, int journalId, int issueTypeId, int issueStatusId, int issuePriorityId, int assignedUserId, String doneRatio, Date dueDate, Date startDate, Date endDate, int estimatedHours, int spentHours, int parentIssueId, Date createdAt, int createdBy, Date updatedAt, int updatedBy, boolean active) {
+        this.id = id;
         this.issueId = issueId;
-        this.title = title;
-        this.description = description;
+        this.journalId = journalId;
         this.issueTypeId = issueTypeId;
         this.issueStatusId = issueStatusId;
         this.issuePriorityId = issuePriorityId;
@@ -60,6 +62,10 @@ public class IssueHistoric {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getIssueId() {
         return issueId;
     }
@@ -68,20 +74,12 @@ public class IssueHistoric {
         this.issueId = issueId;
     }
 
-    public String getTitle() {
-        return title;
+    public int getJournalId() {
+        return journalId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setJournalId(int journalId) {
+        this.journalId = journalId;
     }
 
     public int getIssueTypeId() {
@@ -116,11 +114,11 @@ public class IssueHistoric {
         this.assignedUserId = assignedUserId;
     }
 
-    public int getDoneRatio() {
+    public String getDoneRatio() {
         return doneRatio;
     }
 
-    public void setDoneRatio(int doneRatio) {
+    public void setDoneRatio(String doneRatio) {
         this.doneRatio = doneRatio;
     }
 
@@ -148,19 +146,19 @@ public class IssueHistoric {
         this.endDate = endDate;
     }
 
-    public float getEstimatedHours() {
+    public int getEstimatedHours() {
         return estimatedHours;
     }
 
-    public void setEstimatedHours(float estimatedHours) {
+    public void setEstimatedHours(int estimatedHours) {
         this.estimatedHours = estimatedHours;
     }
 
-    public float getSpentHours() {
+    public int getSpentHours() {
         return spentHours;
     }
 
-    public void setSpentHours(float spentHours) {
+    public void setSpentHours(int spentHours) {
         this.spentHours = spentHours;
     }
 
@@ -211,5 +209,5 @@ public class IssueHistoric {
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
 }

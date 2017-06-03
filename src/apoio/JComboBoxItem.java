@@ -46,9 +46,13 @@ public class JComboBoxItem {
     }
 
     public void setSelectedItem(JComboBox combobox, int key) {
+        System.out.println("a");
         for (int i = 0; i < combobox.getItemCount(); i++) {
+            System.out.println("b");
             if (((JComboBoxItem) combobox.getItemAt(i)).getKey() == key) {
+                System.out.println("c");
                 combobox.setSelectedIndex(i);
+                System.out.println("d");
                 return;
             }
         }

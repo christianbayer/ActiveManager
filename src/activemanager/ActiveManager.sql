@@ -185,12 +185,12 @@ CREATE TABLE IF NOT EXISTS `active_manager`.`issues` (
   `issue_status_id` INT NOT NULL,
   `issue_priority_id` INT NOT NULL,
   `assigned_user_id` INT NOT NULL,
-  `done_ratio` INT NULL,
+  `done_ratio` VARCHAR(255) NULL,
   `due_date` DATE NULL,
   `start_date` DATE NULL,
   `end_date` DATE NULL,
-  `estimated_hours` FLOAT NULL,
-  `spent_hours` FLOAT NULL,
+  `estimated_hours` INT NULL,
+  `spent_hours` INT NULL,
   `parent_issue_id` INT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` INT NOT NULL,
@@ -242,20 +242,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `active_manager`.`journals` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `issue_id` INT NOT NULL,
   `description` TEXT NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` INT NOT NULL,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_by` INT NOT NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  INDEX `fk_journal_issues1_idx` (`issue_id` ASC),
-  CONSTRAINT `fk_journal_issues1`
-    FOREIGN KEY (`issue_id`)
-    REFERENCES `active_manager`.`issues` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -265,18 +258,17 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `active_manager`.`issues_historics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `issue_id` INT NOT NULL,
-  `title` VARCHAR(255) NULL,
-  `description` TEXT NULL,
+  `journal_id` INT NULL,
   `issue_type_id` INT NULL,
   `issue_status_id` INT NULL,
   `issue_priority_id` INT NULL,
   `assigned_user_id` INT NULL,
-  `done_ratio` INT NULL,
+  `done_ratio` VARCHAR(255) NULL,
   `due_date` DATE NULL,
   `start_date` DATE NULL,
   `end_date` DATE NULL,
-  `estimated_hours` FLOAT NULL,
-  `spent_hours` FLOAT NULL,
+  `estimated_hours` INT NULL,
+  `spent_hours` INT NULL,
   `parent_issue_id` INT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` INT NOT NULL,
@@ -288,6 +280,11 @@ CREATE TABLE IF NOT EXISTS `active_manager`.`issues_historics` (
   CONSTRAINT `fk_issues_history_issues1`
     FOREIGN KEY (`issue_id`)
     REFERENCES `active_manager`.`issues` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_issues_historics_journals1`
+    FOREIGN KEY (`journal_id`)
+    REFERENCES `active_manager`.`journals` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
