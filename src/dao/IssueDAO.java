@@ -315,4 +315,49 @@ public class IssueDAO implements DAOFactory {
         return issue;
     }
 
+    public ArrayList<Object> getQuerys(String query) {
+        ArrayList<Object> issues = new ArrayList<>();
+        try {
+
+            // Cria o statement //
+            PreparedStatement ps = ConnectionFactory.getInstance().getConnection().prepareStatement(query);
+
+            // Executa a query e pega o objeto //
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                Issue issue = new Issue();
+                issue.setId(resultSet.getInt("id"));
+                issue.setProjectId(resultSet.getInt("project_id"));
+                issue.setTitle(resultSet.getString("title"));
+                issue.setDescription(resultSet.getString("description"));
+                issue.setIssueTypeId(resultSet.getInt("issue_type_id"));
+                issue.setIssueStatusId(resultSet.getInt("issue_status_id"));
+                issue.setIssuePriorityId(resultSet.getInt("issue_priority_id"));
+                issue.setAssignedUserId(resultSet.getInt("assigned_user_id"));
+                issue.setDoneRatio(resultSet.getString("done_ratio"));
+                issue.setDueDate(resultSet.getDate("due_date"));
+                issue.setStartDate(resultSet.getDate("start_date"));
+                issue.setEndDate(resultSet.getDate("end_date"));
+                issue.setEstimatedHours(resultSet.getInt("estimated_hours"));
+                issue.setSpentHours(resultSet.getInt("spent_hours"));
+                issue.setParentIssueId(resultSet.getInt("parent_issue_id"));
+                issue.setCreatedAt(resultSet.getDate("created_at"));
+                issue.setCreatedBy(resultSet.getInt("created_by"));
+                issue.setUpdatedAt(resultSet.getDate("updated_at"));
+                issue.setUpdatedBy(resultSet.getInt("updated_by"));
+                issue.setActive(resultSet.getBoolean("active"));
+                issues.add(issue);
+            }
+
+            // Encerra o statement //
+            resultSet.close();
+            ps.close();
+
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return issues;
+    }
 }

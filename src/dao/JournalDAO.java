@@ -198,4 +198,5 @@ public class JournalDAO implements DAOFactory {
         return journal;
     }
 
+
 }

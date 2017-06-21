@@ -5,13 +5,23 @@
  */
 package telas;
 
+import apoio.JComboBoxItem;
 import classes.Issue;
 import classes.User;
+import classes.UserProject;
 import connection.ConnectionFactory;
 import dao.IssueDAO;
+import dao.IssuePriorityDAO;
+import dao.IssueStatusDAO;
+import dao.IssueTypeDAO;
+import dao.ProjectDAO;
+import dao.UserDAO;
+import dao.UserProjectDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -44,7 +54,14 @@ public class Atividades extends javax.swing.JPanel {
     User user;
     AtividadesNovo atividadesNovo;
     AtividadesAtualizar atividadesAtualizar;
+    AtividadesDetalhes atividadesDetalhes;
     IssueDAO issueDAO;
+    IssueTypeDAO issueTypeDAO;
+    IssueStatusDAO issueStatusDAO;
+    IssuePriorityDAO issuePriorityDAO;
+    ProjectDAO projectDAO;
+    UserDAO userDAO;
+    UserProjectDAO userProjectDAO;
 
     /**
      * Creates new form Usuario
@@ -74,6 +91,30 @@ public class Atividades extends javax.swing.JPanel {
         this.user = user;
 
         issueDAO = new IssueDAO();
+        issueTypeDAO = new IssueTypeDAO();
+        issueStatusDAO = new IssueStatusDAO();
+        issuePriorityDAO = new IssuePriorityDAO();
+        projectDAO = new ProjectDAO();
+        userDAO = new UserDAO();
+        userProjectDAO = new UserProjectDAO();
+
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                filter();
+            }
+        };
+        
+        projectDAO.lists(selProject);
+        issueTypeDAO.lists(selIssueType);
+        issueStatusDAO.lists(selStatus);
+        issuePriorityDAO.lists(selPriority);
+        userDAO.lists(selAssignedUser, "Atribuído para");
+        selIssueType.addActionListener(al);
+        selProject.addActionListener(al);
+        selStatus.addActionListener(al);
+        selPriority.addActionListener(al);
+        selAssignedUser.addActionListener(al);
 
         row1.setVisible(false);
 
@@ -91,9 +132,8 @@ public class Atividades extends javax.swing.JPanel {
 
         basePanel = new javax.swing.JPanel();
         lblFound = new javax.swing.JLabel();
-        btnPesquisar = new javax.swing.JButton();
-        inpPesquisar = new javax.swing.JTextField();
-        sepPesquisar = new javax.swing.JSeparator();
+        inpTitle = new javax.swing.JTextField();
+        sepTitle = new javax.swing.JSeparator();
         btnNew = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         panIssues = new javax.swing.JPanel();
@@ -119,6 +159,11 @@ public class Atividades extends javax.swing.JPanel {
         lblCabecalhoStatus = new javax.swing.JLabel();
         btnImprimir = new javax.swing.JButton();
         btnImprimir1 = new javax.swing.JButton();
+        selAssignedUser = new javax.swing.JComboBox<>();
+        selPriority = new javax.swing.JComboBox<>();
+        selProject = new javax.swing.JComboBox<>();
+        selIssueType = new javax.swing.JComboBox<>();
+        selStatus = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(254, 254, 254));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -128,44 +173,28 @@ public class Atividades extends javax.swing.JPanel {
 
         lblFound.setFont(new java.awt.Font("Ubuntu Light", 0, 18)); // NOI18N
         lblFound.setText("1 projetos encontrados:");
-        basePanel.add(lblFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        basePanel.add(lblFound, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
-        btnPesquisar.setBackground(new java.awt.Color(52, 100, 127));
-        btnPesquisar.setFont(new java.awt.Font("NanumGothic", 0, 14)); // NOI18N
-        btnPesquisar.setForeground(new java.awt.Color(254, 254, 254));
-        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
-        btnPesquisar.setToolTipText("");
-        btnPesquisar.setBorderPainted(false);
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnPesquisar.setDefaultCapable(false);
-        btnPesquisar.setName(""); // NOI18N
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
-        basePanel.add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 40, 40));
-
-        inpPesquisar.setBackground(new java.awt.Color(254, 254, 254));
-        inpPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
-        inpPesquisar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        inpPesquisar.setText("Pesquisar");
-        inpPesquisar.setBorder(null);
-        inpPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        inpPesquisar.addFocusListener(new java.awt.event.FocusAdapter() {
+        inpTitle.setBackground(new java.awt.Color(254, 254, 254));
+        inpTitle.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        inpTitle.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        inpTitle.setText("Título");
+        inpTitle.setBorder(null);
+        inpTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inpTitle.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                inpPesquisarFocusGained(evt);
+                inpTitleFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                inpPesquisarFocusLost(evt);
+                inpTitleFocusLost(evt);
             }
         });
-        basePanel.add(inpPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 230, 20));
+        basePanel.add(inpTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 240, 20));
 
-        sepPesquisar.setBackground(new java.awt.Color(103, 103, 103));
-        sepPesquisar.setForeground(new java.awt.Color(29, 29, 29));
-        sepPesquisar.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
-        basePanel.add(sepPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 230, 1));
+        sepTitle.setBackground(new java.awt.Color(103, 103, 103));
+        sepTitle.setForeground(new java.awt.Color(29, 29, 29));
+        sepTitle.setFont(new java.awt.Font("Ubuntu", 0, 3)); // NOI18N
+        basePanel.add(sepTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 1));
 
         btnNew.setBackground(new java.awt.Color(52, 100, 127));
         btnNew.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -234,7 +263,7 @@ public class Atividades extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(panIssues);
 
-        basePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 740, 330));
+        basePanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 740, 280));
 
         panCabecalho.setBackground(new java.awt.Color(209, 209, 209));
         panCabecalho.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -271,7 +300,7 @@ public class Atividades extends javax.swing.JPanel {
         lblCabecalhoStatus.setText("STATUS");
         panCabecalho.add(lblCabecalhoStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 8, -1, -1));
 
-        basePanel.add(panCabecalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, 30));
+        basePanel.add(panCabecalho, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 740, 30));
 
         btnImprimir.setBackground(new java.awt.Color(52, 100, 127));
         btnImprimir.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
@@ -307,24 +336,62 @@ public class Atividades extends javax.swing.JPanel {
         });
         basePanel.add(btnImprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 140, 40));
 
+        selAssignedUser.setBackground(new java.awt.Color(254, 254, 254));
+        selAssignedUser.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        selAssignedUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Atribuído Para" }));
+        selAssignedUser.setToolTipText("");
+        selAssignedUser.setOpaque(false);
+        basePanel.add(selAssignedUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 240, -1));
+
+        selPriority.setBackground(new java.awt.Color(254, 254, 254));
+        selPriority.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        selPriority.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prioridade" }));
+        selPriority.setToolTipText("");
+        selPriority.setOpaque(false);
+        basePanel.add(selPriority, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 240, -1));
+
+        selProject.setBackground(new java.awt.Color(254, 254, 254));
+        selProject.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        selProject.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Projeto" }));
+        selProject.setToolTipText("");
+        selProject.setOpaque(false);
+        selProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selProjectActionPerformed(evt);
+            }
+        });
+        basePanel.add(selProject, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 240, -1));
+
+        selIssueType.setBackground(new java.awt.Color(254, 254, 254));
+        selIssueType.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        selIssueType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Atividade" }));
+        selIssueType.setToolTipText("");
+        selIssueType.setOpaque(false);
+        basePanel.add(selIssueType, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 240, -1));
+
+        selStatus.setBackground(new java.awt.Color(254, 254, 254));
+        selStatus.setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        selStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Status" }));
+        selStatus.setToolTipText("");
+        selStatus.setOpaque(false);
+        basePanel.add(selStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 240, -1));
+
         add(basePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
-    }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    private void inpPesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPesquisarFocusGained
-        if (inpPesquisar.getText().trim().equals("Usuário")) {
-            inpPesquisar.setText("");
+    private void inpTitleFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpTitleFocusGained
+        if (inpTitle.getText().trim().equals("Título")) {
+            inpTitle.setText("");
         }
-    }//GEN-LAST:event_inpPesquisarFocusGained
+    }//GEN-LAST:event_inpTitleFocusGained
 
-    private void inpPesquisarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpPesquisarFocusLost
-        if (inpPesquisar.getText().trim().isEmpty()) {
-            inpPesquisar.setText("Usuário");
+    private void inpTitleFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inpTitleFocusLost
+        if (inpTitle.getText().trim().isEmpty()) {
+            inpTitle.setText("Título");
+        } else {
+            filter();
         }
-    }//GEN-LAST:event_inpPesquisarFocusLost
+    }//GEN-LAST:event_inpTitleFocusLost
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         atividadesNovo = new AtividadesNovo(btnBack, lblWindow, layoutController, cardPanel, new Issue(), user);
@@ -372,6 +439,10 @@ public class Atividades extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e);
         }
     }//GEN-LAST:event_btnImprimir1ActionPerformed
+
+    private void selProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selProjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selProjectActionPerformed
 
     private Color panColorA = new Color(194, 228, 253);
     private Color panColorB = new Color(254, 254, 254);
@@ -459,6 +530,15 @@ public class Atividades extends javax.swing.JPanel {
         issuePanel.add(btnEdit, new AbsoluteConstraints(640, 5, -1, -1));
 
         btnMore.setIcon(new ImageIcon(getClass().getResource("/icons/more.png"))); // NOI18N
+        btnMore.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                atividadesDetalhes = new AtividadesDetalhes(btnBack, lblWindow, layoutController, cardPanel, issue, user);
+                cardPanel.add(atividadesDetalhes, "atividadesDetalhes");
+                layoutController = ((CardLayout) cardPanel.getLayout());
+                layoutController.show(cardPanel, "atividadesDetalhes");
+            }
+        });
         issuePanel.add(btnMore, new AbsoluteConstraints(700, 5, -1, -1));
 
         panIssues.add(issuePanel, new AbsoluteConstraints(0, panY, 740, 30));
@@ -483,6 +563,81 @@ public class Atividades extends javax.swing.JPanel {
         lblFound.setText(issues.size() + " atividades encontradas:");
     }
 
+    private void filter() {
+
+        JComboBoxItem projectItem = (JComboBoxItem) selProject.getSelectedItem();
+        int projectId = projectItem.getKey();
+
+        JComboBoxItem issueTypeItem = (JComboBoxItem) selIssueType.getSelectedItem();
+        int issueTypeId = issueTypeItem.getKey();
+
+        JComboBoxItem statusItem = (JComboBoxItem) selStatus.getSelectedItem();
+        int issueStatusId = statusItem.getKey();
+
+        JComboBoxItem priorityItem = (JComboBoxItem) selPriority.getSelectedItem();
+        int issuePriorityId = priorityItem.getKey();
+
+        JComboBoxItem assignedUserItem = (JComboBoxItem) selAssignedUser.getSelectedItem();
+        int assignedUserId = assignedUserItem.getKey();
+
+        String title = inpTitle.getText();
+
+        String query = "SELECT * FROM issues WHERE ";
+        if (projectId != 0) {
+            query += "project_id = " + projectId + " AND ";
+        }
+        if (issueTypeId != 0) {
+            query += "issue_type_id = " + issueTypeId + " AND ";
+        }
+        if (issueStatusId != 0) {
+            query += "issue_status_id = " + issueStatusId + " AND ";
+        }
+        if (issuePriorityId != 0) {
+            query += "issue_priority_id = " + issuePriorityId + " AND ";
+        }
+        if (assignedUserId != 0) {
+            ArrayList<Object> usersProjects = userProjectDAO.getQuerys("SELECT * FROM users_projects WHERE user_id = " + assignedUserId);
+            Iterator<Object> iterator = usersProjects.iterator();
+            ArrayList<String> arrUsersIds = new ArrayList();
+            while (iterator.hasNext()) {
+                UserProject userProject = (UserProject) iterator.next();
+                arrUsersIds.add(String.valueOf(userProject.getId()));
+
+            }
+
+            String usersIds = "";
+            for (int i = 0; i < arrUsersIds.size(); i++) {
+                if (i == 0) {
+                    usersIds += arrUsersIds.get(i);
+                } else {
+                    usersIds += ", " + arrUsersIds.get(i);
+                }
+            }
+
+            if (!usersIds.isEmpty()) {
+                query += "project_id IN (" + usersIds + ") AND ";
+            } else {
+                query += "project_id = 0 AND ";
+            }
+        }
+        if (!title.isEmpty()) {
+            query += "title like \"%" + title + "%\" AND ";
+        }
+        query += "id IS NOT NULL;";
+
+        panY = 0;
+        panRowCount = 1;
+        panIssues.removeAll();
+        panIssues.updateUI();
+        ArrayList<Object> issues = issueDAO.getQuerys(query);
+        Iterator<Object> iterator = issues.iterator();
+        while (iterator.hasNext()) {
+            Issue issue = (Issue) iterator.next();
+            listIssue(issue);
+        }
+        lblFound.setText(issues.size() + " atividades encontradas:");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
     private javax.swing.JLabel btnEdit;
@@ -490,9 +645,8 @@ public class Atividades extends javax.swing.JPanel {
     private javax.swing.JButton btnImprimir1;
     private javax.swing.JLabel btnMore;
     private javax.swing.JButton btnNew;
-    private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel btnTrash;
-    private javax.swing.JTextField inpPesquisar;
+    private javax.swing.JTextField inpTitle;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAssignedUser;
     private javax.swing.JLabel lblCabecalhoAcoes;
@@ -513,6 +667,11 @@ public class Atividades extends javax.swing.JPanel {
     private javax.swing.JPanel panCabecalho;
     private javax.swing.JPanel panIssues;
     private javax.swing.JPanel row1;
-    private javax.swing.JSeparator sepPesquisar;
+    private javax.swing.JComboBox<String> selAssignedUser;
+    private javax.swing.JComboBox<String> selIssueType;
+    private javax.swing.JComboBox<String> selPriority;
+    private javax.swing.JComboBox<String> selProject;
+    private javax.swing.JComboBox<String> selStatus;
+    private javax.swing.JSeparator sepTitle;
     // End of variables declaration//GEN-END:variables
 }
