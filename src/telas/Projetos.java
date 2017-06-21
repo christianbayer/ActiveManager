@@ -14,6 +14,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -324,7 +327,7 @@ public class Projetos extends javax.swing.JPanel {
     }//GEN-LAST:event_inpPesquisarFocusLost
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-         try {
+        try {
             // Compila o relatorio
             JasperReport report = JasperCompileManager.compileReport(getClass().getResourceAsStream("/reports/ListagemProjetos.jrxml"));
 
@@ -369,135 +372,153 @@ public class Projetos extends javax.swing.JPanel {
     private int panRowCount;
 
     private void listProject(Project project) {
+        try {
+            JPanel projectPanel = new JPanel();
+            projectPanel.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
+            projectPanel.setLayout(new AbsoluteLayout());
+            Statement st = ConnectionFactory.getInstance().getConnection().createStatement();
+            ResultSet resSet;
 
-        JPanel projectPanel = new JPanel();
-        projectPanel.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
-        projectPanel.setLayout(new AbsoluteLayout());
+            JLabel lblTitulo = new JLabel();
+            JTextArea txtDescricao = new JTextArea();
+            JLabel lblAberta = new JLabel();
+            JLabel lblAndamento = new JLabel();
+            JLabel lblTeste = new JLabel();
+            JLabel lblTotal = new JLabel();
+            JLabel lblGerente = new JLabel();
+            JLabel lblManager = new JLabel();
+            JLabel lblCriadoEm = new JLabel();
+            JLabel lblCreatedAt = new JLabel();
+            JLabel btnTrash = new JLabel();
+            JLabel btnEdit = new JLabel();
+            JLabel btnUsers = new JLabel();
+            JLabel btnMore = new JLabel();
+            JSeparator separador = new JSeparator();
 
-        JLabel lblTitulo = new JLabel();
-        JTextArea txtDescricao = new JTextArea();
-        JLabel lblAberta = new JLabel();
-        JLabel lblAndamento = new JLabel();
-        JLabel lblTeste = new JLabel();
-        JLabel lblTotal = new JLabel();
-        JLabel lblGerente = new JLabel();
-        JLabel lblManager = new JLabel();
-        JLabel lblCriadoEm = new JLabel();
-        JLabel lblCreatedAt = new JLabel();
-        JLabel btnTrash = new JLabel();
-        JLabel btnEdit = new JLabel();
-        JLabel btnUsers = new JLabel();
-        JLabel btnMore = new JLabel();
-        JSeparator separador = new JSeparator();
+            if (!project.isActive()) {
+                lblTitulo.setForeground(new Color(172, 172, 172));
+                txtDescricao.setForeground(new Color(172, 172, 172));
+                lblAberta.setForeground(new Color(172, 172, 172));
+                lblAndamento.setForeground(new Color(172, 172, 172));
+                lblTeste.setForeground(new Color(172, 172, 172));
+                lblTotal.setForeground(new Color(172, 172, 172));
+                lblGerente.setForeground(new Color(172, 172, 172));
+                lblManager.setForeground(new Color(172, 172, 172));
+                lblCriadoEm.setForeground(new Color(172, 172, 172));
+                lblCreatedAt.setForeground(new Color(172, 172, 172));
+            }
 
-        if (!project.isActive()) {
-            lblTitulo.setForeground(new Color(172, 172, 172));
-            txtDescricao.setForeground(new Color(172, 172, 172));
-            lblAberta.setForeground(new Color(172, 172, 172));
-            lblAndamento.setForeground(new Color(172, 172, 172));
-            lblTeste.setForeground(new Color(172, 172, 172));
-            lblTotal.setForeground(new Color(172, 172, 172));
-            lblGerente.setForeground(new Color(172, 172, 172));
-            lblManager.setForeground(new Color(172, 172, 172));
-            lblCriadoEm.setForeground(new Color(172, 172, 172));
-            lblCreatedAt.setForeground(new Color(172, 172, 172));
-        }
+            lblTitulo.setFont(new Font("Ubuntu Light", 0, 16)); // NOI18N
+            lblTitulo.setText(project.getTitle());
+            projectPanel.add(lblTitulo, new AbsoluteConstraints(10, 10, -1, -1));
 
-        lblTitulo.setFont(new Font("Ubuntu Light", 0, 16)); // NOI18N
-        lblTitulo.setText(project.getTitle());
-        projectPanel.add(lblTitulo, new AbsoluteConstraints(10, 10, -1, -1));
+            txtDescricao.setEditable(false);
+            txtDescricao.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
+            txtDescricao.setColumns(40);
+            txtDescricao.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+            txtDescricao.setLineWrap(true);
+            txtDescricao.setRows(5);
+            txtDescricao.setText(project.getDescription());
+            txtDescricao.setWrapStyleWord(true);
+            projectPanel.add(txtDescricao, new AbsoluteConstraints(10, 30, 330, 50));
 
-        txtDescricao.setEditable(false);
-        txtDescricao.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
-        txtDescricao.setColumns(40);
-        txtDescricao.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        txtDescricao.setLineWrap(true);
-        txtDescricao.setRows(5);
-        txtDescricao.setText(project.getDescription());
-        txtDescricao.setWrapStyleWord(true);
-        projectPanel.add(txtDescricao, new AbsoluteConstraints(10, 30, 330, 50));
+            separador.setOrientation(SwingConstants.VERTICAL);
+            projectPanel.add(separador, new AbsoluteConstraints(350, 0, 10, 90));
 
-        separador.setOrientation(SwingConstants.VERTICAL);
-        projectPanel.add(separador, new AbsoluteConstraints(350, 0, 10, 90));
-        
-        btnTrash.setIcon(new ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
-        btnTrash.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                int res = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este projeto? Esta ação não poderá ser desfeita!");
-                if (res == 0) {
-                    projectDAO.delete(project.getId());
-                    listProjects();
+            btnTrash.setIcon(new ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
+            btnTrash.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    int res = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir este projeto? Esta ação não poderá ser desfeita!");
+                    if (res == 0) {
+                        projectDAO.delete(project.getId());
+                        listProjects();
+                    }
                 }
+            });
+            projectPanel.add(btnTrash, new AbsoluteConstraints(660, 20, -1, -1));
+
+            btnEdit.setIcon(new ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+            btnEdit.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    projetosNovo = new ProjetosNovo(btnBack, lblWindow, layoutController, cardPanel, project, user);
+                    cardPanel.add(projetosNovo, "projetosNovo");
+                    layoutController = ((CardLayout) cardPanel.getLayout());
+                    layoutController.show(cardPanel, "projetosNovo");
+                }
+            });
+            projectPanel.add(btnEdit, new AbsoluteConstraints(690, 20, -1, -1));
+
+            btnUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
+            btnUsers.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    projetoUsuarios = new ProjetoUsuarios(btnBack, lblWindow, layoutController, cardPanel, project, user);
+                    cardPanel.add(projetoUsuarios, "projetoUsuarios");
+                    layoutController = ((CardLayout) cardPanel.getLayout());
+                    layoutController.show(cardPanel, "projetoUsuarios");
+                }
+            });
+            projectPanel.add(btnUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
+
+            btnMore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/more.png"))); // NOI18N
+            projectPanel.add(btnMore, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, -1, -1));
+
+            lblManager.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+            lblManager.setText("Xablau");
+            projectPanel.add(lblManager, new AbsoluteConstraints(520, 30, -1, -1));
+
+            resSet = st.executeQuery("select count(id) as count from issues where project_id = " + project.getId() + " and issue_status_id = 2");
+            while (resSet.next()) {
+                lblAndamento.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+                lblAndamento.setText("Andamento: " + resSet.getString("count"));
+                projectPanel.add(lblAndamento, new AbsoluteConstraints(370, 30, -1, -1));
             }
-        });
-        projectPanel.add(btnTrash, new AbsoluteConstraints(660, 20, -1, -1));
 
-        btnEdit.setIcon(new ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
-        btnEdit.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                projetosNovo = new ProjetosNovo(btnBack, lblWindow, layoutController, cardPanel, project, user);
-                cardPanel.add(projetosNovo, "projetosNovo");
-                layoutController = ((CardLayout) cardPanel.getLayout());
-                layoutController.show(cardPanel, "projetosNovo");
+            resSet = st.executeQuery("select count(id) as count from issues where project_id = " + project.getId());
+            while (resSet.next()) {
+                lblTotal.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+                lblTotal.setText("Total: " + resSet.getString("count"));
+                projectPanel.add(lblTotal, new AbsoluteConstraints(370, 70, -1, -1));
             }
-        });
-        projectPanel.add(btnEdit, new AbsoluteConstraints(690, 20, -1, -1));
-        
-        btnUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users.png"))); // NOI18N
-        btnUsers.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent evt) {
-                projetoUsuarios = new ProjetoUsuarios(btnBack, lblWindow, layoutController, cardPanel, project, user);
-                cardPanel.add(projetoUsuarios, "projetoUsuarios");
-                layoutController = ((CardLayout) cardPanel.getLayout());
-                layoutController.show(cardPanel, "projetoUsuarios");
+
+            resSet = st.executeQuery("select count(id) as count from issues where project_id = " + project.getId() + " and issue_status_id = 5");
+            while (resSet.next()) {
+                lblTeste.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+                lblTeste.setText("Fechada: " + resSet.getString("count"));
+                projectPanel.add(lblTeste, new AbsoluteConstraints(370, 50, -1, -1));
             }
-        });
-        projectPanel.add(btnUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
 
-        btnMore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/more.png"))); // NOI18N
-        projectPanel.add(btnMore, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, -1, -1));
+            resSet = st.executeQuery("select count(id) as count from issues where project_id = " + project.getId() + " and issue_status_id = 1");
+            while (resSet.next()) {
+                lblAberta.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+                lblAberta.setText("Aberta: " + resSet.getString("count"));
+                projectPanel.add(lblAberta, new AbsoluteConstraints(370, 10, -1, -1));
+            }
 
-        lblManager.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblManager.setText("Xablau");
-        projectPanel.add(lblManager, new AbsoluteConstraints(520, 30, -1, -1));
+            lblCreatedAt.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+            lblCreatedAt.setText(project.getCreatedAt().toString());
+            projectPanel.add(lblCreatedAt, new AbsoluteConstraints(520, 70, -1, -1));
 
-        lblAndamento.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblAndamento.setText("Andamento: 4");
-        projectPanel.add(lblAndamento, new AbsoluteConstraints(370, 30, -1, -1));
+            lblGerente.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+            lblGerente.setText("Gerente:");
+            projectPanel.add(lblGerente, new AbsoluteConstraints(520, 10, -1, -1));
 
-        lblTotal.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblTotal.setText("Total: 17");
-        projectPanel.add(lblTotal, new AbsoluteConstraints(370, 70, -1, -1));
+            lblCriadoEm.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
+            lblCriadoEm.setText("Criado em:");
+            projectPanel.add(lblCriadoEm, new AbsoluteConstraints(520, 50, -1, -1));
 
-        lblTeste.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblTeste.setText("Teste: 7");
-        projectPanel.add(lblTeste, new AbsoluteConstraints(370, 50, -1, -1));
+            panProjects.add(projectPanel, new AbsoluteConstraints(0, panY, 740, 90));
 
-        lblAberta.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblAberta.setText("Aberta: 6");
-        projectPanel.add(lblAberta, new AbsoluteConstraints(370, 10, -1, -1));
-
-        lblCreatedAt.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblCreatedAt.setText("24/03/2017");
-        projectPanel.add(lblCreatedAt, new AbsoluteConstraints(520, 70, -1, -1));
-
-        lblGerente.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblGerente.setText("Gerente:");
-        projectPanel.add(lblGerente, new AbsoluteConstraints(520, 10, -1, -1));
-
-        lblCriadoEm.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        lblCriadoEm.setText("Criado em:");
-        projectPanel.add(lblCriadoEm, new AbsoluteConstraints(520, 50, -1, -1));
-
-        panProjects.add(projectPanel, new AbsoluteConstraints(0, panY, 740, 90));
-
-        panRowCount++;
-        panY += 90;
-        basePanel.revalidate();
-        basePanel.repaint();
+            panRowCount++;
+            panY += 90;
+            basePanel.revalidate();
+            basePanel.repaint();
+        } catch (SQLException e) {
+            //e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     private void listProjects() {
