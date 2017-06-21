@@ -574,53 +574,70 @@ public class AtividadesAtualizar extends javax.swing.JPanel {
             }
 
             if (this.issue.getIssueTypeId() != issue.getIssueTypeId()) {
-                issueHistoric.setIssueTypeId(this.issue.getIssueTypeId());
+                issueHistoric.setOldIssueTypeId(this.issue.getIssueTypeId());
+                issueHistoric.setNewIssueTypeId(issue.getIssueTypeId());
             }
             if (this.issue.getIssueStatusId() != issue.getIssueStatusId()) {
-                issueHistoric.setIssueStatusId(this.issue.getIssueStatusId());
+                issueHistoric.setOldIssueStatusId(this.issue.getIssueStatusId());
+                issueHistoric.setNewIssueStatusId(issue.getIssueStatusId());
             }
             if (this.issue.getIssuePriorityId() != issue.getIssuePriorityId()) {
-                issueHistoric.setIssuePriorityId(this.issue.getIssuePriorityId());
+                issueHistoric.setOldIssuePriorityId(this.issue.getIssuePriorityId());
+                issueHistoric.setNewIssuePriorityId(issue.getIssuePriorityId());
             }
             if (this.issue.getAssignedUserId() != issue.getAssignedUserId()) {
-                issueHistoric.setAssignedUserId(this.issue.getAssignedUserId());
+                issueHistoric.setOldAssignedUserId(this.issue.getAssignedUserId());
+                issueHistoric.setNewAssignedUserId(issue.getAssignedUserId());
             }
             if (!this.issue.getDoneRatio().equals(issue.getDoneRatio())) {
-                issueHistoric.setDoneRatio(this.issue.getDoneRatio());
+                issueHistoric.setOldDoneRatio(this.issue.getDoneRatio());
+                issueHistoric.setNewDoneRatio(issue.getDoneRatio());
             }
 
             if (dateToString(issue.getDueDate()) == null && dateToString(this.issue.getDueDate()) != null) {
-                issueHistoric.setDueDate(this.issue.getDueDate());
+                issueHistoric.setOldDueDate(this.issue.getDueDate());
+                issueHistoric.setNewDueDate(issue.getDueDate());
             } else if (dateToString(issue.getDueDate()) != null && dateToString(this.issue.getDueDate()) == null) {
-                issueHistoric.setDueDate(this.issue.getDueDate());
+                issueHistoric.setOldDueDate(this.issue.getDueDate());
+                issueHistoric.setNewDueDate(issue.getDueDate());
             } else if (!dateToString(this.issue.getDueDate()).equals(dateToString(issue.getDueDate()))) {
-                issueHistoric.setDueDate(this.issue.getDueDate());
+                issueHistoric.setOldDueDate(this.issue.getDueDate());
+                issueHistoric.setNewDueDate(issue.getDueDate());
             }
 
             if (dateToString(issue.getStartDate()) == null && dateToString(this.issue.getStartDate()) != null) {
-                issueHistoric.setStartDate(this.issue.getStartDate());
+                issueHistoric.setOldStartDate(this.issue.getStartDate());
+                issueHistoric.setNewStartDate(issue.getStartDate());
             } else if (dateToString(issue.getStartDate()) != null && dateToString(this.issue.getStartDate()) == null) {
-                issueHistoric.setStartDate(this.issue.getStartDate());
+                issueHistoric.setOldStartDate(this.issue.getStartDate());
+                issueHistoric.setNewStartDate(issue.getStartDate());
             } else if (!dateToString(this.issue.getStartDate()).equals(dateToString(issue.getStartDate()))) {
-                issueHistoric.setStartDate(this.issue.getStartDate());
+                issueHistoric.setOldStartDate(this.issue.getStartDate());
+                issueHistoric.setNewStartDate(issue.getStartDate());
             }
 
             if (dateToString(issue.getEndDate()) == null && dateToString(this.issue.getEndDate()) != null) {
-                issueHistoric.setEndDate(this.issue.getEndDate());
+                issueHistoric.setOldEndDate(this.issue.getEndDate());
+                issueHistoric.setNewEndDate(issue.getEndDate());
             } else if (dateToString(issue.getEndDate()) != null && dateToString(this.issue.getEndDate()) == null) {
-                issueHistoric.setEndDate(this.issue.getEndDate());
+                issueHistoric.setOldEndDate(this.issue.getEndDate());
+                issueHistoric.setNewEndDate(issue.getEndDate());
             } else if (!dateToString(this.issue.getEndDate()).equals(dateToString(issue.getEndDate()))) {
-                issueHistoric.setEndDate(this.issue.getEndDate());
+                issueHistoric.setOldEndDate(this.issue.getEndDate());
+                issueHistoric.setNewEndDate(issue.getEndDate());
             }
 
             if (this.issue.getEstimatedHours() != issue.getEstimatedHours()) {
-                issueHistoric.setEstimatedHours(this.issue.getEstimatedHours());
+                issueHistoric.setOldEstimatedHours(this.issue.getEstimatedHours());
+                issueHistoric.setNewEstimatedHours(issue.getEstimatedHours());
             }
             if (this.issue.getSpentHours() != issue.getSpentHours()) {
-                issueHistoric.setSpentHours(this.issue.getSpentHours());
+                issueHistoric.setOldSpentHours(this.issue.getSpentHours());
+                issueHistoric.setNewSpentHours(issue.getSpentHours());
             }
             if (this.issue.getParentIssueId() != issue.getParentIssueId()) {
-                issueHistoric.setParentIssueId(this.issue.getParentIssueId());
+                issueHistoric.setOldParentIssueId(this.issue.getParentIssueId());
+                issueHistoric.setNewParentIssueId(issue.getParentIssueId());
             }
 
             issueHistoricDAO.save(issueHistoric);

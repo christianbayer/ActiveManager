@@ -45,7 +45,7 @@ import org.netbeans.lib.awtextra.AbsoluteLayout;
  * @author christian
  */
 public class Atividades extends javax.swing.JPanel {
-
+    
     JLabel lblWindow;
     JLabel btnBack;
     CardLayout layoutController;
@@ -89,7 +89,7 @@ public class Atividades extends javax.swing.JPanel {
         this.cardPanel = cardPanel;
         this.layoutController = lController;
         this.user = user;
-
+        
         issueDAO = new IssueDAO();
         issueTypeDAO = new IssueTypeDAO();
         issueStatusDAO = new IssueStatusDAO();
@@ -97,7 +97,7 @@ public class Atividades extends javax.swing.JPanel {
         projectDAO = new ProjectDAO();
         userDAO = new UserDAO();
         userProjectDAO = new UserProjectDAO();
-
+        
         ActionListener al = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,9 +115,9 @@ public class Atividades extends javax.swing.JPanel {
         selStatus.addActionListener(al);
         selPriority.addActionListener(al);
         selAssignedUser.addActionListener(al);
-
+        
         row1.setVisible(false);
-
+        
         listIssues();
     }
 
@@ -409,7 +409,7 @@ public class Atividades extends javax.swing.JPanel {
 
             // Mapeia campos de parametros para o relatorio, mesmo que nao existam
             Map params = new HashMap();
-
+            
             params.put("issue_id", issue_id);
 
             // Executa relatoio
@@ -443,18 +443,18 @@ public class Atividades extends javax.swing.JPanel {
     private void selProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selProjectActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_selProjectActionPerformed
-
+    
     private Color panColorA = new Color(194, 228, 253);
     private Color panColorB = new Color(254, 254, 254);
     private int panY;
     private int panRowCount;
-
+    
     private void listIssue(Issue issue) {
-
+        
         JPanel issuePanel = new JPanel();
         issuePanel.setBackground(panRowCount % 2 == 0 ? panColorB : panColorA);
         issuePanel.setLayout(new AbsoluteLayout());
-
+        
         JLabel lblId = new JLabel();
         JLabel lblAssignedUser = new JLabel();
         JLabel lblTitle = new JLabel();
@@ -465,7 +465,7 @@ public class Atividades extends javax.swing.JPanel {
         JLabel btnTrash = new JLabel();
         JLabel btnEdit = new JLabel();
         JLabel btnMore = new JLabel();
-
+        
         if (!issue.isActive()) {
             lblId.setForeground(new Color(172, 172, 172));
             lblAssignedUser.setForeground(new Color(172, 172, 172));
@@ -475,35 +475,35 @@ public class Atividades extends javax.swing.JPanel {
             lblStatus.setForeground(new Color(172, 172, 172));
             lblPriority.setForeground(new Color(172, 172, 172));
         }
-
+        
         lblId.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblId.setText(String.valueOf(issue.getId()));
         issuePanel.add(lblId, new AbsoluteConstraints(10, 8, -1, -1));
-
+        
         lblAssignedUser.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblAssignedUser.setText(issue.getAssignedUserName());
         issuePanel.add(lblAssignedUser, new AbsoluteConstraints(480, 8, -1, -1));
-
+        
         lblTitle.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblTitle.setText(issue.getTitle());
         issuePanel.add(lblTitle, new AbsoluteConstraints(240, 8, -1, -1));
-
+        
         lblDone.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblDone.setText(String.valueOf(issue.getDoneRatio()));
         issuePanel.add(lblDone, new AbsoluteConstraints(600, 8, -1, -1));
-
+        
         lblType.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblType.setText(issue.getIssueTypeDescription());
         issuePanel.add(lblType, new AbsoluteConstraints(40, 8, -1, -1));
-
+        
         lblStatus.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblStatus.setText(issue.getIssueStatusDescription());
         issuePanel.add(lblStatus, new AbsoluteConstraints(140, 8, -1, -1));
-
+        
         lblPriority.setFont(new Font("Ubuntu", 0, 12)); // NOI18N
         lblPriority.setText(issue.getIssuePriorityDescription());
         issuePanel.add(lblPriority, new AbsoluteConstraints(400, 8, -1, -1));
-
+        
         btnTrash.setIcon(new ImageIcon(getClass().getResource("/icons/trash.png"))); // NOI18N
         btnTrash.addMouseListener(new MouseAdapter() {
             @Override
@@ -516,7 +516,7 @@ public class Atividades extends javax.swing.JPanel {
             }
         });
         issuePanel.add(btnTrash, new AbsoluteConstraints(670, 5, -1, -1));
-
+        
         btnEdit.setIcon(new ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
@@ -528,7 +528,7 @@ public class Atividades extends javax.swing.JPanel {
             }
         });
         issuePanel.add(btnEdit, new AbsoluteConstraints(640, 5, -1, -1));
-
+        
         btnMore.setIcon(new ImageIcon(getClass().getResource("/icons/more.png"))); // NOI18N
         btnMore.addMouseListener(new MouseAdapter() {
             @Override
@@ -540,15 +540,15 @@ public class Atividades extends javax.swing.JPanel {
             }
         });
         issuePanel.add(btnMore, new AbsoluteConstraints(700, 5, -1, -1));
-
+        
         panIssues.add(issuePanel, new AbsoluteConstraints(0, panY, 740, 30));
-
+        
         panRowCount++;
         panY += 30;
         basePanel.revalidate();
         basePanel.repaint();
     }
-
+    
     private void listIssues() {
         panY = 0;
         panRowCount = 1;
@@ -562,26 +562,26 @@ public class Atividades extends javax.swing.JPanel {
         }
         lblFound.setText(issues.size() + " atividades encontradas:");
     }
-
+    
     private void filter() {
-
+        
         JComboBoxItem projectItem = (JComboBoxItem) selProject.getSelectedItem();
         int projectId = projectItem.getKey();
-
+        
         JComboBoxItem issueTypeItem = (JComboBoxItem) selIssueType.getSelectedItem();
         int issueTypeId = issueTypeItem.getKey();
-
+        
         JComboBoxItem statusItem = (JComboBoxItem) selStatus.getSelectedItem();
         int issueStatusId = statusItem.getKey();
-
+        
         JComboBoxItem priorityItem = (JComboBoxItem) selPriority.getSelectedItem();
         int issuePriorityId = priorityItem.getKey();
-
+        
         JComboBoxItem assignedUserItem = (JComboBoxItem) selAssignedUser.getSelectedItem();
         int assignedUserId = assignedUserItem.getKey();
-
+        
         String title = inpTitle.getText();
-
+        
         String query = "SELECT * FROM issues WHERE ";
         if (projectId != 0) {
             query += "project_id = " + projectId + " AND ";
@@ -602,9 +602,9 @@ public class Atividades extends javax.swing.JPanel {
             while (iterator.hasNext()) {
                 UserProject userProject = (UserProject) iterator.next();
                 arrUsersIds.add(String.valueOf(userProject.getId()));
-
+                
             }
-
+            
             String usersIds = "";
             for (int i = 0; i < arrUsersIds.size(); i++) {
                 if (i == 0) {
@@ -613,18 +613,18 @@ public class Atividades extends javax.swing.JPanel {
                     usersIds += ", " + arrUsersIds.get(i);
                 }
             }
-
+            
             if (!usersIds.isEmpty()) {
                 query += "project_id IN (" + usersIds + ") AND ";
             } else {
                 query += "project_id = 0 AND ";
             }
         }
-        if (!title.isEmpty()) {
+        if (!title.isEmpty() && !title.equals("Título")) {
             query += "title like \"%" + title + "%\" AND ";
         }
         query += "id IS NOT NULL;";
-
+        System.out.println(query);
         panY = 0;
         panRowCount = 1;
         panIssues.removeAll();
